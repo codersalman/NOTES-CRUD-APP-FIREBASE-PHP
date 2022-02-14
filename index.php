@@ -54,7 +54,7 @@ $database = $factory->createDatabase();
 
     <div class="container my-4">
         <h2>Add a Note to iNotes</h2>
-        <form action="/crud/index.php" method="POST">
+        <form action="" method="POST">
             <div class="form-group">
                 <label for="title">Note Title</label>
                 <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
@@ -64,9 +64,84 @@ $database = $factory->createDatabase();
                 <label for="desc">Note Description</label>
                 <textarea class="form-control" id="description" name="description" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Add Note</button>
+            <button type="submit"  class="btn btn-primary">Add Note</button>
         </form>
     </div>
+
+    <?php
+
+
+
+    if(isset($_GET['dkey'])){
+        $database->getReference("Notes/".$_GET['key'])->remove();
+        header("Location:index.php");
+
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if (isset( $_POST['edit'])){
+            // Update the record
+            $key = $_POST["ekey"];
+            $title = $_POST["titleEdit"];
+            $description = $_POST["descriptionEdit"];
+
+            date_default_timezone_set("Asia/Calcutta");
+            $timestamp = date("d-m-Y H:i:s");
+
+            $postData = [
+
+                'Title' => $title,
+                'Description'  => $description,
+                'Timestamp'  => $timestamp
+
+            ];
+            $ref_table = "Notes/${$key}";
+            $result = $database->getReference($ref_table)->update($postData);
+
+            if ($result) {
+
+                $_SESSION['status'] = "Success";
+                $edit = true;
+            } else {
+
+                $_SESSION['status'] = " Error";
+                echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
+                $edit = flase;
+            }
+        }
+        else{
+            $title = $_POST["title"];
+            $description = $_POST["description"];
+
+            date_default_timezone_set("Asia/Calcutta");
+            $timestamp = date("d-m-Y H:i:s");
+
+            $postData = [
+
+                'Title'  => $title,
+                'Description'  => $description,
+                'Timestamp'  => $timestamp
+
+
+            ];
+            $ref_table = "Notes";
+            $result = $database->getReference($ref_table)->push($postData);
+
+            if ($result) {
+
+                $_SESSION['status'] = "Success";
+                $insert = true;
+                header("Location:index.php");
+            } else {
+
+                $_SESSION['status'] = " Error";
+                echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
+                $insert = flase;
+            }
+        }
+    }
+
+
+    ?>
 
     <div class="container my-4">
 
@@ -101,7 +176,7 @@ $database = $factory->createDatabase();
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <form action="/crud/index.php" method="POST">
+                <form action="" method="POST">
                     <div class="modal-body">
                         <input type="hidden" name="snoEdit" id="snoEdit">
                         <div class="form-group">
@@ -157,7 +232,7 @@ $database = $factory->createDatabase();
 
             if (confirm("Are you sure you want to delete this note!")) {
                 console.log("yes");
-                window.location = `/crud/index.php?delete=${sno}`;
+                window.location = `index.php?dkey=${sno}`;
                 // TODO: Create a form and use post request to submit a form
             } else {
                 console.log("no");
