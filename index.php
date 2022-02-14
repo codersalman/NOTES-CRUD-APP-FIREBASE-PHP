@@ -8,12 +8,14 @@ use Kreait\Firebase\Factory;
 
 $factory = (new Factory)
     ->withServiceAccount('fir-apps-14aae-firebase-adminsdk-ft3kc-f740a2b4ee.json') // Add the service_accounts.json
-    ->withDatabaseUri('https://fir-apps-14aae-default-rtdb.firebaseio.com/notes_crud'); // add the database uri
+    ->withDatabaseUri('https://fir-apps-14aae-default-rtdb.firebaseio.com/'); // add the database uri
 
 $database = $factory->createDatabase();
 
-
+session_start();
 ?>
+
+
 <!--HTML DOCUMENT-->
 <!doctype html>
 <html lang="en">
@@ -73,14 +75,14 @@ $database = $factory->createDatabase();
 
 
     if(isset($_GET['dkey'])){
-        $database->getReference("Notes/".$_GET['key'])->remove();
+        $database->getReference("Notes/".$_GET['dkey'])->remove();
         header("Location:index.php");
 
     }
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if (isset( $_POST['edit'])){
+        if (isset( $_POST['ekey'])){
             // Update the record
-            $key = $_POST["ekey"];
+            $ekey = $_POST["ekey"];
             $title = $_POST["titleEdit"];
             $description = $_POST["descriptionEdit"];
 
@@ -94,18 +96,19 @@ $database = $factory->createDatabase();
                 'Timestamp'  => $timestamp
 
             ];
-            $ref_table = "Notes/${$key}";
+            $ref_table = $ekey;
             $result = $database->getReference($ref_table)->update($postData);
 
             if ($result) {
 
                 $_SESSION['status'] = "Success";
                 $edit = true;
+                header("Location:index.php");
             } else {
 
                 $_SESSION['status'] = " Error";
-                echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
-                $edit = flase;
+                echo "The record was not inserted successfully because of this error ---> ".$_SESSION['status'];
+                $edit = false;
             }
         }
         else{
@@ -134,8 +137,8 @@ $database = $factory->createDatabase();
             } else {
 
                 $_SESSION['status'] = " Error";
-                echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
-                $insert = flase;
+                echo "The record was not inserted successfully because of this error ---> ".$_SESSION['status'];
+                $insert = false;
             }
         }
     }
@@ -148,7 +151,7 @@ $database = $factory->createDatabase();
 
         <table class="table" id="myTable">
             <thead>
-                <tr>
+                <tr align="center">
                     <th scope="col">S.No</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
@@ -158,7 +161,29 @@ $database = $factory->createDatabase();
             <tbody>
 
 
+            <?php
 
+
+            $ref = "Notes";
+            $data1 = $database->getReference($ref)->getValue();
+            $i = 0;
+            foreach($data1 as $key => $data2){
+            $i++;
+
+            ?>
+
+         <tr align="center">
+            <th scope='row'><?php echo $i;?></th>
+            <td><?php echo $data2['Title'];?></td>
+           <td><?php echo $data2['Description'];?></td>
+             <td> <button class='edit btn btn-sm btn-primary' id="<?php echo $data2['Description'];?>">Edit</button> <button class='delete btn btn-sm btn-primary' id="d<?php echo $key;?>">Delete</button>  </td>
+
+             <input id="key" type="hidden" value="Notes/<?php echo $key;?>">
+
+        </tr>
+                <?php
+            }
+            ?>
 
             </tbody>
         </table>
@@ -178,7 +203,7 @@ $database = $factory->createDatabase();
                 </div>
                 <form action="" method="POST">
                     <div class="modal-body">
-                        <input type="hidden" name="snoEdit" id="snoEdit">
+                        <input type="hidden" name="ekey" id="snoEdit">
                         <div class="form-group">
                             <label for="title">Note Title</label>
                             <input type="text" class="form-control" id="titleEdit" name="titleEdit"
@@ -193,7 +218,7 @@ $database = $factory->createDatabase();
                     </div>
                     <div class="modal-footer d-block mr-auto">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" name="edit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -208,31 +233,31 @@ $database = $factory->createDatabase();
         });
     </script>
     <script>
-    edits = document.getElementsByClassName('edit');
-    Array.from(edits).forEach((element) => {
-        element.addEventListener("click", (e) => {
-            console.log("edit ");
-            tr = e.target.parentNode.parentNode;
-            title = tr.getElementsByTagName("td")[0].innerText;
-            description = tr.getElementsByTagName("td")[1].innerText;
-            console.log(title, description);
-            titleEdit.value = title;
-            descriptionEdit.value = description;
-            snoEdit.value = e.target.id;
-            console.log(e.target.id)
-            $('#editModal').modal('toggle');
-        })
-    })
+        edits = document.getElementsByClassName('edit');
+        Array.from(edits).forEach((element) => {
+            element.addEventListener("click", (e) => {
+                console.log("edit ");
+                tr = e.target.parentNode.parentNode;
 
+                title = tr.getElementsByTagName("td")[0].innerText;
+                description = tr.getElementsByTagName("td")[1].innerText;
+                console.log(title, description);
+                titleEdit.value = title;
+                descriptionEdit.value = description;
+                snoEdit.value =   tr.getElementsByTagName("input")[0].value;
+                console.log(e.target.id)
+                $('#editModal').modal('toggle');
+            })
+        })
     deletes = document.getElementsByClassName('delete');
     Array.from(deletes).forEach((element) => {
-        element.addEventListener("click", (e) => {
-            console.log("edit ");
-            sno = e.target.id.substr(1);
+        element.addEventListener("click", (d) => {
+            console.log("delete ");
+            key = d.target.id.substr(1);
 
             if (confirm("Are you sure you want to delete this note!")) {
                 console.log("yes");
-                window.location = `index.php?dkey=${sno}`;
+                window.location = `index.php?dkey=${key}`;
                 // TODO: Create a form and use post request to submit a form
             } else {
                 console.log("no");
