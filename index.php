@@ -1,4 +1,20 @@
+<!--FIREBASE CONFIG-->
 
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
+$factory = (new Factory)
+    ->withServiceAccount('fir-apps-14aae-firebase-adminsdk-ft3kc-f740a2b4ee.json') // Add the service_accounts.json
+    ->withDatabaseUri('https://fir-apps-14aae-default-rtdb.firebaseio.com/notes_crud'); // add the database uri
+
+$database = $factory->createDatabase();
+
+
+?>
+<!--HTML DOCUMENT-->
 <!doctype html>
 <html lang="en">
 
@@ -7,14 +23,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>iNotes - Notes taking made easy</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
-
-    <title>iNotes - Notes taking made easy</title>
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -110,6 +124,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Optional JavaScript -->
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
