@@ -15,7 +15,6 @@ $database = $factory->createDatabase();
 session_start();
 ?>
 
-
 <!--HTML DOCUMENT-->
 <!doctype html>
 <html lang="en">
