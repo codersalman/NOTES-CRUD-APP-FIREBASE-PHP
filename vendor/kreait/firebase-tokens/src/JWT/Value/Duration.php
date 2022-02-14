@@ -72,7 +72,7 @@ final class Duration
             throw new InvalidArgumentException('A duration can not be negative');
         }
 
-        return self::fromDateIntervalSpec('PT'.$seconds.'S');
+        return self::fromDateIntervalSpec('PT' . $seconds . 'S');
     }
 
     /**
@@ -159,7 +159,7 @@ final class Duration
 
     private static function now(): DateTimeImmutable
     {
-        return new DateTimeImmutable('@'.\time());
+        return new DateTimeImmutable('@' . \time());
     }
 
     private static function normalizeInterval(DateInterval $value): DateInterval
@@ -173,14 +173,14 @@ final class Duration
     private static function toDateIntervalSpec(DateInterval $value): string
     {
         $spec = 'P';
-        $spec .= 0 !== $value->y ? $value->y.'Y' : '';
-        $spec .= 0 !== $value->m ? $value->m.'M' : '';
-        $spec .= 0 !== $value->d ? $value->d.'D' : '';
+        $spec .= 0 !== $value->y ? $value->y . 'Y' : '';
+        $spec .= 0 !== $value->m ? $value->m . 'M' : '';
+        $spec .= 0 !== $value->d ? $value->d . 'D' : '';
 
         $spec .= 'T';
-        $spec .= 0 !== $value->h ? $value->h.'H' : '';
-        $spec .= 0 !== $value->i ? $value->i.'M' : '';
-        $spec .= 0 !== $value->s ? $value->s.'S' : '';
+        $spec .= 0 !== $value->h ? $value->h . 'H' : '';
+        $spec .= 0 !== $value->i ? $value->i . 'M' : '';
+        $spec .= 0 !== $value->s ? $value->s . 'S' : '';
 
         if ('T' === \mb_substr($spec, -1)) {
             $spec = \mb_substr($spec, 0, -1);

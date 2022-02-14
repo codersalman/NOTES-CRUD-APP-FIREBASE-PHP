@@ -133,7 +133,7 @@ class SysvConfigStorage implements ConfigStorageInterface
                 'Failed to attach to the shared memory'
             );
         }
-        if (! shm_has_var($shmid, self::VAR_KEY)) {
+        if (!shm_has_var($shmid, self::VAR_KEY)) {
             $result = new JobConfig();
         } else {
             $result = shm_get_var($shmid, self::VAR_KEY);

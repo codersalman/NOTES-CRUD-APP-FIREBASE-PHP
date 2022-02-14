@@ -11,10 +11,10 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Logger;
-use Monolog\Utils;
 use Monolog\Formatter\FlowdockFormatter;
 use Monolog\Formatter\FormatterInterface;
+use Monolog\Logger;
+use Monolog\Utils;
 
 /**
  * Sends notifications through the Flowdock push API

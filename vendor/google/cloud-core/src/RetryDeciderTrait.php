@@ -67,7 +67,7 @@ trait RetryDeciderTrait
             }
 
             $message = ($ex instanceof RequestException && $ex->hasResponse())
-                ? (string) $ex->getResponse()->getBody()
+                ? (string)$ex->getResponse()->getBody()
                 : $ex->getMessage();
 
             try {

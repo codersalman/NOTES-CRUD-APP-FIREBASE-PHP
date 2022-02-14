@@ -31,17 +31,17 @@ namespace Google\Cloud\Core\Iam;
 interface IamConnectionInterface
 {
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function getPolicy(array $args);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function setPolicy(array $args);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function testPermissions(array $args);
 }

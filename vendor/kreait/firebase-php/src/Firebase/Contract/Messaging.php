@@ -22,11 +22,11 @@ interface Messaging
     /**
      * @param Message|array<string, mixed> $message
      *
-     * @throws MessagingException
+     * @return array<mixed>
      * @throws FirebaseException
      * @throws InvalidArgumentException
      *
-     * @return array<mixed>
+     * @throws MessagingException
      */
     public function send($message, bool $validateOnly = false): array;
 
@@ -52,22 +52,22 @@ interface Messaging
     /**
      * @param Message|array<string, mixed> $message
      *
-     * @throws InvalidMessage
+     * @return array<mixed>
      * @throws MessagingException
      * @throws FirebaseException
      * @throws InvalidArgumentException
      *
-     * @return array<mixed>
+     * @throws InvalidMessage
      */
     public function validate($message): array;
 
     /**
      * @param RegistrationTokens|RegistrationToken|RegistrationToken[]|string[]|string $registrationTokenOrTokens
      *
-     * @throws MessagingException
+     * @return array<string, array<int, string>>
      * @throws FirebaseException
      *
-     * @return array<string, array<int, string>>
+     * @throws MessagingException
      */
     public function validateRegistrationTokens($registrationTokenOrTokens): array;
 

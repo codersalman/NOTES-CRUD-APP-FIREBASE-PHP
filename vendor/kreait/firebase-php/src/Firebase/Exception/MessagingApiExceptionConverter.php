@@ -46,7 +46,7 @@ class MessagingApiExceptionConverter
         }
 
         if ($exception instanceof NetworkExceptionInterface) {
-            return new ApiConnectionFailed('Unable to connect to the API: '.$exception->getMessage(), $exception->getCode(), $exception);
+            return new ApiConnectionFailed('Unable to connect to the API: ' . $exception->getMessage(), $exception->getCode(), $exception);
         }
 
         return new MessagingError($exception->getMessage(), $exception->getCode(), $exception);

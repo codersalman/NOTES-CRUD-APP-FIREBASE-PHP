@@ -133,7 +133,7 @@ final class Item implements CacheItemInterface
             $this->expiration = $time;
         } else {
             $message = 'Argument 1 passed to %s::expiresAfter() must be an ' .
-                       'instance of DateInterval or of the type integer, %s given';
+                'instance of DateInterval or of the type integer, %s given';
             $error = sprintf($message, get_class($this), gettype($time));
 
             $this->handleError($error);

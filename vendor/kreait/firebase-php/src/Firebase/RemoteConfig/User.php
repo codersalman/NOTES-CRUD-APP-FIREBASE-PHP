@@ -18,9 +18,9 @@ final class User
     }
 
     /**
+     * @param array<string, string> $data
      * @internal
      *
-     * @param array<string, string> $data
      */
     public static function fromArray(array $data): self
     {

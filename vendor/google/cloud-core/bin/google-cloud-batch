@@ -51,7 +51,7 @@ if ($argv[1] === 'daemon') {
     if (count($argv) == 2) {
         $daemon->run();
     } else {
-        $idNum = (int) $argv[2];
+        $idNum = (int)$argv[2];
         $job = $daemon->job($idNum);
         $job->run();
     }

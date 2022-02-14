@@ -70,16 +70,17 @@ final class Auth implements Contract\Auth
      * @param CustomTokenGenerator|CustomTokenViaGoogleIam|null $tokenGenerator
      */
     public function __construct(
-        ApiClient $client,
-        ClientInterface $httpClient,
-        $tokenGenerator,
-        IdTokenVerifier $idTokenVerifier,
+        ApiClient             $client,
+        ClientInterface       $httpClient,
+                              $tokenGenerator,
+        IdTokenVerifier       $idTokenVerifier,
         SessionCookieVerifier $sessionCookieVerifier,
-        SignInHandler $signInHandler,
-        string $projectId,
-        ?string $tenantId,
-        ClockInterface $clock
-    ) {
+        SignInHandler         $signInHandler,
+        string                $projectId,
+        ?string               $tenantId,
+        ClockInterface        $clock
+    )
+    {
         $this->client = $client;
         $this->httpClient = $httpClient;
         $this->tokenGenerator = $tokenGenerator;
@@ -93,7 +94,7 @@ final class Auth implements Contract\Auth
 
     public function getUser($uid): UserRecord
     {
-        $uid = (string) (new Uid((string) $uid));
+        $uid = (string)(new Uid((string)$uid));
 
         $userRecord = $this->getUsers([$uid])[$uid] ?? null;
 
@@ -106,13 +107,13 @@ final class Auth implements Contract\Auth
 
     public function getUsers(array $uids): array
     {
-        $uids = \array_map(static fn ($uid) => (string) (new Uid((string) $uid)), $uids);
+        $uids = \array_map(static fn($uid) => (string)(new Uid((string)$uid)), $uids);
 
         $users = \array_fill_keys($uids, null);
 
         $response = $this->client->getAccountInfo($uids);
 
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
 
         foreach ($data['users'] ?? [] as $userData) {
             $userRecord = UserRecord::fromResponseData($userData);
@@ -129,9 +130,9 @@ final class Auth implements Contract\Auth
 
         do {
             $response = $this->client->downloadAccount($batchSize, $pageToken);
-            $result = JSON::decode((string) $response->getBody(), true);
+            $result = JSON::decode((string)$response->getBody(), true);
 
-            foreach ((array) ($result['users'] ?? []) as $userData) {
+            foreach ((array)($result['users'] ?? []) as $userData) {
                 yield UserRecord::fromResponseData($userData);
 
                 if (++$count === $maxResults) {
@@ -178,11 +179,11 @@ final class Auth implements Contract\Auth
 
     public function getUserByEmail($email): UserRecord
     {
-        $email = (string) (new Email((string) $email));
+        $email = (string)(new Email((string)$email));
 
         $response = $this->client->getUserByEmail($email);
 
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
 
         if (empty($data['users'][0])) {
             throw new UserNotFound("No user with email '{$email}' found.");
@@ -193,11 +194,11 @@ final class Auth implements Contract\Auth
 
     public function getUserByPhoneNumber($phoneNumber): UserRecord
     {
-        $phoneNumber = (string) $phoneNumber;
+        $phoneNumber = (string)$phoneNumber;
 
         $response = $this->client->getUserByPhoneNumber($phoneNumber);
 
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
 
         if (empty($data['users'][0])) {
             throw new UserNotFound("No user with phone number '{$phoneNumber}' found.");
@@ -233,7 +234,7 @@ final class Auth implements Contract\Auth
 
     public function deleteUser($uid): void
     {
-        $uid = (string) (new Uid((string) $uid));
+        $uid = (string)(new Uid((string)$uid));
 
         try {
             $this->client->deleteUser($uid);
@@ -258,7 +259,7 @@ final class Auth implements Contract\Auth
 
     public function getEmailActionLink(string $type, $email, $actionCodeSettings = null, ?string $locale = null): string
     {
-        $email = (string) (new Email((string) $email));
+        $email = (string)(new Email((string)$email));
 
         if ($actionCodeSettings === null) {
             $actionCodeSettings = ValidatedActionCodeSettings::empty();
@@ -269,13 +270,12 @@ final class Auth implements Contract\Auth
         }
 
         return (new CreateActionLink\GuzzleApiClientHandler($this->httpClient, $this->projectId))
-            ->handle(CreateActionLink::new($type, $email, $actionCodeSettings, $this->tenantId, $locale))
-        ;
+            ->handle(CreateActionLink::new($type, $email, $actionCodeSettings, $this->tenantId, $locale));
     }
 
     public function sendEmailActionLink(string $type, $email, $actionCodeSettings = null, ?string $locale = null): void
     {
-        $email = (string) (new Email((string) $email));
+        $email = (string)(new Email((string)$email));
 
         if ($actionCodeSettings === null) {
             $actionCodeSettings = ValidatedActionCodeSettings::empty();
@@ -349,7 +349,7 @@ final class Auth implements Contract\Auth
 
     public function setCustomUserClaims($uid, ?array $claims): void
     {
-        $uid = (string) (new Uid((string) $uid));
+        $uid = (string)(new Uid((string)$uid));
         $claims ??= [];
 
         $this->client->setCustomUserClaims($uid, $claims);
@@ -357,7 +357,7 @@ final class Auth implements Contract\Auth
 
     public function createCustomToken($uid, array $claims = [], $ttl = 3600): UnencryptedToken
     {
-        $uid = (string) (new Uid((string) $uid));
+        $uid = (string)(new Uid((string)$uid));
 
         $generator = $this->tokenGenerator;
 
@@ -380,7 +380,7 @@ final class Auth implements Contract\Auth
             $parsedToken = Configuration::forUnsecuredSigner()->parser()->parse($tokenString);
             \assert($parsedToken instanceof UnencryptedToken);
         } catch (Throwable $e) {
-            throw new InvalidArgumentException('The given token could not be parsed: '.$e->getMessage());
+            throw new InvalidArgumentException('The given token could not be parsed: ' . $e->getMessage());
         }
 
         return $parsedToken;
@@ -458,16 +458,16 @@ final class Auth implements Contract\Auth
     {
         $response = $this->client->verifyPasswordResetCode($oobCode);
 
-        return JSON::decode((string) $response->getBody(), true)['email'];
+        return JSON::decode((string)$response->getBody(), true)['email'];
     }
 
     public function confirmPasswordReset(string $oobCode, $newPassword, bool $invalidatePreviousSessions = true): string
     {
-        $newPassword = (string) (new ClearTextPassword((string) $newPassword));
+        $newPassword = (string)(new ClearTextPassword((string)$newPassword));
 
-        $response = $this->client->confirmPasswordReset($oobCode, (string) $newPassword);
+        $response = $this->client->confirmPasswordReset($oobCode, (string)$newPassword);
 
-        $email = JSON::decode((string) $response->getBody(), true)['email'];
+        $email = JSON::decode((string)$response->getBody(), true)['email'];
 
         if ($invalidatePreviousSessions) {
             $this->revokeRefreshTokens($this->getUserByEmail($email)->uid);
@@ -478,15 +478,15 @@ final class Auth implements Contract\Auth
 
     public function revokeRefreshTokens($uid): void
     {
-        $uid = (string) (new Uid((string) $uid));
+        $uid = (string)(new Uid((string)$uid));
 
         $this->client->revokeRefreshTokens($uid);
     }
 
     public function unlinkProvider($uid, $provider): UserRecord
     {
-        $uid = (string) (new Uid((string) $uid));
-        $provider = \array_map('strval', (array) $provider);
+        $uid = (string)(new Uid((string)$uid));
+        $provider = \array_map('strval', (array)$provider);
 
         $response = $this->client->unlinkProvider($uid, $provider);
 
@@ -496,7 +496,7 @@ final class Auth implements Contract\Auth
     public function signInAsUser($user, ?array $claims = null): SignInResult
     {
         $claims ??= [];
-        $uid = $user instanceof UserRecord ? $user->uid : (string) $user;
+        $uid = $user instanceof UserRecord ? $user->uid : (string)$user;
 
         try {
             $customToken = $this->createCustomToken($uid, $claims);
@@ -539,8 +539,8 @@ final class Auth implements Contract\Auth
 
     public function signInWithEmailAndPassword($email, $clearTextPassword): SignInResult
     {
-        $email = (string) (new Email((string) $email));
-        $clearTextPassword = (string) (new ClearTextPassword((string) $clearTextPassword));
+        $email = (string)(new Email((string)$email));
+        $clearTextPassword = (string)(new ClearTextPassword((string)$clearTextPassword));
 
         $action = SignInWithEmailAndPassword::fromValues($email, $clearTextPassword);
 
@@ -553,7 +553,7 @@ final class Auth implements Contract\Auth
 
     public function signInWithEmailAndOobCode($email, string $oobCode): SignInResult
     {
-        $email = (string) (new Email((string) $email));
+        $email = (string)(new Email((string)$email));
 
         $action = SignInWithEmailAndOobCode::fromValues($email, $oobCode);
 
@@ -587,11 +587,11 @@ final class Auth implements Contract\Auth
 
     public function signInWithIdpAccessToken($provider, string $accessToken, $redirectUrl = null, ?string $oauthTokenSecret = null, ?string $linkingIdToken = null, ?string $rawNonce = null): SignInResult
     {
-        $provider = (string) $provider;
-        $redirectUrl = \trim((string) ($redirectUrl ?? 'http://localhost'));
-        $linkingIdToken = \trim((string) $linkingIdToken);
-        $oauthTokenSecret = \trim((string) $oauthTokenSecret);
-        $rawNonce = \trim((string) $rawNonce);
+        $provider = (string)$provider;
+        $redirectUrl = \trim((string)($redirectUrl ?? 'http://localhost'));
+        $linkingIdToken = \trim((string)$linkingIdToken);
+        $oauthTokenSecret = \trim((string)$oauthTokenSecret);
+        $rawNonce = \trim((string)$rawNonce);
 
         if ($oauthTokenSecret !== '') {
             $action = SignInWithIdpCredentials::withAccessTokenAndOauthTokenSecret($provider, $accessToken, $oauthTokenSecret);
@@ -620,10 +620,10 @@ final class Auth implements Contract\Auth
 
     public function signInWithIdpIdToken($provider, $idToken, $redirectUrl = null, ?string $linkingIdToken = null, ?string $rawNonce = null): SignInResult
     {
-        $provider = \trim((string) $provider);
-        $redirectUrl = \trim((string) ($redirectUrl ?? 'http://localhost'));
-        $linkingIdToken = \trim((string) $linkingIdToken);
-        $rawNonce = \trim((string) $rawNonce);
+        $provider = \trim((string)$provider);
+        $redirectUrl = \trim((string)($redirectUrl ?? 'http://localhost'));
+        $linkingIdToken = \trim((string)$linkingIdToken);
+        $rawNonce = \trim((string)$rawNonce);
 
         if ($idToken instanceof Token) {
             $idToken = $idToken->toString();
@@ -653,8 +653,7 @@ final class Auth implements Contract\Auth
     public function createSessionCookie($idToken, $ttl): string
     {
         return (new CreateSessionCookie\GuzzleApiClientHandler($this->httpClient, $this->projectId))
-            ->handle(CreateSessionCookie::forIdToken($idToken, $this->tenantId, $ttl, $this->clock))
-        ;
+            ->handle(CreateSessionCookie::forIdToken($idToken, $this->tenantId, $ttl, $this->clock));
     }
 
     /**
@@ -665,7 +664,7 @@ final class Auth implements Contract\Auth
      */
     private function getUserRecordFromResponse(ResponseInterface $response): UserRecord
     {
-        $uid = JSON::decode((string) $response->getBody(), true)['localId'];
+        $uid = JSON::decode((string)$response->getBody(), true)['localId'];
 
         return $this->getUser($uid);
     }
@@ -683,7 +682,7 @@ final class Auth implements Contract\Auth
         $tokenAuthenticatedAt = DT::toUTCDateTimeImmutable($verifiedToken->claims()->get('auth_time'));
 
         if ($leewayInSeconds) {
-            $tokenAuthenticatedAt = $tokenAuthenticatedAt->modify('-'.$leewayInSeconds.' seconds');
+            $tokenAuthenticatedAt = $tokenAuthenticatedAt->modify('-' . $leewayInSeconds . ' seconds');
         }
 
         return $tokenAuthenticatedAt->getTimestamp() < $validSince->getTimestamp();

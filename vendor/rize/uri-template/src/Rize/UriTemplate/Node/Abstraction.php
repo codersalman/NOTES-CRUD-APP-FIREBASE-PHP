@@ -23,7 +23,7 @@ abstract class Abstraction
      * Expands URI template
      *
      * @param Parser $parser
-     * @param array  $params
+     * @param array $params
      * @return null|string
      */
     public function expand(Parser $parser, array $params = array())
@@ -36,7 +36,7 @@ abstract class Abstraction
      *
      * @param Parser $parser
      * @param string $uri
-     * @param array  $params
+     * @param array $params
      * @param bool $strict
      * @return null|array `uri and params` or `null` if not match and $strict is true
      */
@@ -46,9 +46,7 @@ abstract class Abstraction
         $length = strlen($this->token);
         if (substr($uri, 0, $length) === $this->token) {
             $uri = substr($uri, $length);
-        }
-
-        // when there's no match, just return null if strict mode is given
+        } // when there's no match, just return null if strict mode is given
         else if ($strict) {
             return null;
         }

@@ -44,10 +44,10 @@ class RotatingFileHandler extends StreamHandler
     protected $dateFormat;
 
     /**
-     * @param string     $filename
-     * @param int        $maxFiles       The maximal amount of files to keep (0 means unlimited)
-     * @param int|null   $filePermission Optional file permissions (default (0644) are only for owner read/write)
-     * @param bool       $useLocking     Try to lock log file before doing any writes
+     * @param string $filename
+     * @param int $maxFiles The maximal amount of files to keep (0 means unlimited)
+     * @param int|null $filePermission Optional file permissions (default (0644) are only for owner read/write)
+     * @param bool $useLocking Try to lock log file before doing any writes
      */
     public function __construct(string $filename, int $maxFiles = 0, $level = Logger::DEBUG, bool $bubble = true, ?int $filePermission = null, bool $useLocking = false)
     {
@@ -88,9 +88,9 @@ class RotatingFileHandler extends StreamHandler
     {
         if (!preg_match('{^[Yy](([/_.-]?m)([/_.-]?d)?)?$}', $dateFormat)) {
             throw new InvalidArgumentException(
-                'Invalid date format - format must be one of '.
-                'RotatingFileHandler::FILE_PER_DAY ("Y-m-d"), RotatingFileHandler::FILE_PER_MONTH ("Y-m") '.
-                'or RotatingFileHandler::FILE_PER_YEAR ("Y"), or you can set one of the '.
+                'Invalid date format - format must be one of ' .
+                'RotatingFileHandler::FILE_PER_DAY ("Y-m-d"), RotatingFileHandler::FILE_PER_MONTH ("Y-m") ' .
+                'or RotatingFileHandler::FILE_PER_YEAR ("Y"), or you can set one of the ' .
                 'date formats using slashes, underscores and/or dots instead of dashes.'
             );
         }
@@ -180,7 +180,7 @@ class RotatingFileHandler extends StreamHandler
         );
 
         if (isset($fileInfo['extension'])) {
-            $timedFilename .= '.'.$fileInfo['extension'];
+            $timedFilename .= '.' . $fileInfo['extension'];
         }
 
         return $timedFilename;
@@ -195,7 +195,7 @@ class RotatingFileHandler extends StreamHandler
             $fileInfo['dirname'] . '/' . $this->filenameFormat
         );
         if (isset($fileInfo['extension'])) {
-            $glob .= '.'.$fileInfo['extension'];
+            $glob .= '.' . $fileInfo['extension'];
         }
 
         return $glob;

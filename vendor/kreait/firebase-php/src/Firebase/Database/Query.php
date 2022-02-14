@@ -81,9 +81,9 @@ class Query
     /**
      * Convenience method for {@see getSnapshot()}->getValue().
      *
+     * @return mixed
      * @throws UnsupportedQuery if an error occurred
      *
-     * @return mixed
      */
     public function getValue()
     {
@@ -270,7 +270,7 @@ class Query
      */
     public function __toString(): string
     {
-        return (string) $this->getUri();
+        return (string)$this->getUri();
     }
 
     private function withAddedFilter(Filter $filter): self

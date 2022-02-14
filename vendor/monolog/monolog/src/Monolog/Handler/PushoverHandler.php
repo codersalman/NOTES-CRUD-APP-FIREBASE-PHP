@@ -80,42 +80,43 @@ class PushoverHandler extends SocketHandler
     ];
 
     /**
-     * @param string       $token             Pushover api token
-     * @param string|array $users             Pushover user id or array of ids the message will be sent to
-     * @param string|null  $title             Title sent to the Pushover API
-     * @param bool         $useSSL            Whether to connect via SSL. Required when pushing messages to users that are not
+     * @param string $token Pushover api token
+     * @param string|array $users Pushover user id or array of ids the message will be sent to
+     * @param string|null $title Title sent to the Pushover API
+     * @param bool $useSSL Whether to connect via SSL. Required when pushing messages to users that are not
      *                                        the pushover.net app owner. OpenSSL is required for this option.
-     * @param string|int   $highPriorityLevel The minimum logging level at which this handler will start
+     * @param string|int $highPriorityLevel The minimum logging level at which this handler will start
      *                                        sending "high priority" requests to the Pushover API
-     * @param string|int   $emergencyLevel    The minimum logging level at which this handler will start
+     * @param string|int $emergencyLevel The minimum logging level at which this handler will start
      *                                        sending "emergency" requests to the Pushover API
-     * @param int          $retry             The retry parameter specifies how often (in seconds) the Pushover servers will
+     * @param int $retry The retry parameter specifies how often (in seconds) the Pushover servers will
      *                                        send the same notification to the user.
-     * @param int          $expire            The expire parameter specifies how many seconds your notification will continue
+     * @param int $expire The expire parameter specifies how many seconds your notification will continue
      *                                        to be retried for (every retry seconds).
      *
-     * @phpstan-param string|array<int|string>    $users
+     * @phpstan-param string|array<int|string> $users
      * @phpstan-param Level|LevelName|LogLevel::* $highPriorityLevel
      * @phpstan-param Level|LevelName|LogLevel::* $emergencyLevel
      */
     public function __construct(
-        string $token,
-        $users,
+        string  $token,
+                $users,
         ?string $title = null,
-        $level = Logger::CRITICAL,
-        bool $bubble = true,
-        bool $useSSL = true,
-        $highPriorityLevel = Logger::CRITICAL,
-        $emergencyLevel = Logger::EMERGENCY,
-        int $retry = 30,
-        int $expire = 25200
-    ) {
+                $level = Logger::CRITICAL,
+        bool    $bubble = true,
+        bool    $useSSL = true,
+                $highPriorityLevel = Logger::CRITICAL,
+                $emergencyLevel = Logger::EMERGENCY,
+        int     $retry = 30,
+        int     $expire = 25200
+    )
+    {
         $connectionString = $useSSL ? 'ssl://api.pushover.net:443' : 'api.pushover.net:80';
         parent::__construct($connectionString, $level, $bubble);
 
         $this->token = $token;
-        $this->users = (array) $users;
-        $this->title = $title ?: (string) gethostname();
+        $this->users = (array)$users;
+        $this->title = $title ?: (string)gethostname();
         $this->highPriorityLevel = Logger::toMonologLevel($highPriorityLevel);
         $this->emergencyLevel = Logger::toMonologLevel($emergencyLevel);
         $this->retry = $retry;

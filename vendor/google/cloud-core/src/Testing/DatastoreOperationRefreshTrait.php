@@ -37,9 +37,9 @@ trait DatastoreOperationRefreshTrait
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $projectId the project id.
-     *     @type bool $returnInt64AsObject if true, will encode int64s as objects.
-     *     @type bool $encode whether to base64-encode certain values.
+     * @type string $projectId the project id.
+     * @type bool $returnInt64AsObject if true, will encode int64s as objects.
+     * @type bool $encode whether to base64-encode certain values.
      * }
      * @return mixed
      */

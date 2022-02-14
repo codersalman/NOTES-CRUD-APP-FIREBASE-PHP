@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -12,9 +13,10 @@ class AstRuntime
     private $cachedCount = 0;
 
     public function __construct(
-        Parser $parser = null,
+        Parser   $parser = null,
         callable $fnDispatcher = null
-    ) {
+    )
+    {
         $fnDispatcher = $fnDispatcher ?: FnDispatcher::getInstance();
         $this->interpreter = new TreeInterpreter($fnDispatcher);
         $this->parser = $parser ?: new Parser();
@@ -25,7 +27,7 @@ class AstRuntime
      * expression.
      *
      * @param string $expression JMESPath expression to evaluate
-     * @param mixed  $data       Data to search. This data should be data that
+     * @param mixed $data Data to search. This data should be data that
      *                           is similar to data returned from json_decode
      *                           using associative arrays rather than objects.
      *

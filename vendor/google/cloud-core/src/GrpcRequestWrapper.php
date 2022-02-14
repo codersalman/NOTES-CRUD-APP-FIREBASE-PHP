@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Cloud\Core\Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\Serializer;
 use Google\ApiCore\ServerStream;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Core\Exception;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\BadRequest;
 use Google\Rpc\Code;
@@ -77,10 +77,10 @@ class GrpcRequestWrapper
      *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
      *     the other available options.
      *
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     * @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type Serializer $serializer A serializer used to encode responses.
-     *     @type array $grpcOptions gRPC specific configuration options passed
+     * @type Serializer $serializer A serializer used to encode responses.
+     * @type array $grpcOptions gRPC specific configuration options passed
      *           off to the ApiCore library.
      * }
      */
@@ -107,11 +107,11 @@ class GrpcRequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `60`.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type array $grpcOptions gRPC specific configuration options.
+     * @type array $grpcOptions gRPC specific configuration options.
      * }
      * @return array
      */

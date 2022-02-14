@@ -75,7 +75,7 @@ class StreamedPart
             // Append to buffer
             $buffer .= rtrim($line, "\r\n");
 
-            if (strlen($line) === $bufferSize-1) {
+            if (strlen($line) === $bufferSize - 1) {
                 // EOL not reached, continue
                 continue;
             }
@@ -90,7 +90,7 @@ class StreamedPart
             $trimmed = ltrim($buffer);
             if (strlen($buffer) > strlen($trimmed)) {
                 // Multi lines header, append to previous line
-                $headerLines[count($headerLines)-1] .= "\x20".$trimmed;
+                $headerLines[count($headerLines) - 1] .= "\x20" . $trimmed;
             } else {
                 $headerLines[] = $buffer;
             }
@@ -124,7 +124,7 @@ class StreamedPart
             } else {
                 // Already got an header with this key, convert to array
                 if (false === is_array($this->headers[$key])) {
-                    $this->headers[$key] = (array) $this->headers[$key];
+                    $this->headers[$key] = (array)$this->headers[$key];
                 }
                 $this->headers[$key][] = $value;
             }
@@ -141,7 +141,7 @@ class StreamedPart
                 throw new \InvalidArgumentException("Can't find boundary in content type");
             }
 
-            $separator = '--'.$boundary;
+            $separator = '--' . $boundary;
 
             $partOffset = 0;
             $endOfBody = false;
@@ -149,7 +149,7 @@ class StreamedPart
                 $trimmed = rtrim($line, "\r\n");
 
                 // Search the separator
-                if ($trimmed === $separator || $trimmed === $separator.'--') {
+                if ($trimmed === $separator || $trimmed === $separator . '--') {
                     if ($partOffset > 0) {
                         $currentOffset = ftell($this->stream);
                         // Get end of line length (should be 2)
@@ -172,7 +172,7 @@ class StreamedPart
                         fseek($this->stream, $currentOffset);
                     }
 
-                    if ($trimmed === $separator.'--') {
+                    if ($trimmed === $separator . '--') {
                         // We reach the end separator
                         $endOfBody = true;
                         break;
@@ -199,10 +199,10 @@ class StreamedPart
     public function isMultiPart()
     {
         return ('multipart' === mb_strstr(
-            self::getHeaderValue($this->getHeader('Content-Type')),
-            '/',
-            true
-        ));
+                self::getHeaderValue($this->getHeader('Content-Type')),
+                '/',
+                true
+            ));
     }
 
     /**
@@ -219,7 +219,7 @@ class StreamedPart
         $body = stream_get_contents($this->stream, -1, $this->bodyOffset);
 
         // Decode
-        $encoding = strtolower((string) $this->getHeader('Content-Transfer-Encoding'));
+        $encoding = strtolower((string)$this->getHeader('Content-Transfer-Encoding'));
         switch ($encoding) {
             case 'base64':
                 $body = base64_decode($body);
@@ -259,7 +259,7 @@ class StreamedPart
     /**
      * @param string $key
      *
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -303,7 +303,7 @@ class StreamedPart
      * @param string $header
      * @param string $key
      *
-     * @param mixed  $default
+     * @param mixed $default
      *
      * @return mixed
      */
@@ -400,7 +400,7 @@ class StreamedPart
      */
     private static function parseHeaderContent($content)
     {
-        $parts = explode(';', (string) $content);
+        $parts = explode(';', (string)$content);
         $headerValue = array_shift($parts);
         $options = array();
         // Parse options

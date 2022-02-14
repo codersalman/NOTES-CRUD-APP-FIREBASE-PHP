@@ -18,7 +18,6 @@
 
 namespace Google\Cloud\Core\Testing;
 
-use Google\Cloud\Core\Testing\RegexFileFilter;
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
@@ -106,7 +105,7 @@ class TestHelpers
      */
     public static function snippetBootstrap()
     {
-        putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
 
         $parser = new Parser;
         $scanner = new Scanner($parser, self::projectRoot(), [
@@ -131,7 +130,7 @@ class TestHelpers
      */
     public static function perfBootstrap()
     {
-        $bootstraps = glob(self::projectRoot() .'/*/tests/Perf/bootstrap.php');
+        $bootstraps = glob(self::projectRoot() . '/*/tests/Perf/bootstrap.php');
         foreach ($bootstraps as $bootstrap) {
             require_once $bootstrap;
         }
@@ -186,7 +185,7 @@ class TestHelpers
 
         SystemTestCase::setupQueue();
 
-        $bootstraps = glob(self::projectRoot() .'/*/tests/System/bootstrap.php');
+        $bootstraps = glob(self::projectRoot() . '/*/tests/System/bootstrap.php');
         foreach ($bootstraps as $bootstrap) {
             require_once $bootstrap;
         }

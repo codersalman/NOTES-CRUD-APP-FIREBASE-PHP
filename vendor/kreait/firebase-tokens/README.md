@@ -1,7 +1,7 @@
 # Firebase Tokens
 
-A library to work with [Google Firebase](https://firebase.google.com) tokens. You can use it to 
-[create custom tokens](https://firebase.google.com/docs/auth/admin/create-custom-tokens) and 
+A library to work with [Google Firebase](https://firebase.google.com) tokens. You can use it to
+[create custom tokens](https://firebase.google.com/docs/auth/admin/create-custom-tokens) and
 [verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens).
 
 Achieve more with the [Firebase Admin SDK](https://github.com/kreait/firebase-php) for PHP (which uses this library).
@@ -16,13 +16,13 @@ Achieve more with the [Firebase Admin SDK](https://github.com/kreait/firebase-ph
 
 - [Installation](#installation)
 - [Simple Usage](#simple-usage)
-  - [Create a custom token](#create-a-custom-token)
-  - [Verify an ID token](#verify-an-id-token)
-  - [Verify a Session Cookie](#verify-a-session-cookie)
-  - [Tokens](#tokens)
-  - [Tenant Awareness](#tenant-awareness) 
+    - [Create a custom token](#create-a-custom-token)
+    - [Verify an ID token](#verify-an-id-token)
+    - [Verify a Session Cookie](#verify-a-session-cookie)
+    - [Tokens](#tokens)
+    - [Tenant Awareness](#tenant-awareness)
 - [Advanced Usage](#advanced-usage)
-  - [Cache results from the Google Secure Token Store](#cache-results-from-the-google-secure-token-store)
+    - [Cache results from the Google Secure Token Store](#cache-results-from-the-google-secure-token-store)
 
 ## Installation
 
@@ -34,7 +34,7 @@ composer require kreait/firebase-tokens
 
 ### Create a custom token
 
-More information on what a custom token is and how it can be used can be found in 
+More information on what a custom token is and how it can be used can be found in
 [Google's official documentation](https://firebase.google.com/docs/auth/admin/create-custom-tokens).
 
 ```php
@@ -54,8 +54,8 @@ echo $token;
 
 ### Verify an ID token
 
-The ID token verification methods included in the Firebase Admin SDKs are meant to verify 
-ID tokens that come from the client SDKs, not the custom tokens that you create with the Admin SDKs. 
+The ID token verification methods included in the Firebase Admin SDKs are meant to verify ID tokens that come from the
+client SDKs, not the custom tokens that you create with the Admin SDKs.
 See [Auth tokens](https://firebase.google.com/docs/auth/users/#auth_tokens) for more information.
 
 ```php
@@ -124,14 +124,13 @@ try {
 
 ### Tokens
 
-Tokens returned from the Generator and Verifier are instances of `Kreait\Firebase\JWT\Token` and
-represent a [JWT](https://jwt.io/). The displayed outputs are examples and vary depending on
-the information associated with the given user in your project's auth database.
+Tokens returned from the Generator and Verifier are instances of `Kreait\Firebase\JWT\Token` and represent
+a [JWT](https://jwt.io/). The displayed outputs are examples and vary depending on the information associated with the
+given user in your project's auth database.
 
-According to the JWT specification, you can expect the following payload fields to be always 
-available: `iss`, `aud`, `auth_time`, `sub`, `iat`, `exp`. Other fields depend on the
-authentication method of the given account and the information stored in your project's
-Auth database.
+According to the JWT specification, you can expect the following payload fields to be always available: `iss`, `aud`
+, `auth_time`, `sub`, `iat`, `exp`. Other fields depend on the authentication method of the given account and the
+information stored in your project's Auth database.
 
 ```php
 $token = $verifier->verifyIdToken('eyJhb...'); // An ID token given to your backend by a Client application
@@ -209,13 +208,13 @@ Session cookies currently don't support tenants.
 
 ### Cache results from the Google Secure Token Store
 
-In order to verify ID tokens, the verifier makes a call to fetch Firebase's currently available public
-keys. The keys are cached in memory by default.
+In order to verify ID tokens, the verifier makes a call to fetch Firebase's currently available public keys. The keys
+are cached in memory by default.
 
-If you want to cache the public keys more effectively, you can initialize the verifier with an 
-implementation of [psr/simple-cache](https://packagist.org/providers/psr/simple-cache-implementation)
-or [psr/cache](https://packagist.org/providers/psr/cache-implementation) to reduce the amount
-of HTTP requests to Google's servers. 
+If you want to cache the public keys more effectively, you can initialize the verifier with an implementation
+of [psr/simple-cache](https://packagist.org/providers/psr/simple-cache-implementation)
+or [psr/cache](https://packagist.org/providers/psr/cache-implementation) to reduce the amount of HTTP requests to
+Google's servers.
 
 Here's an example using the [Symfony Cache Component](https://symfony.com/doc/current/components/cache.html):
 

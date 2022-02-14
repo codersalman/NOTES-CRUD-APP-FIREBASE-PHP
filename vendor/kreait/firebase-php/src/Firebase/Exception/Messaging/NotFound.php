@@ -44,9 +44,9 @@ final class NotFound extends RuntimeException implements MessagingException
     }
 
     /**
+     * @param string[] $errors
      * @internal
      *
-     * @param string[] $errors
      */
     public function withErrors(array $errors): self
     {

@@ -22,7 +22,7 @@ trait CRCTrait
     /**
      * Converts a integer into a 8 character hex string in lower case.
      *
-     * @param  integer  $i  Integer to convert.
+     * @param integer $i Integer to convert.
      *
      * @return  string 8 character hex string in lower case.
      */
@@ -34,8 +34,8 @@ trait CRCTrait
     /**
      * { function_description }
      *
-     * @param  integer  $crc  The CRC hash
-     * @param  boolean  $raw_output  When set to TRUE, outputs raw binary data.
+     * @param integer $crc The CRC hash
+     * @param boolean $raw_output When set to TRUE, outputs raw binary data.
      *                               FALSE outputs lowercase hexits.
      *
      * @return string  Returns a string containing the calculated CRC as

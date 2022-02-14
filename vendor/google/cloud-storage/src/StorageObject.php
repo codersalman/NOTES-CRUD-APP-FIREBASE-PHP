@@ -89,13 +89,14 @@ class StorageObject
      */
     public function __construct(
         ConnectionInterface $connection,
-        $name,
-        $bucket,
-        $generation = null,
-        array $info = [],
-        $encryptionKey = null,
-        $encryptionKeySHA256 = null
-    ) {
+                            $name,
+                            $bucket,
+                            $generation = null,
+        array               $info = [],
+                            $encryptionKey = null,
+                            $encryptionKeySHA256 = null
+    )
+    {
         $this->connection = $connection;
         $this->info = $info;
         $this->encryptionData = [
@@ -165,16 +166,16 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the object's current generation does not match the
      *           given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the object's current metageneration matches the
      *           given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the object's current metageneration does
      *           not match the given value.
      * }
@@ -206,25 +207,25 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the object's current generation does not match the
      *           given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the object's current metageneration matches the
      *           given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the object's current metageneration does
      *           not match the given value.
-     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     * @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type string $projection Determines which properties to return. May
+     * @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
-     *     @type string $fields Selector which will cause the response to only
+     * @type string $fields Selector which will cause the response to only
      *           return the specified fields.
      * }
      * @return array
@@ -270,42 +271,42 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination object. **Defaults
+     * @type string $name The name of the destination object. **Defaults
      *           to** the name of the source object.
-     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     * @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     * @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
-     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     * @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the destination object's current generation does not
      *           match the given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the destination object's current metageneration
      *           matches the given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the destination object's current
      *           metageneration does not match the given value.
-     *     @type string $ifSourceGenerationMatch Makes the operation conditional
+     * @type string $ifSourceGenerationMatch Makes the operation conditional
      *           on whether the source object's current generation matches the
      *           given value.
-     *     @type string $ifSourceGenerationNotMatch Makes the operation
+     * @type string $ifSourceGenerationNotMatch Makes the operation
      *           conditional on whether the source object's current generation
      *           does not match the given value.
-     *     @type string $ifSourceMetagenerationMatch Makes the operation
+     * @type string $ifSourceMetagenerationMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration matches the given value.
-     *     @type string $ifSourceMetagenerationNotMatch Makes the operation
+     * @type string $ifSourceMetagenerationNotMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration does not match the given value.
      * }
@@ -376,63 +377,63 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $name The name of the destination object. **Defaults
+     * @type string $name The name of the destination object. **Defaults
      *           to** the name of the source object.
-     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     * @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type string $maxBytesRewrittenPerCall The maximum number of bytes
+     * @type string $maxBytesRewrittenPerCall The maximum number of bytes
      *           that will be rewritten per rewrite request. Most callers
      *           shouldn't need to specify this parameter - it is primarily in
      *           place to support testing. If specified the value must be an
      *           integral multiple of 1 MiB (1048576). Also, this only applies
      *           to requests where the source and destination span locations
      *           and/or storage classes.
-     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     * @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
-     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     * @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
-     *     @type string $destinationEncryptionKey A base64 encoded AES-256
+     * @type string $destinationEncryptionKey A base64 encoded AES-256
      *           customer-supplied encryption key that will be used to encrypt
      *           the rewritten object.
-     *     @type string $destinationEncryptionKeySHA256 Base64 encoded SHA256
+     * @type string $destinationEncryptionKeySHA256 Base64 encoded SHA256
      *           hash of the customer-supplied destination encryption key. This
      *           value will be calculated from the `destinationEncryptionKey` on
      *           your behalf if not provided, but for best performance it is
      *           recommended to pass in a cached version of the already
      *           calculated SHA.
-     *     @type string $destinationKmsKeyName Name of the Cloud KMS key that
+     * @type string $destinationKmsKeyName Name of the Cloud KMS key that
      *           will be used to encrypt the object. Should be in the format
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           Please note the KMS key ring must use the same location as the
      *           destination bucket.
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the destination object's current generation does not
      *           match the given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the destination object's current metageneration
      *           matches the given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the destination object's current
      *           metageneration does not match the given value.
-     *     @type string $ifSourceGenerationMatch Makes the operation conditional
+     * @type string $ifSourceGenerationMatch Makes the operation conditional
      *           on whether the source object's current generation matches the
      *           given value.
-     *     @type string $ifSourceGenerationNotMatch Makes the operation
+     * @type string $ifSourceGenerationNotMatch Makes the operation
      *           conditional on whether the source object's current generation
      *           does not match the given value.
-     *     @type string $ifSourceMetagenerationMatch Makes the operation
+     * @type string $ifSourceMetagenerationMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration matches the given value.
-     *     @type string $ifSourceMetagenerationNotMatch Makes the operation
+     * @type string $ifSourceMetagenerationNotMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration does not match the given value.
      * }
@@ -483,43 +484,43 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $predefinedAcl Predefined ACL to apply to the object.
+     * @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     * @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
-     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     * @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the destination object's current generation matches the
      *           given value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the destination object's current generation does not
      *           match the given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the destination object's current metageneration
      *           matches the given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the destination object's current
      *           metageneration does not match the given value.
-     *     @type string $ifSourceGenerationMatch Makes the operation conditional
+     * @type string $ifSourceGenerationMatch Makes the operation conditional
      *           on whether the source object's current generation matches the
      *           given value.
-     *     @type string $ifSourceGenerationNotMatch Makes the operation
+     * @type string $ifSourceGenerationNotMatch Makes the operation
      *           conditional on whether the source object's current generation
      *           does not match the given value.
-     *     @type string $ifSourceMetagenerationMatch Makes the operation
+     * @type string $ifSourceMetagenerationMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration matches the given value.
-     *     @type string $ifSourceMetagenerationNotMatch Makes the operation
+     * @type string $ifSourceMetagenerationNotMatch Makes the operation
      *           conditional on whether the source object's current
      *           metageneration does not match the given value.
-     *     @type string $destinationBucket Will move to this bucket if set. If
+     * @type string $destinationBucket Will move to this bucket if set. If
      *           not set, will default to the same bucket.
      * }
      * @return StorageObject The renamed object.
@@ -532,8 +533,8 @@ class StorageObject
         unset($options['destinationBucket']);
 
         $copiedObject = $this->copy($destinationBucket, [
-            'name' => $name
-        ] + $options);
+                'name' => $name
+            ] + $options);
 
         $this->delete(
             array_intersect_key($options, [
@@ -564,11 +565,11 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     * @type string $encryptionKey An AES-256 customer-supplied encryption
      *           key. It will be neccesary to provide this when a key was used
      *           during the object's creation. If provided one must also include
      *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     * @type string $encryptionKeySHA256 The SHA256 hash of the
      *           customer-supplied encryption key. It will be neccesary to
      *           provide this when a key was used during the object's creation.
      *           If provided one must also include an `encryptionKey`.
@@ -577,7 +578,7 @@ class StorageObject
      */
     public function downloadAsString(array $options = [])
     {
-        return (string) $this->downloadAsStream($options);
+        return (string)$this->downloadAsStream($options);
     }
 
     /**
@@ -598,11 +599,11 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     * @type string $encryptionKey An AES-256 customer-supplied encryption
      *           key. It will be neccesary to provide this when a key was used
      *           during the object's creation. If provided one must also include
      *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     * @type string $encryptionKeySHA256 The SHA256 hash of the
      *           customer-supplied encryption key. It will be neccesary to
      *           provide this when a key was used during the object's creation.
      *           If provided one must also include an `encryptionKey`.
@@ -658,11 +659,11 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     * @type string $encryptionKey An AES-256 customer-supplied encryption
      *           key. It will be neccesary to provide this when a key was used
      *           during the object's creation. If provided one must also include
      *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     * @type string $encryptionKeySHA256 The SHA256 hash of the
      *           customer-supplied encryption key. It will be neccesary to
      *           provide this when a key was used during the object's creation.
      *           If provided one must also include an `encryptionKey`.
@@ -722,11 +723,11 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     * @type string $encryptionKey An AES-256 customer-supplied encryption
      *           key. It will be neccesary to provide this when a key was used
      *           during the object's creation. If provided one must also include
      *           an `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     * @type string $encryptionKeySHA256 The SHA256 hash of the
      *           customer-supplied encryption key. It will be neccesary to
      *           provide this when a key was used during the object's creation.
      *           If provided one must also include an `encryptionKey`.
@@ -817,19 +818,19 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $bucketBoundHostname The hostname for the bucket, for
+     * @type string $bucketBoundHostname The hostname for the bucket, for
      *           instance `cdn.example.com`. May be used for Google Cloud Load
      *           Balancers or for custom bucket CNAMEs. **Defaults to**
      *           `storage.googleapis.com`.
-     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     * @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
-     *     @type string $contentType If you provide this value, the client must
+     * @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     * @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If additional headers are provided, the server
+     * @type array $headers If additional headers are provided, the server
      *           will check to make sure that the client provides matching
      *           values. Provide headers as a key/value array, where the key is
      *           the header name, and the value is an array of header values.
@@ -841,34 +842,34 @@ class StorageObject
      *           space, and line breaks will be replaced by an empty string.
      *           V2 Signed URLs may not provide `x-goog-encryption-key` or
      *           `x-goog-encryption-key-sha256` headers.
-     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     * @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     * @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type string $method One of `GET`, `PUT` or `DELETE`.
+     * @type string $method One of `GET`, `PUT` or `DELETE`.
      *           **Defaults to** `GET`.
-     *     @type string $responseDisposition The
+     * @type string $responseDisposition The
      *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
      *           parameter of the signed url.
-     *     @type string $responseType The `response-content-type` parameter of the
+     * @type string $responseType The `response-content-type` parameter of the
      *           signed url. When the server contentType is `null`, this option
      *           may be used to control the content type of the response.
-     *     @type string $saveAsName The filename to prompt the user to save the
+     * @type string $saveAsName The filename to prompt the user to save the
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
-     *     @type string $scheme Either `http` or `https`. Only used if a custom
+     * @type string $scheme Either `http` or `https`. Only used if a custom
      *           hostname is provided via `$options.bucketBoundHostname`. If a
      *           custom bucketBoundHostname is provided, **defaults to** `http`.
      *           In all other cases, **defaults to** `https`.
-     *     @type string|array $scopes One or more authentication scopes to be
+     * @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
-     *     @type array $queryParams Additional query parameters to be included
+     * @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
-     *     @type bool $virtualHostedStyle If `true`, URL will be of form
+     * @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
+     * @type bool $virtualHostedStyle If `true`, URL will be of form
      *           `mybucket.storage.googleapis.com`. If `false`,
      *           `storage.googleapis.com/mybucket`. **Defaults to** `false`.
      * }
@@ -939,15 +940,15 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     * @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
-     *     @type string $contentType If you provide this value, the client must
+     * @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     * @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If additional headers are provided, the server
+     * @type array $headers If additional headers are provided, the server
      *           will check to make sure that the client provides matching
      *           values. Provide headers as a key/value array, where the key is
      *           the header name, and the value is an array of header values.
@@ -959,31 +960,31 @@ class StorageObject
      *           space, and line breaks will be replaced by an empty string.
      *           V2 Signed URLs may not provide `x-goog-encryption-key` or
      *           `x-goog-encryption-key-sha256` headers.
-     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     * @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     * @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type string $responseDisposition The
+     * @type string $responseDisposition The
      *           [`response-content-disposition`](http://www.iana.org/assignments/cont-disp/cont-disp.xhtml)
      *           parameter of the signed url.
-     *     @type string $responseType The `response-content-type` parameter of the
+     * @type string $responseType The `response-content-type` parameter of the
      *           signed url. When the server contentType is `null`, this option
      *           may be used to control the content type of the response.
-     *     @type string $saveAsName The filename to prompt the user to save the
+     * @type string $saveAsName The filename to prompt the user to save the
      *           file as when the signed url is accessed. This is ignored if
      *           `$options.responseDisposition` is set.
-     *     @type string $scheme Either `http` or `https`. Only used if a custom
+     * @type string $scheme Either `http` or `https`. Only used if a custom
      *           hostname is provided via `$options.bucketBoundHostname`. In all
      *           other cases, `https` is used. When a custom bucketBoundHostname
      *           is provided, **defaults to** `http`.
-     *     @type string|array $scopes One or more authentication scopes to be
+     * @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
-     *     @type array $queryParams Additional query parameters to be included
+     * @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
+     * @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      * }
      * @return string
      */
@@ -1005,9 +1006,9 @@ class StorageObject
         );
 
         return $this->signedUrl($expires, [
-            'method' => 'POST',
-            'allowPost' => true
-        ] + $options);
+                'method' => 'POST',
+                'allowPost' => true
+            ] + $options);
     }
 
     /**
@@ -1038,15 +1039,15 @@ class StorageObject
      * @param array $options {
      *     Configuration Options.
      *
-     *     @type string $contentMd5 The MD5 digest value in base64. If you
+     * @type string $contentMd5 The MD5 digest value in base64. If you
      *           provide this, the client must provide this HTTP header with
      *           this same value in its request. If provided, take care to
      *           always provide this value as a base64 encoded string.
-     *     @type string $contentType If you provide this value, the client must
+     * @type string $contentType If you provide this value, the client must
      *           provide this HTTP header set to the same value.
-     *     @type bool $forceOpenssl If true, OpenSSL will be used regardless of
+     * @type bool $forceOpenssl If true, OpenSSL will be used regardless of
      *           whether phpseclib is available. **Defaults to** `false`.
-     *     @type array $headers If additional headers are provided, the server
+     * @type array $headers If additional headers are provided, the server
      *           will check to make sure that the client provides matching
      *           values. Provide headers as a key/value array, where the key is
      *           the header name, and the value is an array of header values.
@@ -1058,20 +1059,20 @@ class StorageObject
      *           space, and line breaks will be replaced by an empty string.
      *           V2 Signed URLs may not provide `x-goog-encryption-key` or
      *           `x-goog-encryption-key-sha256` headers.
-     *     @type array $keyFile Keyfile data to use in place of the keyfile with
+     * @type array $keyFile Keyfile data to use in place of the keyfile with
      *           which the client was constructed. If `$options.keyFilePath` is
      *           set, this option is ignored.
-     *     @type string $keyFilePath A path to a valid Keyfile to use in place
+     * @type string $keyFilePath A path to a valid Keyfile to use in place
      *           of the keyfile with which the client was constructed.
-     *     @type string $origin Value of CORS header
+     * @type string $origin Value of CORS header
      *           "Access-Control-Allow-Origin". **Defaults to** `"*"`.
-     *     @type string|array $scopes One or more authentication scopes to be
+     * @type string|array $scopes One or more authentication scopes to be
      *           used with a key file. This option is ignored unless
      *           `$options.keyFile` or `$options.keyFilePath` is set.
-     *     @type array $queryParams Additional query parameters to be included
+     * @type array $queryParams Additional query parameters to be included
      *           as part of the signed URL query string. For allowed values,
      *           see [Reference Headers](https://cloud.google.com/storage/docs/xml-api/reference-headers#query).
-     *     @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
+     * @type string $version One of "v2" or "v4". **Defaults to** `"v2"`.
      * }
      * @return string
      */
@@ -1109,29 +1110,29 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $encryptionKey An AES-256 customer-supplied encryption
+     * @type string $encryptionKey An AES-256 customer-supplied encryption
      *           key. It will be neccesary to provide this when a key was used
      *           during the object's creation in order to retrieve the MD5 hash
      *           and CRC32C checksum. If provided one must also include an
      *           `encryptionKeySHA256`.
-     *     @type string $encryptionKeySHA256 The SHA256 hash of the
+     * @type string $encryptionKeySHA256 The SHA256 hash of the
      *           customer-supplied encryption key. It will be neccesary to
      *           provide this when a key was used during the object's creation
      *           in order to retrieve the MD5 hash and CRC32C checksum. If
      *           provided one must also include an `encryptionKey`.
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the object's current generation does not match the
      *           given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the object's current metageneration matches the
      *           given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the object's current metageneration does
      *           not match the given value.
-     *     @type string $projection Determines which properties to return. May
+     * @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
      * }
      * @return array
@@ -1156,27 +1157,27 @@ class StorageObject
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
+     * @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. It will be neccesary to provide this when a key
      *           was used during the object's creation.
-     *     @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
+     * @type string $encryptionKeySHA256 Base64 encoded SHA256 hash of the
      *           customer-supplied encryption key. This value will be calculated
      *           from the `encryptionKey` on your behalf if not provided, but
      *           for best performance it is recommended to pass in a cached
      *           version of the already calculated SHA.
-     *     @type string $ifGenerationMatch Makes the operation conditional on
+     * @type string $ifGenerationMatch Makes the operation conditional on
      *           whether the object's current generation matches the given
      *           value.
-     *     @type string $ifGenerationNotMatch Makes the operation conditional on
+     * @type string $ifGenerationNotMatch Makes the operation conditional on
      *           whether the object's current generation does not match the
      *           given value.
-     *     @type string $ifMetagenerationMatch Makes the operation conditional
+     * @type string $ifMetagenerationMatch Makes the operation conditional
      *           on whether the object's current metageneration matches the
      *           given value.
-     *     @type string $ifMetagenerationNotMatch Makes the operation
+     * @type string $ifMetagenerationNotMatch Makes the operation
      *           conditional on whether the object's current metageneration does
      *           not match the given value.
-     *     @type string $projection Determines which properties to return. May
+     * @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
      * }
      * @return array
@@ -1264,13 +1265,13 @@ class StorageObject
         unset($options['predefinedAcl']);
 
         return array_filter([
-            'destinationBucket' => $destination instanceof Bucket ? $destination->name() : $destination,
-            'destinationObject' => $destObject,
-            'destinationPredefinedAcl' => $destAcl,
-            'sourceBucket' => $this->identity['bucket'],
-            'sourceObject' => $this->identity['object'],
-            'sourceGeneration' => $this->identity['generation'],
-            'userProject' => $this->identity['userProject'],
-        ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
+                'destinationBucket' => $destination instanceof Bucket ? $destination->name() : $destination,
+                'destinationObject' => $destObject,
+                'destinationPredefinedAcl' => $destAcl,
+                'sourceBucket' => $this->identity['bucket'],
+                'sourceObject' => $this->identity['object'],
+                'sourceGeneration' => $this->identity['generation'],
+                'userProject' => $this->identity['userProject'],
+            ]) + $this->formatEncryptionHeaders($options + $this->encryptionData);
     }
 }

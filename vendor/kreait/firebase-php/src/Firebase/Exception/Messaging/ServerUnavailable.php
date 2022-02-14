@@ -16,9 +16,9 @@ final class ServerUnavailable extends RuntimeException implements MessagingExcep
     private ?DateTimeImmutable $retryAfter = null;
 
     /**
+     * @param string[] $errors
      * @internal
      *
-     * @param string[] $errors
      */
     public function withErrors(array $errors): self
     {

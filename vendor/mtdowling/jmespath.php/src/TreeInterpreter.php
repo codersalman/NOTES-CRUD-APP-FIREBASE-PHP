@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -87,7 +88,7 @@ class TreeInterpreter
                 }
 
                 $collected = [];
-                foreach ((array) $left as $val) {
+                foreach ((array)$left as $val) {
                     $result = $this->dispatch($node['children'][1], $val);
                     if ($result !== null) {
                         $collected[] = $result;
@@ -225,11 +226,16 @@ class TreeInterpreter
         }
 
         switch ($cmp) {
-            case '>': return $left > $right;
-            case '>=': return $left >= $right;
-            case '<': return $left < $right;
-            case '<=': return $left <= $right;
-            default: throw new \RuntimeException("Invalid comparison: $cmp");
+            case '>':
+                return $left > $right;
+            case '>=':
+                return $left >= $right;
+            case '<':
+                return $left < $right;
+            case '<=':
+                return $left <= $right;
+            default:
+                throw new \RuntimeException("Invalid comparison: $cmp");
         }
     }
 }

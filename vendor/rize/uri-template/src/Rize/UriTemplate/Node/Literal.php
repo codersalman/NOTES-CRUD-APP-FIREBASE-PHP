@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Rize\UriTemplate\Node;
 

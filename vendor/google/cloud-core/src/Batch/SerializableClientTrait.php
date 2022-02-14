@@ -44,13 +44,13 @@ trait SerializableClientTrait
      * @param array $options {
      *     Configuration options.
      *
-     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     * @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
      *           {@see Google\Cloud\Core\Batch\OpisClosureSerializer} if the
      *           `opis/closure` library is installed.
-     *     @type array $clientConfig A config used to construct the client upon
+     * @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
      * }
      */

@@ -90,7 +90,8 @@ class ApplicationDefaultCredentials
         callable $httpHandler = null,
         array $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $creds = self::getCredentials($scope, $httpHandler, $cacheConfig, $cache);
 
         return new AuthTokenSubscriber($creds, $httpHandler);
@@ -120,7 +121,8 @@ class ApplicationDefaultCredentials
         array $cacheConfig = null,
         CacheItemPoolInterface $cache = null,
         $quotaProject = null
-    ) {
+    )
+    {
         $creds = self::getCredentials($scope, $httpHandler, $cacheConfig, $cache, $quotaProject);
 
         return new AuthTokenMiddleware($creds, $httpHandler);
@@ -152,7 +154,8 @@ class ApplicationDefaultCredentials
         CacheItemPoolInterface $cache = null,
         $quotaProject = null,
         $defaultScope = null
-    ) {
+    )
+    {
         $creds = null;
         $jsonKey = CredentialsLoader::fromEnv()
             ?: CredentialsLoader::fromWellKnownFile();
@@ -212,7 +215,8 @@ class ApplicationDefaultCredentials
         callable $httpHandler = null,
         array $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $creds = self::getIdTokenCredentials($targetAudience, $httpHandler, $cacheConfig, $cache);
 
         return new AuthTokenMiddleware($creds, $httpHandler);
@@ -239,7 +243,8 @@ class ApplicationDefaultCredentials
         callable $httpHandler = null,
         array $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $creds = self::getIdTokenCredentials($targetAudience, $httpHandler, $cacheConfig, $cache);
 
         return new ProxyAuthTokenMiddleware($creds, $httpHandler);
@@ -264,7 +269,8 @@ class ApplicationDefaultCredentials
         callable $httpHandler = null,
         array $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $creds = null;
         $jsonKey = CredentialsLoader::fromEnv()
             ?: CredentialsLoader::fromWellKnownFile();
@@ -316,10 +322,11 @@ class ApplicationDefaultCredentials
     }
 
     private static function onGce(
-        callable $httpHandler = null,
-        array $cacheConfig = null,
+        callable               $httpHandler = null,
+        array                  $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $gceCacheConfig = [];
         foreach (['lifetime', 'prefix'] as $key) {
             if (isset($cacheConfig['gce_' . $key])) {

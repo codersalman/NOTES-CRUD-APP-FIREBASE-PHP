@@ -44,14 +44,14 @@ trait SimpleJobTrait
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $identifier An identifier for the simple job. This
+     * @type string $identifier An identifier for the simple job. This
      *           value must be unique across all job configs.
-     *     @type ConfigStorageInterface $configStorage The configuration storage
+     * @type ConfigStorageInterface $configStorage The configuration storage
      *           used to save configuration.
-     *     @type int $numWorkers The number of workers for this job.
-     *     @type array $clientConfig A config used to construct the client upon
+     * @type int $numWorkers The number of workers for this job.
+     * @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
-     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     * @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**

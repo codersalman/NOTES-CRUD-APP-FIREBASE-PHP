@@ -31,7 +31,7 @@ class RetryMiddleware
     private $delay;
 
     /**
-     * @param callable                                            $decider     Function that accepts the number of retries,
+     * @param callable $decider Function that accepts the number of retries,
      *                                                                         a request, [response], and [exception] and
      *                                                                         returns true if the request is to be
      *                                                                         retried.
@@ -54,7 +54,7 @@ class RetryMiddleware
      */
     public static function exponentialDelay(int $retries): int
     {
-        return (int) \pow(2, $retries - 1) * 1000;
+        return (int)\pow(2, $retries - 1) * 1000;
     }
 
     public function __invoke(RequestInterface $request, array $options): PromiseInterface

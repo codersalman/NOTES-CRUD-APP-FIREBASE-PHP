@@ -93,7 +93,7 @@ class Iam
         );
 
         $res = $httpHandler($request);
-        $body = json_decode((string) $res->getBody(), true);
+        $body = json_decode((string)$res->getBody(), true);
 
         return $body['signedBlob'];
     }

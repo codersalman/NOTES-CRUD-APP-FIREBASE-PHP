@@ -28,7 +28,7 @@ class HttpFoundation
     {
         $stream = fopen('php://temp', 'rw');
 
-        fwrite($stream, (string) $request->headers."\r\n");
+        fwrite($stream, (string)$request->headers . "\r\n");
 
         stream_copy_to_stream($request->getContent(true), $stream);
 

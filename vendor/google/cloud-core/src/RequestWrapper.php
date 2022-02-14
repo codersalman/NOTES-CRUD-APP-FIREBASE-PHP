@@ -22,13 +22,11 @@ use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\HttpHandler\Guzzle5HttpHandler;
 use Google\Auth\HttpHandler\Guzzle6HttpHandler;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * The RequestWrapper is responsible for delivering and signing requests.
@@ -98,28 +96,28 @@ class RequestWrapper
      *     {@see Google\Cloud\Core\RequestWrapperTrait::setCommonDefaults()} for
      *     the other available options.
      *
-     *     @type string $componentVersion The current version of the component from
+     * @type string $componentVersion The current version of the component from
      *           which the request originated.
-     *     @type string $accessToken Access token used to sign requests.
-     *     @type callable $asyncHttpHandler *Experimental* A handler used to
+     * @type string $accessToken Access token used to sign requests.
+     * @type callable $asyncHttpHandler *Experimental* A handler used to
      *           deliver PSR-7 requests asynchronously. Function signature should match:
      *           `function (RequestInterface $request, array $options = []) : PromiseInterface<ResponseInterface>`.
-     *     @type callable $authHttpHandler A handler used to deliver PSR-7
+     * @type callable $authHttpHandler A handler used to deliver PSR-7
      *           requests specifically for authentication. Function signature
      *           should match:
      *           `function (RequestInterface $request, array $options = []) : ResponseInterface`.
-     *     @type callable $httpHandler A handler used to deliver PSR-7 requests.
+     * @type callable $httpHandler A handler used to deliver PSR-7 requests.
      *           Function signature should match:
      *           `function (RequestInterface $request, array $options = []) : ResponseInterface`.
-     *     @type array $restOptions HTTP client specific configuration options.
-     *     @type bool $shouldSignRequest Whether to enable request signing.
-     *     @type callable $restRetryFunction Sets the conditions for whether or
+     * @type array $restOptions HTTP client specific configuration options.
+     * @type bool $shouldSignRequest Whether to enable request signing.
+     * @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
-     *     @type callable $restDelayFunction Executes a delay, defaults to
+     * @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
-     *     @type callable $restCalcDelayFunction Sets the conditions for
+     * @type callable $restCalcDelayFunction Sets the conditions for
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
      * }
@@ -165,20 +163,20 @@ class RequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0`.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type callable $restRetryFunction Sets the conditions for whether or
+     * @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex) : bool`.
-     *     @type callable $restDelayFunction Executes a delay, defaults to
+     * @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
-     *     @type callable $restCalcDelayFunction Sets the conditions for
+     * @type callable $restCalcDelayFunction Sets the conditions for
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
-     *     @type array $restOptions HTTP client specific configuration options.
+     * @type array $restOptions HTTP client specific configuration options.
      * }
      * @return ResponseInterface
      */
@@ -215,20 +213,20 @@ class RequestWrapper
      * @param array $options [optional] {
      *     Request options.
      *
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0`.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type callable $restRetryFunction Sets the conditions for whether or
+     * @type callable $restRetryFunction Sets the conditions for whether or
      *           not a request should attempt to retry. Function signature should
      *           match: `function (\Exception $ex, int $retryAttempt) : bool`.
-     *     @type callable $restDelayFunction Executes a delay, defaults to
+     * @type callable $restDelayFunction Executes a delay, defaults to
      *           utilizing `usleep`. Function signature should match:
      *           `function (int $delay) : void`.
-     *     @type callable $restCalcDelayFunction Sets the conditions for
+     * @type callable $restCalcDelayFunction Sets the conditions for
      *           determining how long to wait between attempts to retry. Function
      *           signature should match: `function (int $attempt) : int`.
-     *     @type array $restOptions HTTP client specific configuration options.
+     * @type array $restOptions HTTP client specific configuration options.
      * }
      * @return PromiseInterface<ResponseInterface>
      * @experimental The experimental flag means that while we believe this method
@@ -378,7 +376,7 @@ class RequestWrapper
     private function getExceptionMessage(\Exception $ex)
     {
         if ($ex instanceof RequestException && $ex->hasResponse()) {
-            return (string) $ex->getResponse()->getBody();
+            return (string)$ex->getResponse()->getBody();
         }
 
         return $ex->getMessage();

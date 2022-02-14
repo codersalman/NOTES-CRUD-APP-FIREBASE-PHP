@@ -27,7 +27,7 @@ final class CreateActionLink
      */
     public static function new(string $type, $email, ActionCodeSettings $settings, ?string $tenantId = null, ?string $locale = null): self
     {
-        $email = (string) (new Email((string) $email));
+        $email = (string)(new Email((string)$email));
 
         $instance = new self($type, $email, $settings);
         $instance->tenantId = $tenantId;

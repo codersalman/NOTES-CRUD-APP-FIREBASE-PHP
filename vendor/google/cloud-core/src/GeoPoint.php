@@ -166,8 +166,8 @@ class GeoPoint
      *
      * @param string $method the method name
      * @param array $args The method arguments
-     * @throws InvalidArgumentException
      * @return void
+     * @throws InvalidArgumentException
      */
     private function checkContext($method, array $args)
     {
@@ -202,6 +202,6 @@ class GeoPoint
 
         return $allowNull && $value === null
             ? $value
-            : (float) $value;
+            : (float)$value;
     }
 }

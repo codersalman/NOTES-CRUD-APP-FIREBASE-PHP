@@ -69,17 +69,17 @@ interface ConnectionInterface
     public function insertBucket(array $args = []);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function getBucketIamPolicy(array $args);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function setBucketIamPolicy(array $args);
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function testBucketIamPermissions(array $args);
 

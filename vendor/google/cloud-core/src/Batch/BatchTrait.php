@@ -136,28 +136,28 @@ trait BatchTrait
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type resource $debugOutputResource A resource to output debug output
+     * @type resource $debugOutputResource A resource to output debug output
      *           to. **Defaults to** `php://stderr`.
-     *     @type bool $debugOutput Whether or not to output debug information.
+     * @type bool $debugOutput Whether or not to output debug information.
      *           Please note that unless a debug output resource is configured
      *           this setting will only apply to CLI based applications.
      *           **Defaults to** `false`.
-     *     @type array $batchOptions A set of options for a BatchJob.
+     * @type array $batchOptions A set of options for a BatchJob.
      *           {@see \Google\Cloud\Core\Batch\BatchJob::__construct()} for
      *           more details.
      *           **Defaults to** ['batchSize' => 1000,
      *                            'callPeriod' => 2.0,
      *                            'numWorkers' => 2].
-     *     @type array $clientConfig A config used to construct the client upon
+     * @type array $clientConfig A config used to construct the client upon
      *           which requests will be made.
-     *     @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
+     * @type BatchRunner $batchRunner A BatchRunner object. Mainly used for
      *           the tests to inject a mock. **Defaults to** a newly created
      *           BatchRunner.
-     *     @type string $identifier An identifier for the batch job. This
+     * @type string $identifier An identifier for the batch job. This
      *           value must be unique across all job configs.
-     *     @type string $batchMethod The name of the batch method used to
+     * @type string $batchMethod The name of the batch method used to
      *           deliver items.
-     *     @type ClosureSerializerInterface $closureSerializer An implementation
+     * @type ClosureSerializerInterface $closureSerializer An implementation
      *           responsible for serializing closures used in the
      *           `$clientConfig`. This is especially important when using the
      *           batch daemon. **Defaults to**
@@ -193,10 +193,10 @@ trait BatchTrait
             ? $options['batchOptions']
             : [];
         $this->batchOptions = $batchOptions + [
-            'batchSize' => 1000,
-            'callPeriod' => 2.0,
-            'numWorkers' => 2
-        ];
+                'batchSize' => 1000,
+                'callPeriod' => 2.0,
+                'numWorkers' => 2
+            ];
         $this->batchRunner = isset($options['batchRunner'])
             ? $options['batchRunner']
             : new BatchRunner();

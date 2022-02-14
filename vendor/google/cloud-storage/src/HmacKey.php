@@ -60,10 +60,11 @@ class HmacKey
      */
     public function __construct(
         ConnectionInterface $connection,
-        $projectId,
-        $accessId,
-        array $info = []
-    ) {
+                            $projectId,
+                            $accessId,
+        array               $info = []
+    )
+    {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->accessId = $accessId;
@@ -96,7 +97,7 @@ class HmacKey
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
      * }
@@ -105,9 +106,9 @@ class HmacKey
     public function reload(array $options = [])
     {
         $this->info = $this->connection->getHmacKey([
-            'projectId' => $this->projectId,
-            'accessId' => $this->accessId
-        ] + $options);
+                'projectId' => $this->projectId,
+                'accessId' => $this->accessId
+            ] + $options);
 
         return $this->info;
     }
@@ -126,7 +127,7 @@ class HmacKey
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
      * }
@@ -149,7 +150,7 @@ class HmacKey
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
      * }
@@ -158,10 +159,10 @@ class HmacKey
     public function update($state, array $options = [])
     {
         $this->info = $this->connection->updateHmacKey([
-            'accessId' => $this->accessId,
-            'projectId' => $this->projectId,
-            'state' => $state
-        ] + $options);
+                'accessId' => $this->accessId,
+                'projectId' => $this->projectId,
+                'state' => $state
+            ] + $options);
 
         return $this->info;
     }
@@ -180,7 +181,7 @@ class HmacKey
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
      * }
@@ -189,8 +190,8 @@ class HmacKey
     public function delete(array $options = [])
     {
         $this->connection->deleteHmacKey([
-            'accessId' => $this->accessId,
-            'projectId' => $this->projectId,
-        ] + $options);
+                'accessId' => $this->accessId,
+                'projectId' => $this->projectId,
+            ] + $options);
     }
 }

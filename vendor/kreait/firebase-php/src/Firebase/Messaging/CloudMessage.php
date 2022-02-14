@@ -89,7 +89,7 @@ final class CloudMessage implements Message
         if (\count(\array_intersect(\array_keys($data), MessageTarget::TYPES)) > 1) {
             throw new InvalidArgument(
                 'A message can only have one of the following targets: '
-                .\implode(', ', MessageTarget::TYPES)
+                . \implode(', ', MessageTarget::TYPES)
             );
         }
 
@@ -279,7 +279,7 @@ final class CloudMessage implements Message
 
     public function hasTarget(): bool
     {
-        return (bool) $this->target;
+        return (bool)$this->target;
     }
 
     /**
@@ -302,7 +302,7 @@ final class CloudMessage implements Message
 
         return \array_filter(
             $data,
-            static fn ($value) => $value !== null && !($value instanceof MessageData && $value->jsonSerialize() === [])
+            static fn($value) => $value !== null && !($value instanceof MessageData && $value->jsonSerialize() === [])
         );
     }
 }

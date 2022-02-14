@@ -33,7 +33,7 @@ final class SignInResult
         $instance = new self();
 
         if ($expiresIn = $data['expiresIn'] ?? $data['expires_in'] ?? null) {
-            $instance->ttl = (int) $expiresIn;
+            $instance->ttl = (int)$expiresIn;
         }
 
         $instance->idToken = $data['idToken'] ?? $data['id_token'] ?? null;

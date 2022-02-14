@@ -2,8 +2,8 @@
 
 namespace Rize\UriTemplate\Node;
 
-use Rize\UriTemplate\Parser;
 use Rize\UriTemplate\Operator;
+use Rize\UriTemplate\Parser;
 
 /**
  * Description
@@ -29,7 +29,7 @@ class Expression extends Abstraction
     public function __construct($token, Operator\Abstraction $operator, array $variables = null, $forwardLookupSeparator = null)
     {
         parent::__construct($token);
-        $this->operator  = $operator;
+        $this->operator = $operator;
         $this->variables = $variables;
         $this->forwardLookupSeparator = $forwardLookupSeparator;
     }
@@ -74,10 +74,10 @@ class Expression extends Abstraction
     public function expand(Parser $parser, array $params = array())
     {
         $data = array();
-        $op   = $this->operator;
+        $op = $this->operator;
 
         // check for variable modifiers
-        foreach($this->variables as $var) {
+        foreach ($this->variables as $var) {
 
             $val = $op->expand($parser, $var, $params);
 
@@ -87,7 +87,7 @@ class Expression extends Abstraction
             }
         }
 
-        return $data ? $op->first.implode($op->sep, $data) : null;
+        return $data ? $op->first . implode($op->sep, $data) : null;
     }
 
     /**
@@ -95,7 +95,7 @@ class Expression extends Abstraction
      *
      * @param Parser $parser
      * @param string $uri
-     * @param array  $params
+     * @param array $params
      * @param bool $strict
      * @return null|array `uri and params` or `null` if not match and $strict is true
      */
@@ -105,7 +105,7 @@ class Expression extends Abstraction
 
         // check expression operator first
         if ($op->id && $uri[0] !== $op->id) {
-          return array($uri, $params);
+            return array($uri, $params);
         }
 
         // remove operator from input
@@ -113,10 +113,10 @@ class Expression extends Abstraction
             $uri = substr($uri, 1);
         }
 
-        foreach($this->sortVariables($this->variables) as $var) {
+        foreach ($this->sortVariables($this->variables) as $var) {
             /** @var \Rize\UriTemplate\Node\Variable $regex */
-            $regex = '#'.$op->toRegex($parser, $var).'#';
-            $val   = null;
+            $regex = '#' . $op->toRegex($parser, $var) . '#';
+            $val = null;
 
             // do a forward lookup and get just the relevant part
             $remainingUri = '';
@@ -132,9 +132,7 @@ class Expression extends Abstraction
                 // remove matched part from input
                 $preparedUri = preg_replace($regex, '', $preparedUri, $limit = 1);
                 $val = $op->extract($parser, $var, $match[0]);
-            }
-
-            // if strict is given, we quit immediately when there's no match
+            } // if strict is given, we quit immediately when there's no match
             else if ($strict) {
                 return null;
             }
@@ -156,7 +154,7 @@ class Expression extends Abstraction
      */
     protected function sortVariables(array $vars)
     {
-        usort($vars, function($a, $b) {
+        usort($vars, function ($a, $b) {
             return $a->options['modifier'] >= $b->options['modifier'] ? 1 : -1;
         });
 

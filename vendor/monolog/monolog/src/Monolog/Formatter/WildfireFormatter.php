@@ -30,13 +30,13 @@ class WildfireFormatter extends NormalizerFormatter
      * @var array<Level, string>
      */
     private $logLevels = [
-        Logger::DEBUG     => 'LOG',
-        Logger::INFO      => 'INFO',
-        Logger::NOTICE    => 'INFO',
-        Logger::WARNING   => 'WARN',
-        Logger::ERROR     => 'ERROR',
-        Logger::CRITICAL  => 'ERROR',
-        Logger::ALERT     => 'ERROR',
+        Logger::DEBUG => 'LOG',
+        Logger::INFO => 'INFO',
+        Logger::NOTICE => 'INFO',
+        Logger::WARNING => 'WARN',
+        Logger::ERROR => 'ERROR',
+        Logger::CRITICAL => 'ERROR',
+        Logger::ALERT => 'ERROR',
         Logger::EMERGENCY => 'ERROR',
     ];
 
@@ -86,20 +86,20 @@ class WildfireFormatter extends NormalizerFormatter
         }
 
         if (isset($record['context']['table'])) {
-            $type  = 'TABLE';
-            $label = $record['channel'] .': '. $record['message'];
+            $type = 'TABLE';
+            $label = $record['channel'] . ': ' . $record['message'];
             $message = $record['context']['table'];
         } else {
-            $type  = $this->logLevels[$record['level']];
+            $type = $this->logLevels[$record['level']];
             $label = $record['channel'];
         }
 
         // Create JSON object describing the appearance of the message in the console
         $json = $this->toJson([
             [
-                'Type'  => $type,
-                'File'  => $file,
-                'Line'  => $line,
+                'Type' => $type,
+                'File' => $file,
+                'Line' => $line,
                 'Label' => $label,
             ],
             $message,

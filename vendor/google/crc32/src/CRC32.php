@@ -17,10 +17,6 @@
 
 namespace Google\CRC32;
 
-use Google\CRC32\Builtin;
-use Google\CRC32\Google;
-use Google\CRC32\PHP;
-
 /**
  * Various CRC32 implementations.
  *
@@ -75,7 +71,7 @@ class CRC32
     /**
      * Returns the best CRC implementation available on this machine.
      *
-     * @param  integer  $polynomial  The CRC polynomial. Use a 32-bit number,
+     * @param integer $polynomial The CRC polynomial. Use a 32-bit number,
      *                               or one of the supplied constants, CRC32::IEEE,
      *                               CRC32::CASTAGNOLI, or CRC32::KOOPMAN.
      *
@@ -98,7 +94,7 @@ class CRC32
     /**
      * Prints the human friendly name for this polynomial.
      *
-     * @param  integer  $polynomial  The CRC polynomial.
+     * @param integer $polynomial The CRC polynomial.
      *
      * @return  string
      */

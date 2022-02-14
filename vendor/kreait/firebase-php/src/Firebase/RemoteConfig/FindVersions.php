@@ -45,11 +45,11 @@ class FindVersions
         }
 
         if ($value = $params['pageSize'] ?? $params['page_size'] ?? null) {
-            $query = $query->withPageSize((int) $value);
+            $query = $query->withPageSize((int)$value);
         }
 
         if ($value = $params['limit'] ?? null) {
-            $query = $query->withLimit((int) $value);
+            $query = $query->withLimit((int)$value);
         }
 
         return $query;

@@ -176,8 +176,8 @@ final class InMemoryConfigStorage implements
         $batchSize = $job->getBatchSize();
         $period = $job->getCallPeriod();
         if ((count($this->items[$idNum]) >= $batchSize)
-             || (count($this->items[$idNum]) !== 0
-                 && microtime(true) > $this->lastInvoked[$idNum] + $period)) {
+            || (count($this->items[$idNum]) !== 0
+                && microtime(true) > $this->lastInvoked[$idNum] + $period)) {
             $this->flush($idNum);
             $this->items[$idNum] = [];
             $this->lastInvoked[$idNum] = microtime(true);

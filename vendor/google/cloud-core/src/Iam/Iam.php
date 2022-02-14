@@ -73,11 +73,11 @@ class Iam
      * @param array $options [optional] {
      *     Configuration Options
      *
-     *     @type string|null $parent The parent request parameter for the policy.
+     * @type string|null $parent The parent request parameter for the policy.
      *           If set, policy data will be sent as `request.{$parent}`.
      *           Otherwise, policy will be sent in request root. **Defaults to**
      *           `policy`.
-     *     @type array $args Arbitrary data to be sent with the request.
+     * @type array $args Arbitrary data to be sent with the request.
      * }
      * @access private
      */
@@ -105,8 +105,8 @@ class Iam
      * $policy = $iam->policy();
      * ```
      *
-     * @param  array $options Configuration Options
-     * @param  int   $options['requestedPolicyVersion'] Specify the policy version to
+     * @param array $options Configuration Options
+     * @param int $options ['requestedPolicyVersion'] Specify the policy version to
      *     request from the server. Please see
      *     [policy versioning](https://cloud.google.com/iam/docs/policies#versions)
      *     for more information.
@@ -135,9 +135,9 @@ class Iam
      * $policy = $iam->setPolicy($oldPolicy);
      * ```
      *
-     * @param  array|PolicyBuilder $policy The new policy, as an array or an
+     * @param array|PolicyBuilder $policy The new policy, as an array or an
      *         instance of {@see Google\Cloud\Core\Iam\PolicyBuilder}.
-     * @param  array $options Configuration Options
+     * @param array $options Configuration Options
      * @return array An array of policy data
      * @throws \InvalidArgumentException If the given policy is not an array or PolicyBuilder.
      */
@@ -160,8 +160,8 @@ class Iam
         }
 
         return $this->policy = $this->connection->setPolicy([
-            'resource' => $this->resource
-        ] + $request + $options + $this->options['args']);
+                'resource' => $this->resource
+            ] + $request + $options + $this->options['args']);
     }
 
     /**
@@ -177,16 +177,16 @@ class Iam
      * ]);
      * ```
      *
-     * @param  array $permissions A list of permissions to test
-     * @param  array $options Configuration Options
+     * @param array $permissions A list of permissions to test
+     * @param array $options Configuration Options
      * @return array A subset of $permissions, with only those allowed included.
      */
     public function testPermissions(array $permissions, array $options = [])
     {
         $res = $this->connection->testPermissions([
-            'permissions' => $permissions,
-            'resource' => $this->resource
-        ] + $options + $this->options['args']);
+                'permissions' => $permissions,
+                'resource' => $this->resource
+            ] + $options + $this->options['args']);
 
         return (isset($res['permissions'])) ? $res['permissions'] : [];
     }
@@ -199,13 +199,13 @@ class Iam
      * $policy = $iam->reload();
      * ```
      *
-     * @param  array $options Configuration Options
+     * @param array $options Configuration Options
      * @return array An array of policy data
      */
     public function reload(array $options = [])
     {
         return $this->policy = $this->connection->getPolicy([
-            'resource' => $this->resource
-        ] + $options + $this->options['args']);
+                'resource' => $this->resource
+            ] + $options + $this->options['args']);
     }
 }

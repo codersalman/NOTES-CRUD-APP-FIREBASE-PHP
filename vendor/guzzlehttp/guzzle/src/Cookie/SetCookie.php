@@ -11,14 +11,14 @@ class SetCookie
      * @var array
      */
     private static $defaults = [
-        'Name'     => null,
-        'Value'    => null,
-        'Domain'   => null,
-        'Path'     => '/',
-        'Max-Age'  => null,
-        'Expires'  => null,
-        'Secure'   => false,
-        'Discard'  => false,
+        'Name' => null,
+        'Value' => null,
+        'Domain' => null,
+        'Path' => '/',
+        'Max-Age' => null,
+        'Expires' => null,
+        'Secure' => false,
+        'Discard' => false,
         'HttpOnly' => false
     ];
 
@@ -132,7 +132,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a string to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Name'] = (string) $name;
+        $this->data['Name'] = (string)$name;
     }
 
     /**
@@ -156,7 +156,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a string to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Value'] = (string) $value;
+        $this->data['Value'] = (string)$value;
     }
 
     /**
@@ -180,7 +180,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a string or null to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Domain'] = null === $domain ? null : (string) $domain;
+        $this->data['Domain'] = null === $domain ? null : (string)$domain;
     }
 
     /**
@@ -204,7 +204,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a string to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Path'] = (string) $path;
+        $this->data['Path'] = (string)$path;
     }
 
     /**
@@ -214,7 +214,7 @@ class SetCookie
      */
     public function getMaxAge()
     {
-        return null === $this->data['Max-Age'] ? null : (int) $this->data['Max-Age'];
+        return null === $this->data['Max-Age'] ? null : (int)$this->data['Max-Age'];
     }
 
     /**
@@ -228,7 +228,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing an int or null to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Max-Age'] = $maxAge === null ? null : (int) $maxAge;
+        $this->data['Max-Age'] = $maxAge === null ? null : (int)$maxAge;
     }
 
     /**
@@ -252,7 +252,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing an int, string or null to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Expires'] = null === $timestamp ? null : (\is_numeric($timestamp) ? (int) $timestamp : \strtotime((string) $timestamp));
+        $this->data['Expires'] = null === $timestamp ? null : (\is_numeric($timestamp) ? (int)$timestamp : \strtotime((string)$timestamp));
     }
 
     /**
@@ -276,7 +276,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a bool to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Secure'] = (bool) $secure;
+        $this->data['Secure'] = (bool)$secure;
     }
 
     /**
@@ -300,7 +300,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a bool to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['Discard'] = (bool) $discard;
+        $this->data['Discard'] = (bool)$discard;
     }
 
     /**
@@ -324,7 +324,7 @@ class SetCookie
             trigger_deprecation('guzzlehttp/guzzle', '7.4', 'Not passing a bool to %s::%s() is deprecated and will cause an error in 8.0.', __CLASS__, __FUNCTION__);
         }
 
-        $this->data['HttpOnly'] = (bool) $httpOnly;
+        $this->data['HttpOnly'] = (bool)$httpOnly;
     }
 
     /**
@@ -392,7 +392,7 @@ class SetCookie
             return false;
         }
 
-        return (bool) \preg_match('/\.' . \preg_quote($cookieDomain, '/') . '$/', $domain);
+        return (bool)\preg_match('/\.' . \preg_quote($cookieDomain, '/') . '$/', $domain);
     }
 
     /**

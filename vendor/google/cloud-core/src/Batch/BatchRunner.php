@@ -58,8 +58,9 @@ class BatchRunner
      */
     public function __construct(
         ConfigStorageInterface $configStorage = null,
-        ProcessItemInterface $processor = null
-    ) {
+        ProcessItemInterface   $processor = null
+    )
+    {
         if ($configStorage === null || $processor === null) {
             if ($this->isSysvIPCLoaded() && $this->isDaemonRunning()) {
                 $configStorage = new SysvConfigStorage();
@@ -83,12 +84,12 @@ class BatchRunner
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $batchSize The size of the batch.
-     *     @type float $callPeriod The period in seconds from the last execution
+     * @type int $batchSize The size of the batch.
+     * @type float $callPeriod The period in seconds from the last execution
      *                 to force executing the job.
-     *     @type int $numWorkers The number of child processes. It only takes
+     * @type int $numWorkers The number of child processes. It only takes
      *               effect with the {@see \Google\Cloud\Core\Batch\BatchDaemon}.
-     *     @type string $bootstrapFile A file to load before executing the
+     * @type string $bootstrapFile A file to load before executing the
      *                  job. It's needed for registering global functions.
      * }
      * @return bool true on success, false on failure

@@ -30,16 +30,16 @@ final class AppInstance implements JsonSerializable
     }
 
     /**
+     * @param array<string, mixed> $rawData
      * @internal
      *
-     * @param array<string, mixed> $rawData
      */
     public static function fromRawData(RegistrationToken $registrationToken, array $rawData): self
     {
         $subscriptions = [];
 
         foreach ($rawData['rel']['topics'] ?? [] as $topicName => $subscriptionInfo) {
-            $topic = Topic::fromValue((string) $topicName);
+            $topic = Topic::fromValue((string)$topicName);
             $addedAt = DT::toUTCDateTimeImmutable($subscriptionInfo['addDate'] ?? null);
             $subscriptions[] = new TopicSubscription($topic, $registrationToken, $addedAt);
         }
@@ -65,8 +65,8 @@ final class AppInstance implements JsonSerializable
         $topic = $topic instanceof Topic ? $topic : Topic::fromValue($topic);
 
         return $this->topicSubscriptions
-            ->filter(static fn (TopicSubscription $subscription) => $topic->value() === $subscription->topic()->value())
-            ->count() > 0;
+                ->filter(static fn(TopicSubscription $subscription) => $topic->value() === $subscription->topic()->value())
+                ->count() > 0;
     }
 
     /**

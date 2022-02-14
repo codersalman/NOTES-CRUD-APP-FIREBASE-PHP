@@ -24,7 +24,7 @@ final class Table
     /**
      * Echos the given table. Useful for building a static table to include in source code.
      *
-     * @param      array  $table  The table
+     * @param array $table The table
      */
     public static function output(array $table)
     {
@@ -43,7 +43,7 @@ final class Table
     /**
      * Gets a CRC table, by creating it, or using a previously cached result.
      *
-     * @param  integer  $polynomial  The polynomial
+     * @param integer $polynomial The polynomial
      *
      * @return  array  The table
      */
@@ -59,7 +59,7 @@ final class Table
     /**
      * Create a CRC table.
      *
-     * @param  integer  $polynomial  The polynomial.
+     * @param integer $polynomial The polynomial.
      *
      * @return  array  The table.
      */
@@ -85,7 +85,7 @@ final class Table
     /**
      * Create a CRC table sliced by 4.
      *
-     * @param  integer  $polynomial  The polynomial.
+     * @param integer $polynomial The polynomial.
      *
      * @return  array  The table.
      */

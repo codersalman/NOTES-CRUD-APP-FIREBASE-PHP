@@ -33,8 +33,8 @@ class ElasticaFormatter extends NormalizerFormatter
     protected $type;
 
     /**
-     * @param string  $index Elastic Search index name
-     * @param ?string $type  Elastic Search document type, deprecated as of Elastica 7
+     * @param string $index Elastic Search index name
+     * @param ?string $type Elastic Search document type, deprecated as of Elastica 7
      */
     public function __construct(string $index, ?string $type)
     {

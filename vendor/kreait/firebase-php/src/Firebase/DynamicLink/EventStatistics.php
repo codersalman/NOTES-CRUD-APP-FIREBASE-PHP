@@ -94,12 +94,12 @@ final class EventStatistics implements Countable, IteratorAggregate
 
     public function filterByType(string $type): self
     {
-        return $this->filter(static fn (array $event) => ($event['event'] ?? null) === $type);
+        return $this->filter(static fn(array $event) => ($event['event'] ?? null) === $type);
     }
 
     public function filterByPlatform(string $platform): self
     {
-        return $this->filter(static fn (array $event) => ($event['platform'] ?? null) === $platform);
+        return $this->filter(static fn(array $event) => ($event['platform'] ?? null) === $platform);
     }
 
     public function filter(callable $filter): self
@@ -119,6 +119,6 @@ final class EventStatistics implements Countable, IteratorAggregate
 
     public function count(): int
     {
-        return (int) \array_sum(\array_column($this->events, 'count'));
+        return (int)\array_sum(\array_column($this->events, 'count'));
     }
 }

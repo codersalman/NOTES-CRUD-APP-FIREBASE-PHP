@@ -68,11 +68,12 @@ class ScopedAccessTokenMiddleware
      * @param CacheItemPoolInterface $cache an implementation of CacheItemPoolInterface
      */
     public function __construct(
-        callable $tokenFunc,
-        $scopes,
-        array $cacheConfig = null,
+        callable               $tokenFunc,
+                               $scopes,
+        array                  $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $this->tokenFunc = $tokenFunc;
         if (!(is_string($scopes) || is_array($scopes))) {
             throw new \InvalidArgumentException(

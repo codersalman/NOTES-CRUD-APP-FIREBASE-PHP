@@ -33,7 +33,7 @@ final class Database implements Contract\Database
             $path = '/';
         }
 
-        $path = '/'.\ltrim($path, '/');
+        $path = '/' . \ltrim($path, '/');
 
         try {
             return new Reference($this->uri->withPath($path), $this->client);

@@ -52,7 +52,7 @@ class RequestBuilder
     /**
      * @param string $servicePath
      * @param string $baseUri
-     * @param array  $resourceRoot [optional]
+     * @param array $resourceRoot [optional]
      */
     public function __construct($servicePath, $baseUri, array $resourceRoot = [])
     {
@@ -66,7 +66,7 @@ class RequestBuilder
                 $uriParts['path'] = $this->service['basePath'];
 
                 // Recreate the URI from its modified parts and ensure it ends in a single slash.
-                $this->baseUri = rtrim((string) Uri::fromParts($uriParts), '/') . '/';
+                $this->baseUri = rtrim((string)Uri::fromParts($uriParts), '/') . '/';
 
                 return;
             }

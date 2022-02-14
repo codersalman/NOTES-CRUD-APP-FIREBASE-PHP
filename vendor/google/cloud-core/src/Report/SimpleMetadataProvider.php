@@ -26,7 +26,7 @@ class SimpleMetadataProvider implements MetadataProviderInterface
     private $data = [];
 
     /**
-     * @param array $monitoredResource.
+     * @param array $monitoredResource .
      * {@see https://cloud.google.com/logging/docs/reference/v2/rest/v2/MonitoredResource}
      * @param string $projectId [optional] **Defaults to** ''
      * @param string $serviceId [optional] **Defaults to** ''
@@ -39,7 +39,8 @@ class SimpleMetadataProvider implements MetadataProviderInterface
         $serviceId = '',
         $versionId = '',
         $labels = []
-    ) {
+    )
+    {
         $this->data['monitoredResource'] = $monitoredResource;
         $this->data['projectId'] = $projectId;
         $this->data['serviceId'] = $serviceId;

@@ -25,7 +25,7 @@ final class DynamicLink implements JsonSerializable
     public static function fromApiResponse(ResponseInterface $response): self
     {
         $link = new self();
-        $link->data = JSON::decode((string) $response->getBody(), true);
+        $link->data = JSON::decode((string)$response->getBody(), true);
 
         return $link;
     }
@@ -42,7 +42,7 @@ final class DynamicLink implements JsonSerializable
 
     public function domain(): string
     {
-        return $this->uri()->getScheme().'://'.$this->uri()->getHost();
+        return $this->uri()->getScheme() . '://' . $this->uri()->getHost();
     }
 
     public function suffix(): string
@@ -73,6 +73,6 @@ final class DynamicLink implements JsonSerializable
 
     public function __toString(): string
     {
-        return (string) $this->uri();
+        return (string)$this->uri();
     }
 }

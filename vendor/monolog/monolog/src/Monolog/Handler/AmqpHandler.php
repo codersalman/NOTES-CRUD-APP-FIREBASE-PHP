@@ -11,12 +11,12 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Logger;
+use AMQPExchange;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\JsonFormatter;
-use PhpAmqpLib\Message\AMQPMessage;
+use Monolog\Logger;
 use PhpAmqpLib\Channel\AMQPChannel;
-use AMQPExchange;
+use PhpAmqpLib\Message\AMQPMessage;
 
 /**
  * @phpstan-import-type Record from \Monolog\Logger
@@ -34,13 +34,13 @@ class AmqpHandler extends AbstractProcessingHandler
     protected $exchangeName;
 
     /**
-     * @param AMQPExchange|AMQPChannel $exchange     AMQPExchange (php AMQP ext) or PHP AMQP lib channel, ready for use
-     * @param string|null              $exchangeName Optional exchange name, for AMQPChannel (PhpAmqpLib) only
+     * @param AMQPExchange|AMQPChannel $exchange AMQPExchange (php AMQP ext) or PHP AMQP lib channel, ready for use
+     * @param string|null $exchangeName Optional exchange name, for AMQPChannel (PhpAmqpLib) only
      */
     public function __construct($exchange, ?string $exchangeName = null, $level = Logger::DEBUG, bool $bubble = true)
     {
         if ($exchange instanceof AMQPChannel) {
-            $this->exchangeName = (string) $exchangeName;
+            $this->exchangeName = (string)$exchangeName;
         } elseif (!$exchange instanceof AMQPExchange) {
             throw new \InvalidArgumentException('PhpAmqpLib\Channel\AMQPChannel or AMQPExchange instance required');
         } elseif ($exchangeName) {

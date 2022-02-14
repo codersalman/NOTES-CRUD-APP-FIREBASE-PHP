@@ -24,7 +24,7 @@ final class SendMessages implements HasSubRequests, RequestInterface
     public function __construct(string $projectId, Messages $messages, bool $validateOnly = false)
     {
         if ($messages->count() > self::MAX_AMOUNT_OF_MESSAGES) {
-            throw new InvalidArgumentException('Only '.self::MAX_AMOUNT_OF_MESSAGES.' can be sent at a time.');
+            throw new InvalidArgumentException('Only ' . self::MAX_AMOUNT_OF_MESSAGES . ' can be sent at a time.');
         }
 
         $subRequests = [];
@@ -34,10 +34,9 @@ final class SendMessages implements HasSubRequests, RequestInterface
         foreach ($messages as $message) {
             $subRequests[] = (new SendMessage($projectId, $message, $validateOnly))
                 // see https://github.com/firebase/firebase-admin-node/blob/master/src/messaging/batch-request.ts#L104
-                ->withHeader('Content-ID', (string) ++$index)
+                ->withHeader('Content-ID', (string)++$index)
                 ->withHeader('Content-Transfer-Encoding', 'binary')
-                ->withHeader('Content-Type', 'application/http')
-            ;
+                ->withHeader('Content-Type', 'application/http');
         }
 
         $this->wrappedRequest = new RequestWithSubRequests(

@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -8,14 +9,15 @@ class SyntaxErrorException extends \InvalidArgumentException
 {
     /**
      * @param string $expectedTypesOrMessage Expected array of tokens or message
-     * @param array  $token                  Current token
-     * @param string $expression             Expression input
+     * @param array $token Current token
+     * @param string $expression Expression input
      */
     public function __construct(
         $expectedTypesOrMessage,
         array $token,
         $expression
-    ) {
+    )
+    {
         $message = "Syntax error at character {$token['pos']}\n"
             . $expression . "\n" . str_repeat(' ', max($token['pos'], 0)) . "^\n";
         $message .= !is_array($expectedTypesOrMessage)

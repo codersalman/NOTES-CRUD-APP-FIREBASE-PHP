@@ -14,9 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-use PHPUnit\Framework\TestCase;
 
 use Google\CRC32\CRC32;
+use PHPUnit\Framework\TestCase;
 
 class CRCIterator implements Iterator
 {
@@ -43,7 +43,7 @@ class CRCIterator implements Iterator
     public function valid()
     {
         return current($this->crcs) !== false &&
-               current($this->algos) !== false;
+            current($this->algos) !== false;
     }
 
     public function key()
@@ -150,8 +150,8 @@ class DataIterator implements Iterator
     public function valid()
     {
         return current($this->crcs) !== false &&
-               current($this->algos) !== false &&
-               current($this->data) !== false;
+            current($this->algos) !== false &&
+            current($this->data) !== false;
     }
 
     public function key()

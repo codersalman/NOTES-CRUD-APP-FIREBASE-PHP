@@ -38,15 +38,15 @@ class Template implements \JsonSerializable
         $template = new self();
         $template->etag = $etag ?? '*';
 
-        foreach ((array) ($data['conditions'] ?? []) as $conditionData) {
+        foreach ((array)($data['conditions'] ?? []) as $conditionData) {
             $template = $template->withCondition(self::buildCondition($conditionData['name'], $conditionData));
         }
 
-        foreach ((array) ($data['parameters'] ?? []) as $name => $parameterData) {
+        foreach ((array)($data['parameters'] ?? []) as $name => $parameterData) {
             $template = $template->withParameter(self::buildParameter($name, $parameterData));
         }
 
-        foreach ((array) ($data['parameterGroups'] ?? []) as $name => $parameterGroupData) {
+        foreach ((array)($data['parameterGroups'] ?? []) as $name => $parameterGroupData) {
             $template = $template->withParameterGroup(self::buildParameterGroup($name, $parameterGroupData));
         }
 
@@ -77,11 +77,10 @@ class Template implements \JsonSerializable
     private static function buildParameter(string $name, array $data): Parameter
     {
         $parameter = Parameter::named($name)
-            ->withDescription((string) ($data['description'] ?? ''))
-            ->withDefaultValue(DefaultValue::fromArray($data['defaultValue'] ?? []))
-        ;
+            ->withDescription((string)($data['description'] ?? ''))
+            ->withDefaultValue(DefaultValue::fromArray($data['defaultValue'] ?? []));
 
-        foreach ((array) ($data['conditionalValues'] ?? []) as $key => $conditionalValueData) {
+        foreach ((array)($data['conditionalValues'] ?? []) as $key => $conditionalValueData) {
             $parameter = $parameter->withConditionalValue(new ConditionalValue($key, $conditionalValueData['value']));
         }
 
@@ -94,8 +93,7 @@ class Template implements \JsonSerializable
     private static function buildParameterGroup(string $name, array $parameterGroupData): ParameterGroup
     {
         $group = ParameterGroup::named($name)
-            ->withDescription((string) ($parameterGroupData['description'] ?? ''))
-        ;
+            ->withDescription((string)($parameterGroupData['description'] ?? ''));
 
         foreach ($parameterGroupData['parameters'] ?? [] as $parameterName => $parameterData) {
             $group = $group->withParameter(self::buildParameter($parameterName, $parameterData));

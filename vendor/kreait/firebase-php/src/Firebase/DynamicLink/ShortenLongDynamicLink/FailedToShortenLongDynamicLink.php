@@ -21,7 +21,7 @@ final class FailedToShortenLongDynamicLink extends RuntimeException implements F
         $fallbackMessage = 'Failed to shorten long dynamic link';
 
         try {
-            $message = JSON::decode((string) $response->getBody(), true)['error']['message'] ?? $fallbackMessage;
+            $message = JSON::decode((string)$response->getBody(), true)['error']['message'] ?? $fallbackMessage;
         } catch (InvalidArgumentException $e) {
             $message = $fallbackMessage;
         }

@@ -39,7 +39,7 @@ final class CustomTokenViaGoogleIam
     }
 
     /**
-     * @param \Stringable|string$uid
+     * @param \Stringable|string $uid
      * @param array<string, mixed> $claims
      *
      * @throws AuthException
@@ -53,13 +53,12 @@ final class CustomTokenViaGoogleIam
             : $now->add(new \DateInterval('PT1H'));
 
         $builder = $this->config->builder()
-            ->withClaim('uid', (string) $uid)
+            ->withClaim('uid', (string)$uid)
             ->issuedBy($this->clientEmail)
             ->permittedFor('https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit')
             ->relatedTo($this->clientEmail)
             ->issuedAt($now)
-            ->expiresAt($expiresAt)
-        ;
+            ->expiresAt($expiresAt);
 
         if ($this->tenantId !== null) {
             $builder->withClaim('tenantId', $this->tenantId);
@@ -71,7 +70,7 @@ final class CustomTokenViaGoogleIam
 
         $token = $builder->getToken($this->config->signer(), $this->config->signingKey());
 
-        $url = 'https://iam.googleapis.com/v1/projects/-/serviceAccounts/'.$this->clientEmail.':signBlob';
+        $url = 'https://iam.googleapis.com/v1/projects/-/serviceAccounts/' . $this->clientEmail . ':signBlob';
 
         try {
             $response = $this->client->request('POST', $url, [
@@ -83,13 +82,13 @@ final class CustomTokenViaGoogleIam
             throw (new AuthApiExceptionConverter())->convertException($e);
         }
 
-        $result = JSON::decode((string) $response->getBody(), true);
+        $result = JSON::decode((string)$response->getBody(), true);
 
         if ($base64EncodedSignature = $result['signature'] ?? null) {
             try {
-                return $this->config->parser()->parse($token->payload().'.'.$base64EncodedSignature);
+                return $this->config->parser()->parse($token->payload() . '.' . $base64EncodedSignature);
             } catch (InvalidArgumentException $e) {
-                throw new AuthError('The custom token API returned an unexpected value: '.$e->getMessage(), $e->getCode(), $e);
+                throw new AuthError('The custom token API returned an unexpected value: ' . $e->getMessage(), $e->getCode(), $e);
             }
         }
 

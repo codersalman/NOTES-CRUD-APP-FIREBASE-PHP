@@ -30,8 +30,8 @@ final class MinuteClock implements Clock
     private function floor(DateTimeImmutable $now): DateTimeImmutable
     {
         return $now->setTime(
-            (int) $now->format('H'),
-            (int) $now->format('i')
+            (int)$now->format('H'),
+            (int)$now->format('i')
         );
     }
 }

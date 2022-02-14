@@ -47,19 +47,19 @@ class CubeHandler extends AbstractProcessingHandler
         $urlInfo = parse_url($url);
 
         if ($urlInfo === false || !isset($urlInfo['scheme'], $urlInfo['host'], $urlInfo['port'])) {
-            throw new \UnexpectedValueException('URL "'.$url.'" is not valid');
+            throw new \UnexpectedValueException('URL "' . $url . '" is not valid');
         }
 
         if (!in_array($urlInfo['scheme'], $this->acceptedSchemes)) {
             throw new \UnexpectedValueException(
-                'Invalid protocol (' . $urlInfo['scheme']  . ').'
+                'Invalid protocol (' . $urlInfo['scheme'] . ').'
                 . ' Valid options are ' . implode(', ', $this->acceptedSchemes)
             );
         }
 
         $this->scheme = $urlInfo['scheme'];
         $this->host = $urlInfo['host'];
-        $this->port = (int) $urlInfo['port'];
+        $this->port = (int)$urlInfo['port'];
 
         parent::__construct($level, $bubble);
     }
@@ -99,7 +99,7 @@ class CubeHandler extends AbstractProcessingHandler
             throw new MissingExtensionException('The curl extension is required to use http URLs with the CubeHandler');
         }
 
-        $httpConnection = curl_init('http://'.$this->host.':'.$this->port.'/1.0/event/put');
+        $httpConnection = curl_init('http://' . $this->host . ':' . $this->port . '/1.0/event/put');
         if (false === $httpConnection) {
             throw new \LogicException('Unable to connect to ' . $this->host . ':' . $this->port);
         }
@@ -155,10 +155,10 @@ class CubeHandler extends AbstractProcessingHandler
             throw new \LogicException('No connection could be established');
         }
 
-        curl_setopt($this->httpConnection, CURLOPT_POSTFIELDS, '['.$data.']');
+        curl_setopt($this->httpConnection, CURLOPT_POSTFIELDS, '[' . $data . ']');
         curl_setopt($this->httpConnection, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
-            'Content-Length: ' . strlen('['.$data.']'),
+            'Content-Length: ' . strlen('[' . $data . ']'),
         ]);
 
         Curl\Util::execute($this->httpConnection, 5, false);

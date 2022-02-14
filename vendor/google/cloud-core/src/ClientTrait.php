@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core;
 
-use Google\Auth\CredentialsLoader;
 use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\CredentialsLoader;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\Exception\GoogleException;
 
@@ -83,13 +83,13 @@ trait ClientTrait
     private function getGrpcInstallationMessage()
     {
         return 'Please see https://cloud.google.com/php/grpc for installation ' .
-               'instructions.';
+            'instructions.';
     }
 
     /**
      * Fetch and validate the keyfile and set the project ID.
      *
-     * @param  array $config
+     * @param array $config
      * @return array
      */
     private function configureAuthentication(array $config)
@@ -111,7 +111,7 @@ trait ClientTrait
      * 4. If OS-specific well-known-file is set, load from that location and use
      *    that.
      *
-     * @param  array $config
+     * @param array $config
      * @return array|null Key data
      * @throws GoogleException
      */
@@ -164,7 +164,7 @@ trait ClientTrait
      *    the metadata store.
      * 7. Throw exception.
      *
-     * @param  array $config
+     * @param array $config
      * @return string
      * @throws GoogleException
      */

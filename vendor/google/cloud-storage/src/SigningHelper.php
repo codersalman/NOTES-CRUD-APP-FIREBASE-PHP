@@ -169,7 +169,7 @@ class SigningHelper
 
         $signedHeaders = [];
         foreach ($headers as $name => $value) {
-            $signedHeaders[] = $name .':'. $value;
+            $signedHeaders[] = $name . ':' . $value;
         }
 
         // Push the headers onto the end of the signing string.
@@ -258,8 +258,8 @@ class SigningHelper
         // Add headers and query params based on provided options.
         $params = $options['queryParams'];
         $headers = $options['headers'] + [
-            'host' => $options['bucketBoundHostname']
-        ];
+                'host' => $options['bucketBoundHostname']
+            ];
 
         if ($options['contentType']) {
             $headers['content-type'] = $options['contentType'];
@@ -290,13 +290,13 @@ class SigningHelper
         $signedHeaders = implode(';', $signedHeaders);
 
         // Add required query parameters.
-        $params  = [
-            'X-Goog-Algorithm' => self::V4_ALGO_NAME,
-            'X-Goog-Credential' => $credential,
-            'X-Goog-Date' => $requestTimestamp,
-            'X-Goog-Expires' => $expires - $timeSeconds,
-            'X-Goog-SignedHeaders' => $signedHeaders,
-        ] + $params;
+        $params = [
+                'X-Goog-Algorithm' => self::V4_ALGO_NAME,
+                'X-Goog-Credential' => $credential,
+                'X-Goog-Date' => $requestTimestamp,
+                'X-Goog-Expires' => $expires - $timeSeconds,
+                'X-Goog-SignedHeaders' => $signedHeaders,
+            ] + $params;
 
         $paramNames = [];
         foreach ($params as $key => $val) {
@@ -375,10 +375,11 @@ class SigningHelper
      */
     public function v4PostPolicy(
         ConnectionInterface $connection,
-        $expires,
-        $resource,
-        array $options = []
-    ) {
+                            $expires,
+                            $resource,
+        array               $options = []
+    )
+    {
         list($credentials, $options) = $this->getSigningCredentials($connection, $options);
 
         $expires = $this->normalizeExpiration($expires);
@@ -386,16 +387,16 @@ class SigningHelper
         $object = trim($object, '/');
 
         $options = $this->normalizeOptions($options) + [
-            'fields' => [],
-            'conditions' => [],
-            'successActionRedirect' => null,
-            'successActionStatus' => null
-        ];
+                'fields' => [],
+                'conditions' => [],
+                'successActionRedirect' => null,
+                'successActionStatus' => null
+            ];
 
         $time = $options['timestamp'];
         $requestTimestamp = $time->format(self::V4_TIMESTAMP_FORMAT);
         $requestDatestamp = $time->format(self::V4_DATESTAMP_FORMAT);
-        $expiration = \DateTimeImmutable::createFromFormat('U', (string) $expires);
+        $expiration = \DateTimeImmutable::createFromFormat('U', (string)$expires);
         $expirationTimestamp = str_replace(
             '+00:00',
             'Z',
@@ -560,7 +561,7 @@ class SigningHelper
         } elseif ($expires instanceof \DateTimeInterface) {
             $seconds = $expires->format('U');
         } elseif (is_numeric($expires)) {
-            $seconds = (int) $expires;
+            $seconds = (int)$expires;
         } else {
             throw new \InvalidArgumentException('Invalid expiration.');
         }

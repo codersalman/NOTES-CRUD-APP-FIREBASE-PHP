@@ -113,15 +113,15 @@ trait EncryptionTrait
     /**
      * Sign a string using a given private key.
      *
-     * @deprecated Please use the {@see Google\Auth\SignBlobInterface::signBlob()}
-     *        and implementations for signing strings.
-     *        This method will be removed in a future release.
-     *
      * @param string $privateKey The private key to use to sign the data.
      * @param string $data The data to sign.
      * @param bool $forceOpenssl If true, OpenSSL will be used regardless of
      *        whether phpseclib is available. **Defaults to** `false`.
      * @return string The signature
+     * @deprecated Please use the {@see Google\Auth\SignBlobInterface::signBlob()}
+     *        and implementations for signing strings.
+     *        This method will be removed in a future release.
+     *
      */
     protected function signString($privateKey, $data, $forceOpenssl = false)
     {

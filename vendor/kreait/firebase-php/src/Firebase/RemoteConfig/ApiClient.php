@@ -72,7 +72,7 @@ class ApiClient
      */
     public function listVersions(FindVersions $query, ?string $nextPageToken = null): ResponseInterface
     {
-        $uri = \rtrim((string) $this->client->getConfig('base_uri'), '/').':listVersions';
+        $uri = \rtrim((string)$this->client->getConfig('base_uri'), '/') . ':listVersions';
 
         $since = $query->since();
         $until = $query->until();
@@ -81,8 +81,8 @@ class ApiClient
 
         $since = $since !== null ? $since->format('Y-m-d\TH:i:s.v\Z') : null;
         $until = $until !== null ? $until->format('Y-m-d\TH:i:s.v\Z') : null;
-        $lastVersionNumber = $lastVersionNumber !== null ? (string) $lastVersionNumber : null;
-        $pageSize = $pageSize ? (string) $pageSize : null;
+        $lastVersionNumber = $lastVersionNumber !== null ? (string)$lastVersionNumber : null;
+        $pageSize = $pageSize ? (string)$pageSize : null;
 
         return $this->requestApi('GET', $uri, [
             'query' => \array_filter([
@@ -100,11 +100,11 @@ class ApiClient
      */
     public function rollbackToVersion(VersionNumber $versionNumber): ResponseInterface
     {
-        $uri = \rtrim((string) $this->client->getConfig('base_uri'), '/').':rollback';
+        $uri = \rtrim((string)$this->client->getConfig('base_uri'), '/') . ':rollback';
 
         return $this->requestApi('POST', $uri, [
             'json' => [
-                'version_number' => (string) $versionNumber,
+                'version_number' => (string)$versionNumber,
             ],
         ]);
     }

@@ -9,33 +9,33 @@ use Rize\UriTemplate\Parser;
  */
 class UriTemplate
 {
-             /**
-              * @var Parser
-              */
+    /**
+     * @var Parser
+     */
     protected $parser,
-              $parsed = array(),
-              $base_uri,
-              $params = array();
+        $parsed = array(),
+        $base_uri,
+        $params = array();
 
     public function __construct($base_uri = '', $params = array(), Parser $parser = null)
     {
         $this->base_uri = $base_uri;
-        $this->params   = $params;
-        $this->parser   = $parser ?: $this->createNodeParser();
+        $this->params = $params;
+        $this->parser = $parser ?: $this->createNodeParser();
     }
 
     /**
      * Expands URI Template
      *
-     * @param string $uri  URI Template
-     * @param array  $params        URI Template's parameters
+     * @param string $uri URI Template
+     * @param array $params URI Template's parameters
      * @return string
      */
     public function expand($uri, $params = array())
     {
         $params += $this->params;
-        $uri     = $this->base_uri.$uri;
-        $result  = array();
+        $uri = $this->base_uri . $uri;
+        $result = array();
 
         // quick check
         if (($start = strpos($uri, '{')) === false) {
@@ -43,9 +43,9 @@ class UriTemplate
         }
 
         $parser = $this->parser;
-        $nodes  = $parser->parse($uri);
+        $nodes = $parser->parse($uri);
 
-        foreach($nodes as $node) {
+        foreach ($nodes as $node) {
             $result[] = $node->expand($parser, $params);
         }
 
@@ -55,23 +55,23 @@ class UriTemplate
     /**
      * Extracts variables from URI
      *
-     * @param  string $template
-     * @param  string $uri
-     * @param  bool   $strict  This will perform a full match
+     * @param string $template
+     * @param string $uri
+     * @param bool $strict This will perform a full match
      * @return null|array params or null if not match and $strict is true
      */
     public function extract($template, $uri, $strict = false)
     {
         $params = array();
-        $nodes  = $this->parser->parse($template);
+        $nodes = $this->parser->parse($template);
 
         # PHP 8.1.0RC4-dev still throws deprecation warning for `strlen`.
         # $uri    = (string) $uri;
 
-        foreach($nodes as $node) {
+        foreach ($nodes as $node) {
 
             // if strict is given, and there's no remaining uri just return null
-            if ($strict && !strlen((string) $uri)) {
+            if ($strict && !strlen((string)$uri)) {
                 return null;
             }
 
@@ -82,7 +82,7 @@ class UriTemplate
         }
 
         // if there's remaining $uri, matching is failed
-        if ($strict && strlen((string) $uri)) {
+        if ($strict && strlen((string)$uri)) {
             return null;
         }
 

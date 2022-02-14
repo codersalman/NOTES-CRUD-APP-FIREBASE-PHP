@@ -40,7 +40,7 @@ trait TimeTrait
             : '0';
 
         if (strlen($subSeconds) > 6) {
-            $timestamp = str_replace('.'. $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
+            $timestamp = str_replace('.' . $subSeconds, '.' . substr($subSeconds, 0, 6), $timestamp);
         }
 
         $dt = new \DateTimeImmutable($timestamp);
@@ -60,7 +60,7 @@ trait TimeTrait
     {
         return \DateTimeImmutable::createFromFormat(
             'U',
-            (string) $seconds,
+            (string)$seconds,
             new \DateTimeZone('UTC')
         );
     }
@@ -100,8 +100,8 @@ trait TimeTrait
             $ns = $dateTime->format('u');
         }
         return [
-            'seconds' => (int) $dateTime->format('U'),
-            'nanos' => (int) $ns
+            'seconds' => (int)$dateTime->format('U'),
+            'nanos' => (int)$ns
         ];
     }
 
@@ -114,7 +114,7 @@ trait TimeTrait
      */
     private function convertFractionToNanoSeconds($subseconds)
     {
-        return (int) str_pad($subseconds, 9, '0', STR_PAD_RIGHT);
+        return (int)str_pad($subseconds, 9, '0', STR_PAD_RIGHT);
     }
 
     /**
@@ -130,7 +130,7 @@ trait TimeTrait
      */
     private function convertNanoSecondsToFraction($nanos, $rpad = true)
     {
-        $nanos = (string) $nanos;
+        $nanos = (string)$nanos;
         $res = str_pad($nanos, 9, '0', STR_PAD_LEFT);
         if (substr($res, 6, 3) === '000') {
             $res = substr($res, 0, 6);

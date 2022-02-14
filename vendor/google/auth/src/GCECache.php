@@ -56,14 +56,15 @@ class GCECache
      * @param CacheItemPoolInterface $cache
      */
     public function __construct(
-        array $cacheConfig = null,
+        array                  $cacheConfig = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $this->cache = $cache;
         $this->cacheConfig = array_merge([
             'lifetime' => 1500,
             'prefix' => '',
-        ], (array) $cacheConfig);
+        ], (array)$cacheConfig);
     }
 
     /**

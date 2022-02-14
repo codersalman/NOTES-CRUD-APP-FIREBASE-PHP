@@ -121,7 +121,7 @@ final class Factory
     public function withClientEmail(string $clientEmail): self
     {
         $factory = clone $this;
-        $factory->clientEmail = (string) (new Email($clientEmail));
+        $factory->clientEmail = (string)(new Email($clientEmail));
 
         return $factory;
     }
@@ -148,7 +148,7 @@ final class Factory
     public function withDatabaseUri($uri): self
     {
         $factory = clone $this;
-        $factory->databaseUri = (string) GuzzleUtils::uriFor($uri);
+        $factory->databaseUri = (string)GuzzleUtils::uriFor($uri);
 
         return $factory;
     }
@@ -309,7 +309,7 @@ final class Factory
         $serviceAccount = $this->getServiceAccount();
 
         if ($serviceAccount !== null) {
-            return $this->clientEmail = (string) (new Email($serviceAccount->getClientEmail()));
+            return $this->clientEmail = (string)(new Email($serviceAccount->getClientEmail()));
         }
 
         if ($this->discoveryIsDisabled) {
@@ -438,7 +438,7 @@ final class Factory
 
         $messagingApiClient = new Messaging\ApiClient(
             $this->createApiClient([
-                'base_uri' => 'https://fcm.googleapis.com/v1/projects/'.$projectId,
+                'base_uri' => 'https://fcm.googleapis.com/v1/projects/' . $projectId,
             ]),
             $errorHandler
         );
@@ -487,7 +487,7 @@ final class Factory
         try {
             $firestoreClient = new FirestoreClient($config);
         } catch (Throwable $e) {
-            throw new RuntimeException('Unable to create a FirestoreClient: '.$e->getMessage(), $e->getCode(), $e);
+            throw new RuntimeException('Unable to create a FirestoreClient: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         return Firestore::withFirestoreClient($firestoreClient);
@@ -510,7 +510,7 @@ final class Factory
         try {
             $storageClient = new StorageClient($config);
         } catch (Throwable $e) {
-            throw new RuntimeException('Unable to create a Storage Client: '.$e->getMessage(), $e->getCode(), $e);
+            throw new RuntimeException('Unable to create a Storage Client: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         return new Storage($storageClient, $this->getStorageBucketName());
@@ -560,7 +560,7 @@ final class Factory
         }
 
         try {
-            $databaseUrl = (string) $this->getDatabaseUri();
+            $databaseUrl = (string)$this->getDatabaseUri();
         } catch (Throwable $e) {
             $databaseUrl = $e->getMessage();
         }
@@ -625,7 +625,7 @@ final class Factory
 
         if ($credentials !== null) {
             $projectId = $credentials instanceof ProjectIdProviderInterface ? $credentials->getProjectId() : $this->getProjectId();
-            $cachePrefix = 'kreait_firebase_'.$projectId;
+            $cachePrefix = 'kreait_firebase_' . $projectId;
 
             $credentials = new FetchAuthTokenCache($credentials, ['prefix' => $cachePrefix], $this->authTokenCache);
             $authTokenHandler = HttpHandlerFactory::build(new Client());

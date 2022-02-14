@@ -50,8 +50,8 @@ final class Message
      *
      * Will return `null` if the response is not printable.
      *
-     * @param MessageInterface $message    The message to get the body summary
-     * @param int              $truncateAt The maximum allowed size of the summary
+     * @param MessageInterface $message The message to get the body summary
+     * @param int $truncateAt The maximum allowed size of the summary
      */
     public static function bodySummary(MessageInterface $message, int $truncateAt = 120): ?string
     {
@@ -169,8 +169,8 @@ final class Message
     /**
      * Constructs a URI for an HTTP request message.
      *
-     * @param string $path    Path from the start-line
-     * @param array  $headers Array of headers (each value an array).
+     * @param string $path Path from the start-line
+     * @param array $headers Array of headers (each value an array).
      */
     public static function parseRequestUri(string $path, array $headers): string
     {
@@ -232,7 +232,7 @@ final class Message
         $parts = explode(' ', $data['start-line'], 3);
 
         return new Response(
-            (int) $parts[1],
+            (int)$parts[1],
             $data['headers'],
             $data['body'],
             explode('/', $parts[0])[1],

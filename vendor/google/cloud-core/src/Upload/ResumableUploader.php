@@ -66,8 +66,8 @@ class ResumableUploader extends AbstractUploader
      * @param array $options [optional] {
      *     Optional configuration.
      *
-     *     @type array $metadata Metadata on the resource.
-     *     @type callable $uploadProgressCallback The given callable
+     * @type array $metadata Metadata on the resource.
+     * @type callable $uploadProgressCallback The given callable
      *           function/method will be called after each successfully uploaded
      *           chunk. The callable function/method will receive the number of
      *           uploaded bytes after each uploaded chunk as a parameter to this
@@ -75,20 +75,21 @@ class ResumableUploader extends AbstractUploader
      *           using resumable upload type together with $chunkSize parameter.
      *           If $chunkSize is not set the callable function/method will be
      *           called only once after the successful file upload.
-     *     @type int $chunkSize Size of the chunks to send incrementally during
+     * @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
-     *     @type array $restOptions HTTP client specific configuration options.
-     *     @type int $retries Number of retries for a failed request.
+     * @type array $restOptions HTTP client specific configuration options.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type string $contentType Content type of the resource.
+     * @type string $contentType Content type of the resource.
      * }
      */
     public function __construct(
         RequestWrapper $requestWrapper,
-        $data,
-        $uri,
-        array $options = []
-    ) {
+                       $data,
+                       $uri,
+        array          $options = []
+    )
+    {
         parent::__construct($requestWrapper, $data, $uri, $options);
 
         // Set uploadProgressCallback if it's passed as an option.
@@ -157,7 +158,7 @@ class ResumableUploader extends AbstractUploader
         do {
             $data = new LimitStream(
                 $this->data,
-                $this->chunkSize ?: - 1,
+                $this->chunkSize ?: -1,
                 $rangeStart
             );
 
@@ -166,10 +167,10 @@ class ResumableUploader extends AbstractUploader
             $rangeEnd = $rangeStart + ($currStreamLimitSize - 1);
 
             $headers = $this->headers + [
-                'Content-Length' => $currStreamLimitSize,
-                'Content-Type' => $this->contentType,
-                'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
-            ];
+                    'Content-Length' => $currStreamLimitSize,
+                    'Content-Type' => $this->contentType,
+                    'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
+                ];
 
             $request = new Request(
                 'PUT',
@@ -235,10 +236,10 @@ class ResumableUploader extends AbstractUploader
     protected function createResumeUri()
     {
         $headers = $this->headers + [
-            'X-Upload-Content-Type' => $this->contentType,
-            'X-Upload-Content-Length' => $this->data->getSize(),
-            'Content-Type' => 'application/json'
-        ];
+                'X-Upload-Content-Type' => $this->contentType,
+                'X-Upload-Content-Length' => $this->data->getSize(),
+                'Content-Type' => 'application/json'
+            ];
 
         $body = $this->jsonEncode($this->metadata);
 
@@ -282,6 +283,6 @@ class ResumableUploader extends AbstractUploader
             return null;
         }
 
-        return (int) explode('-', $rangeHeader)[1] + 1;
+        return (int)explode('-', $rangeHeader)[1] + 1;
     }
 }

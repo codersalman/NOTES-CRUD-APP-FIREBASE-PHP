@@ -32,7 +32,7 @@ class ElasticsearchFormatter extends NormalizerFormatter
 
     /**
      * @param string $index Elasticsearch index name
-     * @param string $type  Elasticsearch record type
+     * @param string $type Elasticsearch record type
      */
     public function __construct(string $index, string $type)
     {
@@ -76,7 +76,7 @@ class ElasticsearchFormatter extends NormalizerFormatter
     /**
      * Convert a log message into an Elasticsearch record
      *
-     * @param  mixed[] $record Log message
+     * @param mixed[] $record Log message
      * @return mixed[]
      */
     protected function getDocument(array $record): array

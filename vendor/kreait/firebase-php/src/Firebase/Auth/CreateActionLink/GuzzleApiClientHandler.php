@@ -31,7 +31,7 @@ final class GuzzleApiClientHandler implements Handler
         try {
             $response = $this->client->send($request, ['http_errors' => false]);
         } catch (GuzzleException $e) {
-            throw new FailedToCreateActionLink('Failed to create action link: '.$e->getMessage(), $e->getCode(), $e);
+            throw new FailedToCreateActionLink('Failed to create action link: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         if ($response->getStatusCode() !== 200) {
@@ -39,25 +39,25 @@ final class GuzzleApiClientHandler implements Handler
         }
 
         try {
-            $data = JSON::decode((string) $response->getBody(), true);
+            $data = JSON::decode((string)$response->getBody(), true);
         } catch (InvalidArgumentException $e) {
-            throw new FailedToCreateActionLink('Unable to parse the response data: '.$e->getMessage(), $e->getCode(), $e);
+            throw new FailedToCreateActionLink('Unable to parse the response data: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         if (!($actionCode = $data['oobLink'] ?? null)) {
             throw new FailedToCreateActionLink('The response did not contain an action link');
         }
 
-        return (string) $actionCode;
+        return (string)$actionCode;
     }
 
     private function createRequest(CreateActionLink $action): RequestInterface
     {
         $data = \array_filter([
-            'requestType' => $action->type(),
-            'email' => $action->email(),
-            'returnOobLink' => true,
-        ]) + $action->settings()->toArray();
+                'requestType' => $action->type(),
+                'email' => $action->email(),
+                'returnOobLink' => true,
+            ]) + $action->settings()->toArray();
 
         if ($tenantId = $action->tenantId()) {
             $uri = "https://identitytoolkit.googleapis.com/v1/projects/{$this->projectId}/tenants/{$tenantId}/accounts:sendOobCode";
@@ -69,7 +69,7 @@ final class GuzzleApiClientHandler implements Handler
 
         $headers = \array_filter([
             'Content-Type' => 'application/json; charset=UTF-8',
-            'Content-Length' => (string) $body->getSize(),
+            'Content-Length' => (string)$body->getSize(),
             'X-Firebase-Locale' => $action->locale(),
         ]);
 

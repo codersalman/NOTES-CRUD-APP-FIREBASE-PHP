@@ -27,13 +27,13 @@ final class MessageData implements \JsonSerializable
                 throw new InvalidArgumentException('Message data must be a one-dimensional array of string(able) keys and values.');
             }
 
-            $key = (string) $key;
-            $value = (string) $value;
+            $key = (string)$key;
+            $value = (string)$value;
 
             if (self::isBinary($value)) {
                 throw new InvalidArgumentException(
                     "The message data field '{$key}' seems to contain binary data. As this can lead to broken messages, "
-                    .'please convert it to a string representation first, e.g. with bin2hex() or base64encode().'
+                    . 'please convert it to a string representation first, e.g. with bin2hex() or base64encode().'
                 );
             }
 
@@ -63,7 +63,7 @@ final class MessageData implements \JsonSerializable
 
     private static function isBinary(string $value): bool
     {
-        return \mb_detect_encoding($value, (array) \mb_detect_order(), true) === false;
+        return \mb_detect_encoding($value, (array)\mb_detect_order(), true) === false;
     }
 
     /**
@@ -73,7 +73,8 @@ final class MessageData implements \JsonSerializable
     {
         $value = \mb_strtolower($value);
         // According to the docs, "notification" is reserved, but it's still accepted ¯\_(ツ)_/¯
-        $reservedWords = ['from', /*'notification',*/ 'message_type'];
+        $reservedWords = ['from', /*'notification',*/
+            'message_type'];
         $reservedPrefixes = ['google', 'gcm'];
 
         if (\in_array($value, $reservedWords, true)) {

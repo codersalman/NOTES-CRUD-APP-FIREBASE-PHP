@@ -40,7 +40,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#15](https://github.com/php-fig/http-message-util/pull/15) removes the dependency on psr/http-message, as it is not technically necessary for usage of this package.
+- [#15](https://github.com/php-fig/http-message-util/pull/15) removes the dependency on psr/http-message, as it is not
+  technically necessary for usage of this package.
 
 ### Fixed
 
@@ -50,7 +51,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#10](https://github.com/php-fig/http-message-util/pull/10) adds the constants `StatusCodeInterface::STATUS_EARLY_HINTS` (103) and
+- [#10](https://github.com/php-fig/http-message-util/pull/10) adds the
+  constants `StatusCodeInterface::STATUS_EARLY_HINTS` (103) and
   `StatusCodeInterface::STATUS_TOO_EARLY` (425).
 
 ### Changed
@@ -112,8 +114,8 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Added
 
 - [#1](https://github.com/php-fig/http-message-util/pull/1) adds
-  `Fig\Http\Message\StatusCodeInterface`, with constants named after common
-  status reason phrases, with values indicating the status codes themselves.
+  `Fig\Http\Message\StatusCodeInterface`, with constants named after common status reason phrases, with values
+  indicating the status codes themselves.
 
 ### Deprecated
 
@@ -131,8 +133,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Adds `Fig\Http\Message\RequestMethodInterface`, with constants covering the
-  most common HTTP request methods as specified by the IETF.
+- Adds `Fig\Http\Message\RequestMethodInterface`, with constants covering the most common HTTP request methods as
+  specified by the IETF.
 
 ### Deprecated
 

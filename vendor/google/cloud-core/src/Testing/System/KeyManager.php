@@ -146,7 +146,8 @@ class KeyManager
     private function getCryptoKeyName(
         $keyRingId,
         $cryptoKeyId
-    ) {
+    )
+    {
         $name = null;
 
         try {
@@ -167,10 +168,10 @@ class KeyManager
                 )
             );
 
-            $name = json_decode((string) $response->getBody(), true)['name'];
+            $name = json_decode((string)$response->getBody(), true)['name'];
         } catch (ConflictException $ex) {
             $name = sprintf(
-                'projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s' ,
+                'projects/%s/locations/%s/keyRings/%s/cryptoKeys/%s',
                 $this->projectId,
                 $this->location,
                 $keyRingId,

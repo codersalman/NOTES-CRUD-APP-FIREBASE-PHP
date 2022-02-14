@@ -1,34 +1,34 @@
 ## 1.18.0 (08/24/2021)
 
- *  [feat]: Add support for guzzlehttp/psr7 v2 (#357)
+* [feat]: Add support for guzzlehttp/psr7 v2 (#357)
 
 ## 1.17.0 (08/17/2021)
 
- * [fix]: consistently use useSelfSignedJwt method in ServiceAccountJwtAccessCredentials (#351)
- * [feat]: add loading and executing of default client cert source (#353)
- * [feat]: add support for proxy-authorization header (#347)
+* [fix]: consistently use useSelfSignedJwt method in ServiceAccountJwtAccessCredentials (#351)
+* [feat]: add loading and executing of default client cert source (#353)
+* [feat]: add support for proxy-authorization header (#347)
 
 ## 1.16.0 (06/22/2021)
 
- * [feat]: allow ServiceAccountJwtAccessCredentials to sign scopes (#341)
- * [feat]: allow psr/cache:2.0  (#344)
+* [feat]: allow ServiceAccountJwtAccessCredentials to sign scopes (#341)
+* [feat]: allow psr/cache:2.0  (#344)
 
 ## 1.15.2 (06/21/2021)
 
- * [fix]: ensure cached tokens are used for GCECredentials::signBlob (#340)
- * [fix]: adds check for getClientName (#336)
+* [fix]: ensure cached tokens are used for GCECredentials::signBlob (#340)
+* [fix]: adds check for getClientName (#336)
 
 ## 1.15.1 (04/21/2021)
 
- * [fix]: update minimum phpseclib for vulnerability fix (#331)
+* [fix]: update minimum phpseclib for vulnerability fix (#331)
 
 ## 1.15.0 (02/05/2021)
 
- * [feat]: support for PHP 8.0: updated dependencies and tests (#318, #319)
+* [feat]: support for PHP 8.0: updated dependencies and tests (#318, #319)
 
 ## 1.14.3 (10/16/2020)
 
- * [fix]: add expires_at to GCECredentials (#314)
+* [fix]: add expires_at to GCECredentials (#314)
 
 ## 1.14.2 (10/14/2020)
 
@@ -123,67 +123,67 @@
 
 ### Changes
 
- * Add support for signing strings with a Credentials instance. (#221)
- * [Docs] Describe the arrays returned by fetchAuthToken. (#216)
- * [Testing] Fix failing tests (#217)
- * Update GitHub issue templates (#214, #213)
+* Add support for signing strings with a Credentials instance. (#221)
+* [Docs] Describe the arrays returned by fetchAuthToken. (#216)
+* [Testing] Fix failing tests (#217)
+* Update GitHub issue templates (#214, #213)
 
 ## 1.4.0 (09/17/2018)
 
 ### Changes
 
- * Add support for insecure credentials (#208)
+* Add support for insecure credentials (#208)
 
 ## 1.3.3 (08/27/2018)
 
 ### Changes
 
- * Add retry and increase timeout for GCE credentials (#195)
- * [Docs] Fix spelling (#204)
- * Update token url (#206)
+* Add retry and increase timeout for GCE credentials (#195)
+* [Docs] Fix spelling (#204)
+* Update token url (#206)
 
 ## 1.3.2 (07/23/2018)
 
 ### Changes
 
- * Only emits a warning for gcloud credentials (#202)
+* Only emits a warning for gcloud credentials (#202)
 
 ## 1.3.1 (07/19/2018)
 
 ### Changes
 
- * Added a warning for 3 legged OAuth credentials (#199)
- * [Code cleanup] Removed useless else after return (#193)
+* Added a warning for 3 legged OAuth credentials (#199)
+* [Code cleanup] Removed useless else after return (#193)
 
 ## 1.3.0 (06/04/2018)
 
 ### Changes
 
- * Fixes usage of deprecated env var for GAE Flex (#189)
- * fix - guzzlehttp/psr7 dependency version definition (#190)
- * Added SystemV shared memory based CacheItemPool (#191)
+* Fixes usage of deprecated env var for GAE Flex (#189)
+* fix - guzzlehttp/psr7 dependency version definition (#190)
+* Added SystemV shared memory based CacheItemPool (#191)
 
 ## 1.2.1 (24/01/2018)
 
 ### Changes
 
- * Fixes array merging bug in Guzzle5HttpHandler (#186)
- * Fixes constructor argument bug in Subscriber & Middleware (#184)
+* Fixes array merging bug in Guzzle5HttpHandler (#186)
+* Fixes constructor argument bug in Subscriber & Middleware (#184)
 
 ## 1.2.0 (6/12/2017)
 
 ### Changes
 
- * Adds async method to HTTP handlers (#176)
- * Misc bug fixes and improvements (#177, #175, #178)
+* Adds async method to HTTP handlers (#176)
+* Misc bug fixes and improvements (#177, #175, #178)
 
 ## 1.1.0 (10/10/2017)
 
 ### Changes
 
- * Supports additional claims in JWT tokens (#171)
- * Adds makeHttpClient for creating authorized Guzzle clients (#162)
- * Misc bug fixes/improvements (#168, #161, #167, #170, #143)
+* Supports additional claims in JWT tokens (#171)
+* Adds makeHttpClient for creating authorized Guzzle clients (#162)
+* Misc bug fixes/improvements (#168, #161, #167, #170, #143)
 
 ## 1.0.1 (31/07/2017)
 
@@ -208,4 +208,5 @@
 * Adds an implementation of User Refresh Token auth ([@stanley-cheung][])
 
 [@bshaffer]: https://github.com/bshaffer
+
 [@stanley-cheung]: https://github.com/stanley-cheung

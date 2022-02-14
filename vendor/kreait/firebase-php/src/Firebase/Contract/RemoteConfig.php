@@ -39,9 +39,9 @@ interface RemoteConfig
     /**
      * @param Template|array<string, mixed> $template
      *
+     * @return string The etag value of the published template that can be compared to in later calls
      * @throws RemoteConfigException
      *
-     * @return string The etag value of the published template that can be compared to in later calls
      */
     public function publish($template): string;
 
@@ -68,9 +68,9 @@ interface RemoteConfig
     /**
      * @param FindVersions|array<string, mixed>|null $query
      *
+     * @return Traversable<Version>|Version[]
      * @throws RemoteConfigException if something went wrong
      *
-     * @return Traversable<Version>|Version[]
      */
     public function listVersions($query = null): Traversable;
 }

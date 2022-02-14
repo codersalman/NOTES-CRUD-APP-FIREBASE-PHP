@@ -54,15 +54,16 @@ class FetchAuthTokenCache implements
      */
     public function __construct(
         FetchAuthTokenInterface $fetcher,
-        array $cacheConfig = null,
-        CacheItemPoolInterface $cache
-    ) {
+        array                   $cacheConfig = null,
+        CacheItemPoolInterface  $cache
+    )
+    {
         $this->fetcher = $fetcher;
         $this->cache = $cache;
         $this->cacheConfig = array_merge([
             'lifetime' => 1500,
             'prefix' => '',
-        ], (array) $cacheConfig);
+        ], (array)$cacheConfig);
     }
 
     /**
@@ -118,7 +119,7 @@ class FetchAuthTokenCache implements
                 'Google\Auth\SignBlobInterface'
             );
         }
-        
+
         return $this->fetcher->getClientName($httpHandler);
     }
 
@@ -200,7 +201,8 @@ class FetchAuthTokenCache implements
         $metadata,
         $authUri = null,
         callable $httpHandler = null
-    ) {
+    )
+    {
         if (!$this->fetcher instanceof UpdateMetadataInterface) {
             throw new \RuntimeException(
                 'Credentials fetcher does not implement ' .

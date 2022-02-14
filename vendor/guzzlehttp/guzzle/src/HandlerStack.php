@@ -122,14 +122,14 @@ class HandlerStack
      */
     public function hasHandler(): bool
     {
-        return $this->handler !== null ;
+        return $this->handler !== null;
     }
 
     /**
      * Unshift a middleware to the bottom of the stack.
      *
      * @param callable(callable): callable $middleware Middleware function
-     * @param string                       $name       Name to register for this middleware.
+     * @param string $name Name to register for this middleware.
      */
     public function unshift(callable $middleware, ?string $name = null): void
     {
@@ -141,7 +141,7 @@ class HandlerStack
      * Push a middleware to the top of the stack.
      *
      * @param callable(callable): callable $middleware Middleware function
-     * @param string                       $name       Name to register for this middleware.
+     * @param string $name Name to register for this middleware.
      */
     public function push(callable $middleware, string $name = ''): void
     {
@@ -152,9 +152,9 @@ class HandlerStack
     /**
      * Add a middleware before another middleware by name.
      *
-     * @param string                       $findName   Middleware to find
+     * @param string $findName Middleware to find
      * @param callable(callable): callable $middleware Middleware function
-     * @param string                       $withName   Name to register for this middleware.
+     * @param string $withName Name to register for this middleware.
      */
     public function before(string $findName, callable $middleware, string $withName = ''): void
     {
@@ -164,9 +164,9 @@ class HandlerStack
     /**
      * Add a middleware after another middleware by name.
      *
-     * @param string                       $findName   Middleware to find
+     * @param string $findName Middleware to find
      * @param callable(callable): callable $middleware Middleware function
-     * @param string                       $withName   Name to register for this middleware.
+     * @param string $withName Name to register for this middleware.
      */
     public function after(string $findName, callable $middleware, string $withName = ''): void
     {

@@ -3,12 +3,12 @@
 namespace Firebase\JWT;
 
 use ArrayAccess;
+use DateTime;
 use DomainException;
 use Exception;
 use InvalidArgumentException;
 use OpenSSLAsymmetricKey;
 use UnexpectedValueException;
-use DateTime;
 
 /**
  * JSON Web Token implementation, based on this spec:
@@ -59,13 +59,13 @@ class JWT
     /**
      * Decodes a JWT string into a PHP object.
      *
-     * @param string                    $jwt            The JWT
-     * @param Key|array<Key>|mixed      $keyOrKeyArray  The Key or array of Key objects.
+     * @param string $jwt The JWT
+     * @param Key|array<Key>|mixed $keyOrKeyArray The Key or array of Key objects.
      *                                                  If the algorithm used is asymmetric, this is the public key
      *                                                  Each Key object contains an algorithm and matching key.
      *                                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                                  'HS512', 'RS256', 'RS384', and 'RS512'
-     * @param array                     $allowed_algs   [DEPRECATED] List of supported verification algorithms. Only
+     * @param array $allowed_algs [DEPRECATED] List of supported verification algorithms. Only
      *                                                  should be used for backwards  compatibility.
      *
      * @return object The JWT's payload as a PHP object
@@ -164,14 +164,14 @@ class JWT
     /**
      * Converts and signs a PHP object or array into a JWT string.
      *
-     * @param object|array      $payload    PHP object or array
-     * @param string|resource   $key        The secret key.
+     * @param object|array $payload PHP object or array
+     * @param string|resource $key The secret key.
      *                                      If the algorithm used is asymmetric, this is the private key
-     * @param string            $alg        The signing algorithm.
+     * @param string $alg The signing algorithm.
      *                                      Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                      'HS512', 'RS256', 'RS384', and 'RS512'
-     * @param mixed             $keyId
-     * @param array             $head       An array with header elements to attach
+     * @param mixed $keyId
+     * @param array $head An array with header elements to attach
      *
      * @return string A signed JWT
      *
@@ -201,9 +201,9 @@ class JWT
     /**
      * Sign a string with a given key and algorithm.
      *
-     * @param string            $msg    The message to sign
-     * @param string|resource   $key    The secret key
-     * @param string            $alg    The signing algorithm.
+     * @param string $msg The message to sign
+     * @param string|resource $key The secret key
+     * @param string $alg The signing algorithm.
      *                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                  'HS512', 'RS256', 'RS384', and 'RS512'
      *
@@ -251,10 +251,10 @@ class JWT
      * Verify a signature with the message, key and method. Not all methods
      * are symmetric, so we must have a separate verify and sign method.
      *
-     * @param string            $msg        The original message (header and body)
-     * @param string            $signature  The original signature
-     * @param string|resource   $key        For HS*, a string key works. for RS*, must be a resource of an openssl public key
-     * @param string            $alg        The algorithm
+     * @param string $msg The original message (header and body)
+     * @param string $signature The original signature
+     * @param string|resource $key For HS*, a string key works. for RS*, must be a resource of an openssl public key
+     * @param string $alg The algorithm
      *
      * @return bool
      *
@@ -280,17 +280,17 @@ class JWT
                     'OpenSSL error: ' . \openssl_error_string()
                 );
             case 'sodium_crypto':
-              if (!function_exists('sodium_crypto_sign_verify_detached')) {
-                  throw new DomainException('libsodium is not available');
-              }
-              try {
-                  // The last non-empty line is used as the key.
-                  $lines = array_filter(explode("\n", $key));
-                  $key = base64_decode(end($lines));
-                  return sodium_crypto_sign_verify_detached($signature, $msg, $key);
-              } catch (Exception $e) {
-                  throw new DomainException($e->getMessage(), 0, $e);
-              }
+                if (!function_exists('sodium_crypto_sign_verify_detached')) {
+                    throw new DomainException('libsodium is not available');
+                }
+                try {
+                    // The last non-empty line is used as the key.
+                    $lines = array_filter(explode("\n", $key));
+                    $key = base64_decode(end($lines));
+                    return sodium_crypto_sign_verify_detached($signature, $msg, $key);
+                } catch (Exception $e) {
+                    throw new DomainException($e->getMessage(), 0, $e);
+                }
             case 'hash_hmac':
             default:
                 $hash = \hash_hmac($algorithm, $msg, $key, true);
@@ -320,8 +320,8 @@ class JWT
              * manually detect large ints in the JSON string and quote them (thus converting
              *them to strings) before decoding, hence the preg_replace() call.
              */
-            $max_int_length = \strlen((string) PHP_INT_MAX) - 1;
-            $json_without_bigints = \preg_replace('/:\s*(-?\d{'.$max_int_length.',})/', ': "$1"', $input);
+            $max_int_length = \strlen((string)PHP_INT_MAX) - 1;
+            $json_without_bigints = \preg_replace('/:\s*(-?\d{' . $max_int_length . ',})/', ': "$1"', $input);
             $obj = \json_decode($json_without_bigints);
         }
 
@@ -389,9 +389,9 @@ class JWT
      * @param Key|array<Key>|mixed $keyOrKeyArray
      * @param string|null $kid
      *
+     * @return array containing the keyMaterial and algorithm
      * @throws UnexpectedValueException
      *
-     * @return array containing the keyMaterial and algorithm
      */
     private static function getKeyMaterialAndAlgorithm($keyOrKeyArray, $kid = null)
     {
@@ -469,8 +469,8 @@ class JWT
         );
         throw new DomainException(
             isset($messages[$errno])
-            ? $messages[$errno]
-            : 'Unknown JSON error: ' . $errno
+                ? $messages[$errno]
+                : 'Unknown JSON error: ' . $errno
         );
     }
 
@@ -492,13 +492,13 @@ class JWT
     /**
      * Convert an ECDSA signature to an ASN.1 DER sequence
      *
-     * @param   string $sig The ECDSA signature to convert
+     * @param string $sig The ECDSA signature to convert
      * @return  string The encoded DER object
      */
     private static function signatureToDER($sig)
     {
         // Separate the signature into r-value and s-value
-        list($r, $s) = \str_split($sig, (int) (\strlen($sig) / 2));
+        list($r, $s) = \str_split($sig, (int)(\strlen($sig) / 2));
 
         // Trim leading zeros
         $r = \ltrim($r, "\x00");
@@ -523,8 +523,8 @@ class JWT
     /**
      * Encodes a value into a DER object.
      *
-     * @param   int     $type DER tag
-     * @param   string  $value the value to encode
+     * @param int $type DER tag
+     * @param string $value the value to encode
      * @return  string  the encoded object
      */
     private static function encodeDER($type, $value)
@@ -546,8 +546,8 @@ class JWT
     /**
      * Encodes signature from a DER object.
      *
-     * @param   string  $der binary signature in DER format
-     * @param   int     $keySize the number of bits in the key
+     * @param string $der binary signature in DER format
+     * @param int $keySize the number of bits in the key
      * @return  string  the signature
      */
     private static function signatureFromDER($der, $keySize)

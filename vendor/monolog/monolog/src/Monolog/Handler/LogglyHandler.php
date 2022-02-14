@@ -11,11 +11,11 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Logger;
+use CurlHandle;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LogglyFormatter;
+use Monolog\Logger;
 use function array_key_exists;
-use CurlHandle;
 
 /**
  * Sends errors to Loggly.
@@ -144,7 +144,7 @@ class LogglyHandler extends AbstractProcessingHandler
         $headers = ['Content-Type: application/json'];
 
         if (!empty($this->tag)) {
-            $headers[] = 'X-LOGGLY-TAG: '.implode(',', $this->tag);
+            $headers[] = 'X-LOGGLY-TAG: ' . implode(',', $this->tag);
         }
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);

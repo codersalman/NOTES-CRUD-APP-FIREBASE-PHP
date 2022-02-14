@@ -49,7 +49,7 @@ final class CreateDynamicLink implements JsonSerializable
     public static function forUrl($url): self
     {
         $action = new self();
-        $action->data['dynamicLinkInfo']['link'] = (string) Url::fromValue((string) $url);
+        $action->data['dynamicLinkInfo']['link'] = (string)Url::fromValue((string)$url);
 
         return $action;
     }
@@ -60,14 +60,14 @@ final class CreateDynamicLink implements JsonSerializable
     public function withDynamicLinkDomain($dynamicLinkDomain): self
     {
         $action = clone $this;
-        $action->data['dynamicLinkInfo']['domainUriPrefix'] = (string) Url::fromValue((string) $dynamicLinkDomain);
+        $action->data['dynamicLinkInfo']['domainUriPrefix'] = (string)Url::fromValue((string)$dynamicLinkDomain);
 
         return $action;
     }
 
     public function hasDynamicLinkDomain(): bool
     {
-        return (bool) ($this->data['dynamicLinkInfo']['domainUriPrefix'] ?? null);
+        return (bool)($this->data['dynamicLinkInfo']['domainUriPrefix'] ?? null);
     }
 
     /**

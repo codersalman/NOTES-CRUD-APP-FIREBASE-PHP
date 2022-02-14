@@ -4,14 +4,13 @@
 
 * [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-core/latest)
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project.
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any support
+requests, bug reports, or development contributions should be directed to that project.
 
 ### Installation
 
-**NOTE** This package is not intended for direct use. It provides common infrastructure
-to the rest of the Google Cloud PHP components.
+**NOTE** This package is not intended for direct use. It provides common infrastructure to the rest of the Google Cloud
+PHP components.
 
 ```sh
 $ composer require google/cloud-core

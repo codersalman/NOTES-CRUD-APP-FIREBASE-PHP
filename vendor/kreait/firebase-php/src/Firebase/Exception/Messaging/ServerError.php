@@ -13,9 +13,9 @@ final class ServerError extends RuntimeException implements MessagingException
     use HasErrors;
 
     /**
+     * @param string[] $errors
      * @internal
      *
-     * @param string[] $errors
      */
     public function withErrors(array $errors): self
     {

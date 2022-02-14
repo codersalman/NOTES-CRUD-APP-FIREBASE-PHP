@@ -34,26 +34,27 @@ class SignedUrlUploader extends ResumableUploader
      * @param array $options [optional] {
      *     Optional configuration.
      *
-     *     @type array $metadata Metadata on the resource.
-     *     @type int $chunkSize Size of the chunks to send incrementally during
+     * @type array $metadata Metadata on the resource.
+     * @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
-     *     @type array $restOptions HTTP client specific configuration options.
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type array $restOptions HTTP client specific configuration options.
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0`.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type string $contentType Content type of the resource.
-     *     @type string $origin If the target has Cross-Origin Resource Sharing
+     * @type string $contentType Content type of the resource.
+     * @type string $origin If the target has Cross-Origin Resource Sharing
      *           enabled, the value of the Origin header to be used in upload
      *           requests.
      * }
      */
     public function __construct(
         RequestWrapper $requestWrapper,
-        $data,
-        $uri,
-        array $options = []
-    ) {
+                       $data,
+                       $uri,
+        array          $options = []
+    )
+    {
         if (isset($options['origin'])) {
             $this->headers['Origin'] = $options['origin'];
             unset($options['origin']);
@@ -70,10 +71,10 @@ class SignedUrlUploader extends ResumableUploader
     protected function createResumeUri()
     {
         $headers = $this->headers + [
-            'Content-Type' => $this->contentType,
-            'Content-Length' => 0,
-            'x-goog-resumable' => 'start'
-        ];
+                'Content-Type' => $this->contentType,
+                'Content-Length' => 0,
+                'x-goog-resumable' => 'start'
+            ];
 
         $request = new Request(
             'POST',

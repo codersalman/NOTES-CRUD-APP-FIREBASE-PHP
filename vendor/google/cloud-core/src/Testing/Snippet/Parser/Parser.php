@@ -20,9 +20,9 @@ namespace Google\Cloud\Core\Testing\Snippet\Parser;
 use DOMDocument;
 use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
+use phpDocumentor\Reflection\DocBlock;
 use ReflectionClass;
 use ReflectionMethod;
-use phpDocumentor\Reflection\DocBlock;
 
 /**
  * A class for parsing code snippets from a class and its methods.
@@ -147,7 +147,7 @@ class Parser
             foreach ($methods as $method) {
                 $magicExamples = $this->examples(
                     $method['doc'],
-                    $class->getName() .'::'. $method['name'],
+                    $class->getName() . '::' . $method['name'],
                     $class->getFileName(),
                     $class->getStartLine()
                 );
@@ -198,7 +198,7 @@ class Parser
 
         return $this->examples(
             $doc,
-            $class .'::'. $method->getName(),
+            $class . '::' . $method->getName(),
             $method->getFileName(),
             $method->getStartLine()
         );

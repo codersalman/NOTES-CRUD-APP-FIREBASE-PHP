@@ -39,15 +39,15 @@ final class MessageTarget
 
         switch ($targetType) {
             case self::CONDITION:
-                $targetValue = (string) Condition::fromValue($value);
+                $targetValue = (string)Condition::fromValue($value);
 
                 break;
             case self::TOKEN:
-                $targetValue = (string) RegistrationToken::fromValue($value);
+                $targetValue = (string)RegistrationToken::fromValue($value);
 
                 break;
             case self::TOPIC:
-                $targetValue = (string) Topic::fromValue($value);
+                $targetValue = (string)Topic::fromValue($value);
 
                 break;
             case self::UNKNOWN:
@@ -55,7 +55,7 @@ final class MessageTarget
 
                 break;
             default:
-                throw new InvalidArgumentException("Invalid target type '{$type}', valid types: ".\implode(', ', self::TYPES));
+                throw new InvalidArgumentException("Invalid target type '{$type}', valid types: " . \implode(', ', self::TYPES));
         }
 
         return new self($targetType, $targetValue);

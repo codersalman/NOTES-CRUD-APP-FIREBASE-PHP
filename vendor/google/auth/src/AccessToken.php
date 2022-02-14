@@ -18,9 +18,7 @@
 namespace Google\Auth;
 
 use DateTime;
-use Exception;
 use Firebase\JWT\ExpiredException;
-use Firebase\JWT\JWT;
 use Firebase\JWT\SignatureInvalidException;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\HttpHandler\HttpClientCache;
@@ -33,7 +31,6 @@ use phpseclib\Math\BigInteger;
 use Psr\Cache\CacheItemPoolInterface;
 use RuntimeException;
 use SimpleJWT\InvalidTokenException;
-use SimpleJWT\JWT as SimpleJWT;
 use SimpleJWT\Keys\KeyFactory;
 use SimpleJWT\Keys\KeySet;
 use UnexpectedValueException;
@@ -67,9 +64,10 @@ class AccessToken
      * @param CacheItemPoolInterface $cache [optional] A PSR-6 compatible cache implementation.
      */
     public function __construct(
-        callable $httpHandler = null,
+        callable               $httpHandler = null,
         CacheItemPoolInterface $cache = null
-    ) {
+    )
+    {
         $this->httpHandler = $httpHandler
             ?: HttpHandlerFactory::build(HttpClientCache::getHttpClient());
         $this->cache = $cache ?: new MemoryCacheItemPool();
@@ -83,16 +81,16 @@ class AccessToken
      *
      * @param string $token The JSON Web Token to be verified.
      * @param array $options [optional] Configuration options.
-     * @param string $options.audience The indended recipient of the token.
-     * @param string $options.issuer The intended issuer of the token.
-     * @param string $options.cacheKey The cache key of the cached certs. Defaults to
+     * @param string $options .audience The indended recipient of the token.
+     * @param string $options .issuer The intended issuer of the token.
+     * @param string $options .cacheKey The cache key of the cached certs. Defaults to
      *        the sha1 of $certsLocation if provided, otherwise is set to
      *        "federated_signon_certs_v3".
-     * @param string $options.certsLocation The location (remote or local) from which
+     * @param string $options .certsLocation The location (remote or local) from which
      *        to retrieve certificates, if not cached. This value should only be
      *        provided in limited circumstances in which you are sure of the
      *        behavior.
-     * @param bool $options.throwException Whether the function should throw an
+     * @param bool $options .throwException Whether the function should throw an
      *        exception if the verification fails. This is useful for
      *        determining the reason verification failed.
      * @return array|bool the token payload, if successful, or false if not.
@@ -257,7 +255,7 @@ class AccessToken
             ]);
 
             // create an array of key IDs to certs for the JWT library
-            $keys[$cert['kid']] =  $rsa->getPublicKey();
+            $keys[$cert['kid']] = $rsa->getPublicKey();
         }
 
         $payload = $this->callJwtStatic('decode', [
@@ -279,7 +277,7 @@ class AccessToken
             throw new UnexpectedValueException('Issuer does not match');
         }
 
-        return (array) $payload;
+        return (array)$payload;
     }
 
     /**
@@ -303,7 +301,7 @@ class AccessToken
         $body = Utils::streamFor(http_build_query(['token' => $token]));
         $request = new Request('POST', self::OAUTH2_REVOKE_URI, [
             'Cache-Control' => 'no-store',
-            'Content-Type'  => 'application/x-www-form-urlencoded',
+            'Content-Type' => 'application/x-www-form-urlencoded',
         ], $body);
 
         $httpHandler = $this->httpHandler;
@@ -385,7 +383,7 @@ class AccessToken
         $response = $httpHandler(new Request('GET', $url), $options);
 
         if ($response->getStatusCode() == 200) {
-            return json_decode((string) $response->getBody(), true);
+            return json_decode((string)$response->getBody(), true);
         }
 
         throw new RuntimeException(sprintf(

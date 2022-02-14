@@ -44,12 +44,11 @@ class AppInstanceApiClient
             $promises[$topicName] = $this->client
                 ->requestAsync('POST', '/iid/v1:batchAdd', [
                     'json' => [
-                        'to' => '/topics/'.$topicName,
+                        'to' => '/topics/' . $topicName,
                         'registration_tokens' => $tokenStrings,
                     ],
                 ])
-                ->then(static fn (ResponseInterface $response) => JSON::decode((string) $response->getBody(), true))
-            ;
+                ->then(static fn(ResponseInterface $response) => JSON::decode((string)$response->getBody(), true));
         }
 
         $responses = Promise\Utils::settle($promises)->wait();
@@ -57,7 +56,7 @@ class AppInstanceApiClient
         $result = [];
 
         foreach ($responses as $topicName => $response) {
-            $topicName = (string) $topicName;
+            $topicName = (string)$topicName;
 
             switch ($response['state']) {
                 case 'fulfilled':
@@ -110,12 +109,11 @@ class AppInstanceApiClient
             $promises[$topicName] = $this->client
                 ->requestAsync('POST', '/iid/v1:batchRemove', [
                     'json' => [
-                        'to' => '/topics/'.$topicName,
+                        'to' => '/topics/' . $topicName,
                         'registration_tokens' => $tokenStrings,
                     ],
                 ])
-                ->then(static fn (ResponseInterface $response) => JSON::decode((string) $response->getBody(), true))
-            ;
+                ->then(static fn(ResponseInterface $response) => JSON::decode((string)$response->getBody(), true));
         }
 
         $responses = Promise\Utils::settle($promises)->wait();
@@ -123,7 +121,7 @@ class AppInstanceApiClient
         $result = [];
 
         foreach ($responses as $topicName => $response) {
-            $topicName = (string) $topicName;
+            $topicName = (string)$topicName;
 
             switch ($response['state']) {
                 case 'fulfilled':
@@ -139,7 +137,7 @@ class AppInstanceApiClient
                         }
 
                         if (isset($tokenResult['error'])) {
-                            $topicResults[$token] = (string) $tokenResult['error'];
+                            $topicResults[$token] = (string)$tokenResult['error'];
 
                             continue;
                         }
@@ -163,13 +161,12 @@ class AppInstanceApiClient
     public function getAppInstanceAsync(RegistrationToken $registrationToken): Promise\PromiseInterface
     {
         return $this->client
-            ->requestAsync('GET', '/iid/'.$registrationToken->value().'?details=true')
+            ->requestAsync('GET', '/iid/' . $registrationToken->value() . '?details=true')
             ->then(static function (ResponseInterface $response) use ($registrationToken) {
-                $data = JSON::decode((string) $response->getBody(), true);
+                $data = JSON::decode((string)$response->getBody(), true);
 
                 return AppInstance::fromRawData($registrationToken, $data);
             })
-            ->otherwise(fn (Throwable $e) => Promise\Create::rejectionFor($this->errorHandler->convertException($e)))
-        ;
+            ->otherwise(fn(Throwable $e) => Promise\Create::rejectionFor($this->errorHandler->convertException($e)));
     }
 }

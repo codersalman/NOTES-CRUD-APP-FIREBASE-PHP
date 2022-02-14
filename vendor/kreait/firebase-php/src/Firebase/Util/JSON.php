@@ -17,13 +17,13 @@ final class JSON
      *
      * Shamelessly copied from Guzzle.
      *
-     * @see \GuzzleHttp\json_encode()
-     *
      * @param mixed $value The value being encoded
      * @param int<0, max>|null $options JSON encode option bitmask
      * @param int<1, max>|null $depth Set the maximum depth. Must be greater than zero
      *
      * @throws InvalidArgumentException if the JSON cannot be encoded
+     * @see \GuzzleHttp\json_encode()
+     *
      */
     public static function encode($value, ?int $options = null, ?int $depth = null): string
     {
@@ -33,7 +33,7 @@ final class JSON
         try {
             return \json_encode($value, JSON_THROW_ON_ERROR | $options, $depth);
         } catch (Throwable $e) {
-            throw new InvalidArgumentException('json_encode error: '.$e->getMessage());
+            throw new InvalidArgumentException('json_encode error: ' . $e->getMessage());
         }
     }
 
@@ -42,16 +42,16 @@ final class JSON
      *
      * Shamelessly copied from Guzzle.
      *
-     * @see \GuzzleHttp\json_encode()
-     *
      * @param string $json JSON data to parse
      * @param bool|null $assoc When true, returned objects will be converted into associative arrays
      * @param int<1, max>|null $depth User specified recursion depth
      * @param int<0, max>|null $options Bitmask of JSON decode options
      *
+     * @return mixed
      * @throws \InvalidArgumentException if the JSON cannot be decoded
      *
-     * @return mixed
+     * @see \GuzzleHttp\json_encode()
+     *
      */
     public static function decode(string $json, ?bool $assoc = null, ?int $depth = null, ?int $options = null)
     {
@@ -62,7 +62,7 @@ final class JSON
         try {
             return \json_decode($json, $assoc, $depth, JSON_THROW_ON_ERROR | $options);
         } catch (Throwable $e) {
-            throw new InvalidArgumentException('json_decode error: '.$e->getMessage());
+            throw new InvalidArgumentException('json_decode error: ' . $e->getMessage());
         }
     }
 

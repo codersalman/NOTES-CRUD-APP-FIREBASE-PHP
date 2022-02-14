@@ -71,7 +71,7 @@ final class FnStream implements StreamInterface
      * Adds custom functionality to an underlying stream by intercepting
      * specific method calls.
      *
-     * @param StreamInterface         $stream  Stream to decorate
+     * @param StreamInterface $stream Stream to decorate
      * @param array<string, callable> $methods Hash of method name to a closure
      *
      * @return FnStream
@@ -97,7 +97,7 @@ final class FnStream implements StreamInterface
             if (\PHP_VERSION_ID >= 70400) {
                 throw $e;
             }
-            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string) $e), E_USER_ERROR);
+            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string)$e), E_USER_ERROR);
             return '';
         }
     }

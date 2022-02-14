@@ -63,6 +63,6 @@ class HttpHandlerReader implements ReaderInterface
         $handler = $this->httpHandler;
         $res = $handler($request);
 
-        return (string) $res->getBody();
+        return (string)$res->getBody();
     }
 }

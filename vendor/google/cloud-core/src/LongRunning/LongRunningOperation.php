@@ -70,10 +70,11 @@ class LongRunningOperation
      */
     public function __construct(
         LongRunningConnectionInterface $connection,
-        $name,
-        array $callablesMap,
-        array $info = []
-    ) {
+                                       $name,
+        array                          $callablesMap,
+        array                          $info = []
+    )
+    {
         $this->connection = $connection;
         $this->name = $name;
         $this->callablesMap = $callablesMap;
@@ -244,8 +245,8 @@ class LongRunningOperation
     public function reload(array $options = [])
     {
         $res = $this->connection->get([
-            'name' => $this->name,
-        ] + $options);
+                'name' => $this->name,
+            ] + $options);
 
         $this->result = null;
         $this->error = null;
@@ -275,9 +276,9 @@ class LongRunningOperation
      * @param array $options {
      *     Configuration Options
      *
-     *     @type float $pollingIntervalSeconds The polling interval to use, in
+     * @type float $pollingIntervalSeconds The polling interval to use, in
      *           seconds. **Defaults to** `1.0`.
-     *     @type float $maxPollingDurationSeconds The maximum amount of time to
+     * @type float $maxPollingDurationSeconds The maximum amount of time to
      *           continue polling. **Defaults to** `0.0`.
      * }
      * @return mixed|null

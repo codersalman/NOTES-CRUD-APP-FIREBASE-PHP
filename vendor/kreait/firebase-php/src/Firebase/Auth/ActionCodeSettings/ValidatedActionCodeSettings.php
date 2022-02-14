@@ -35,7 +35,7 @@ final class ValidatedActionCodeSettings implements ActionCodeSettings
     {
         $instance = new self();
 
-        $settings = \array_filter($settings, static fn ($value) => $value !== null);
+        $settings = \array_filter($settings, static fn($value) => $value !== null);
 
         foreach ($settings as $key => $value) {
             switch (\mb_strtolower($key)) {
@@ -45,7 +45,7 @@ final class ValidatedActionCodeSettings implements ActionCodeSettings
 
                     break;
                 case 'handlecodeinapp':
-                    $instance->canHandleCodeInApp = (bool) $value;
+                    $instance->canHandleCodeInApp = (bool)$value;
 
                     break;
                 case 'dynamiclinkdomain':
@@ -53,19 +53,19 @@ final class ValidatedActionCodeSettings implements ActionCodeSettings
 
                     break;
                 case 'androidpackagename':
-                    $instance->androidPackageName = (string) $value;
+                    $instance->androidPackageName = (string)$value;
 
                     break;
                 case 'androidminimumversion':
-                    $instance->androidMinimumVersion = (string) $value;
+                    $instance->androidMinimumVersion = (string)$value;
 
                     break;
                 case 'androidinstallapp':
-                    $instance->androidInstallApp = (bool) $value;
+                    $instance->androidInstallApp = (bool)$value;
 
                     break;
                 case 'iosbundleid':
-                    $instance->iOSBundleId = (string) $value;
+                    $instance->iOSBundleId = (string)$value;
 
                     break;
                 default:
@@ -81,8 +81,8 @@ final class ValidatedActionCodeSettings implements ActionCodeSettings
      */
     public function toArray(): array
     {
-        $continueUrl = $this->continueUrl !== null ? (string) $this->continueUrl : null;
-        $dynamicLinkDomain = $this->dynamicLinkDomain !== null ? (string) $this->dynamicLinkDomain : null;
+        $continueUrl = $this->continueUrl !== null ? (string)$this->continueUrl : null;
+        $dynamicLinkDomain = $this->dynamicLinkDomain !== null ? (string)$this->dynamicLinkDomain : null;
 
         return \array_filter([
             'continueUrl' => $continueUrl,
@@ -92,6 +92,6 @@ final class ValidatedActionCodeSettings implements ActionCodeSettings
             'androidMinimumVersion' => $this->androidMinimumVersion,
             'androidInstallApp' => $this->androidInstallApp,
             'iOSBundleId' => $this->iOSBundleId,
-        ], static fn ($value) => $value !== null);
+        ], static fn($value) => $value !== null);
     }
 }

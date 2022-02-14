@@ -31,16 +31,16 @@ class WebProcessor implements ProcessorInterface
      * @var array<string, string>
      */
     protected $extraFields = [
-        'url'         => 'REQUEST_URI',
-        'ip'          => 'REMOTE_ADDR',
+        'url' => 'REQUEST_URI',
+        'ip' => 'REMOTE_ADDR',
         'http_method' => 'REQUEST_METHOD',
-        'server'      => 'SERVER_NAME',
-        'referrer'    => 'HTTP_REFERER',
+        'server' => 'SERVER_NAME',
+        'referrer' => 'HTTP_REFERER',
     ];
 
     /**
-     * @param array<string, mixed>|\ArrayAccess<string, mixed>|null $serverData  Array or object w/ ArrayAccess that provides access to the $_SERVER data
-     * @param array<string, string>|null                            $extraFields Field names and the related key inside $serverData to be added. If not provided it defaults to: url, ip, http_method, server, referrer
+     * @param array<string, mixed>|\ArrayAccess<string, mixed>|null $serverData Array or object w/ ArrayAccess that provides access to the $_SERVER data
+     * @param array<string, string>|null $extraFields Field names and the related key inside $serverData to be added. If not provided it defaults to: url, ip, http_method, server, referrer
      */
     public function __construct($serverData = null, array $extraFields = null)
     {
@@ -93,7 +93,7 @@ class WebProcessor implements ProcessorInterface
     }
 
     /**
-     * @param  mixed[] $extra
+     * @param mixed[] $extra
      * @return mixed[]
      */
     private function appendExtraFields(array $extra): array

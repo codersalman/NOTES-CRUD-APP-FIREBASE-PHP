@@ -17,10 +17,9 @@
 
 include 'vendor/autoload.php';
 
-use PHPUnit\Framework\TestCase;
-
 use Google\CRC32\Builtin;
 use Google\CRC32\CRC32;
+use PHPUnit\Framework\TestCase;
 
 final class BuiltinTest extends TestCase
 {

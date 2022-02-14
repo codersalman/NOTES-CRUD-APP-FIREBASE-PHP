@@ -44,7 +44,7 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
         $this->boundary = \sha1(\uniqid('', true));
 
         $headers = [
-            'Content-Type' => 'multipart/mixed; boundary='.$this->boundary,
+            'Content-Type' => 'multipart/mixed; boundary=' . $this->boundary,
         ];
 
         $this->body = new AppendStream();
@@ -61,7 +61,7 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
         if (($requestBody = $request->getBody()) !== null) {
             $contentLength = $requestBody->getSize();
             if ($contentLength !== null) {
-                $request = $request->withHeader('Content-Length', (string) $contentLength);
+                $request = $request->withHeader('Content-Length', (string)$contentLength);
             }
         }
 
@@ -76,9 +76,9 @@ final class RequestWithSubRequests implements HasSubRequests, RequestInterface
     private function appendPartForSubRequest(RequestInterface $subRequest): void
     {
         $this->appendStream("--{$this->boundary}\r\n");
-        $this->appendStream($this->subRequestHeadersAsString($subRequest)."\r\n\r\n");
+        $this->appendStream($this->subRequestHeadersAsString($subRequest) . "\r\n\r\n");
         $this->appendStream("{$subRequest->getMethod()} {$subRequest->getRequestTarget()} HTTP/{$subRequest->getProtocolVersion()}\r\n\r\n");
-        $this->appendStream($subRequest->getBody()."\r\n");
+        $this->appendStream($subRequest->getBody() . "\r\n");
     }
 
     private function appendStream(string $value): void

@@ -47,11 +47,11 @@ class Registry
     /**
      * Adds new logging channel to the registry
      *
-     * @param  Logger                    $logger    Instance of the logging channel
-     * @param  string|null               $name      Name of the logging channel ($logger->getName() by default)
-     * @param  bool                      $overwrite Overwrite instance in the registry if the given name already exists?
-     * @throws \InvalidArgumentException If $overwrite set to false and named Logger instance already exists
+     * @param Logger $logger Instance of the logging channel
+     * @param string|null $name Name of the logging channel ($logger->getName() by default)
+     * @param bool $overwrite Overwrite instance in the registry if the given name already exists?
      * @return void
+     * @throws \InvalidArgumentException If $overwrite set to false and named Logger instance already exists
      */
     public static function addLogger(Logger $logger, ?string $name = null, bool $overwrite = false)
     {
@@ -107,7 +107,7 @@ class Registry
     /**
      * Gets Logger instance from the registry
      *
-     * @param  string                    $name Name of the requested Logger instance
+     * @param string $name Name of the requested Logger instance
      * @throws \InvalidArgumentException If named Logger instance is not in the registry
      */
     public static function getInstance($name): Logger
@@ -122,10 +122,10 @@ class Registry
     /**
      * Gets Logger instance from the registry via static method call
      *
-     * @param  string                    $name      Name of the requested Logger instance
-     * @param  mixed[]                   $arguments Arguments passed to static method call
-     * @throws \InvalidArgumentException If named Logger instance is not in the registry
+     * @param string $name Name of the requested Logger instance
+     * @param mixed[] $arguments Arguments passed to static method call
      * @return Logger                    Requested instance of Logger
+     * @throws \InvalidArgumentException If named Logger instance is not in the registry
      */
     public static function __callStatic($name, $arguments)
     {

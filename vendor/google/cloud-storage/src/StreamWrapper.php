@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
 
 /**
@@ -296,8 +295,8 @@ class StreamWrapper
             ? self::FILE_WRITABLE_MODE
             : self::FILE_READABLE_MODE;
         return $this->makeStatArray([
-            'mode'    => $mode,
-            'size'    => $this->stream->getSize()
+            'mode' => $mode,
+            'size' => $this->stream->getSize()
         ]);
     }
 
@@ -483,8 +482,8 @@ class StreamWrapper
 
                 // Fake a directory by creating an empty placeholder file whose name ends in '/'
                 $this->bucket->upload('', [
-                    'name' => $this->file,
-                ] + $acl);
+                        'name' => $this->file,
+                    ] + $acl);
             }
         } catch (ServiceException $e) {
             return false;
@@ -502,10 +501,10 @@ class StreamWrapper
     public function rename($from, $to)
     {
         $this->openPath($from);
-        $destination = (array) parse_url($to) + [
-            'path' => '',
-            'host' => ''
-        ];
+        $destination = (array)parse_url($to) + [
+                'path' => '',
+                'host' => ''
+            ];
 
         $destinationBucket = $destination['host'];
         $destinationPath = substr($destination['path'], 1);
@@ -649,16 +648,16 @@ class StreamWrapper
     /**
      * Parse the URL and set protocol, filename and bucket.
      *
-     * @param  string $path URL to open
+     * @param string $path URL to open
      * @return StorageClient
      */
     private function openPath($path)
     {
-        $url = (array) parse_url($path) + [
-            'scheme' => '',
-            'path' => '',
-            'host' => ''
-        ];
+        $url = (array)parse_url($path) + [
+                'scheme' => '',
+                'path' => '',
+                'host' => ''
+            ];
         $this->protocol = $url['scheme'];
         $this->file = ltrim($url['path'], '/');
         $client = self::getClient($this->protocol);
@@ -669,7 +668,7 @@ class StreamWrapper
     /**
      * Given a path, ensure that we return a path that looks like a directory
      *
-     * @param  string $path
+     * @param string $path
      * @return string
      */
     private function makeDirectory($path)
@@ -739,7 +738,7 @@ class StreamWrapper
     private function statsFromFileInfo(array &$info, array &$stats)
     {
         $stats['size'] = (isset($info['size']))
-            ? (int) $info['size']
+            ? (int)$info['size']
             : null;
 
         $stats['mtime'] = (isset($info['updated']))
@@ -760,7 +759,7 @@ class StreamWrapper
      *
      * If the path does not exist or is not a directory, return null.
      *
-     * @param  string $path
+     * @param string $path
      * @return StorageObject|null
      */
     private function getDirectoryInfo($path)
@@ -778,7 +777,7 @@ class StreamWrapper
      * Returns the associative array that a `stat()` response expects using the
      * provided stats. Defaults the remaining fields to 0.
      *
-     * @param  array $stats Sparse stats entries to set.
+     * @param array $stats Sparse stats entries to set.
      * @return array
      */
     private function makeStatArray($stats)
@@ -806,8 +805,8 @@ class StreamWrapper
     /**
      * Helper for whether or not to trigger an error or just return false on an error.
      *
-     * @param  string $message The PHP error message to emit.
-     * @param  int $flags Bitwise mask of options (STREAM_REPORT_ERRORS)
+     * @param string $message The PHP error message to emit.
+     * @param int $flags Bitwise mask of options (STREAM_REPORT_ERRORS)
      * @return bool Returns false
      */
     private function returnError($message, $flags)
@@ -821,7 +820,7 @@ class StreamWrapper
     /**
      * Helper for determining which predefinedAcl to use given a mode.
      *
-     * @param  int $mode Decimal representation of the file system permissions
+     * @param int $mode Decimal representation of the file system permissions
      * @return string
      */
     private function determineAclFromMode($mode)

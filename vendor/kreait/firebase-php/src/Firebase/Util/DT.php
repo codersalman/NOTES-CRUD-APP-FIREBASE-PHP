@@ -34,7 +34,7 @@ final class DT
         }
 
         if (\is_scalar($value) || (\is_object($value) && \method_exists($value, '__toString'))) {
-            $value = (string) $value;
+            $value = (string)$value;
         } else {
             $type = \get_debug_type($value);
 
@@ -43,14 +43,14 @@ final class DT
 
         if (\ctype_digit($value)) {
             // Seconds
-            if (($value === '0' || \mb_strlen($value) === \mb_strlen((string) $now)) && ($result = DateTimeImmutable::createFromFormat('U', $value))) {
+            if (($value === '0' || \mb_strlen($value) === \mb_strlen((string)$now)) && ($result = DateTimeImmutable::createFromFormat('U', $value))) {
                 return $result->setTimezone($tz);
             }
 
             // Milliseconds
             if (
-                (\mb_strlen($value) === \mb_strlen((string) ($now * 1000)))
-                && $result = DateTimeImmutable::createFromFormat('U.u', \sprintf('%F', (float) ($value / 1000)))
+                (\mb_strlen($value) === \mb_strlen((string)($now * 1000)))
+                && $result = DateTimeImmutable::createFromFormat('U.u', \sprintf('%F', (float)($value / 1000)))
             ) {
                 return $result->setTimezone($tz);
             }
@@ -58,7 +58,7 @@ final class DT
 
         // microtime
         if (\preg_match('@(?P<msec>^0?\.\d+) (?P<sec>\d+)$@', $value, $matches)) {
-            $value = (string) ((float) $matches['sec'] + (float) $matches['msec']);
+            $value = (string)((float)$matches['sec'] + (float)$matches['msec']);
 
             if ($result = DateTimeImmutable::createFromFormat('U.u', \sprintf('%F', $value))) {
                 return $result->setTimezone($tz);

@@ -16,7 +16,7 @@ A collection of Clock implementations.
     - [`FrozenClock`](#frozenclock) - A clock that stopped moving (perfect for tests)
     - [`MinuteClock`](#minuteclock) - Who cares about seconds or even less?
 - [Running Tests](#running-tests)
-    
+
 ## Installation
 
 ```shell
@@ -71,8 +71,8 @@ printf("Denver: %s\n", $denver->now()->format('Y-m-d H:i:s T (P)'));
 
 `UTC` is the abbreviation for [Coordinated Universal Time](https://en.wikipedia.org/wiki/Coordinated_Universal_Time)
 and a special kind of time zone that is not affected by daylight saving time. It is commonly used for the communication
-of time across different systems (e.g. between your PHP application and a database, or between a backend
-and a frontend). An `UTCClock` instance behaves exactly the same as an instance of `LocalizedClock::in('UTC')`.
+of time across different systems (e.g. between your PHP application and a database, or between a backend and a frontend)
+. An `UTCClock` instance behaves exactly the same as an instance of `LocalizedClock::in('UTC')`.
 
 ```php
 # examples/utc_clock.php
@@ -91,8 +91,8 @@ printf("The clock's time zone is %s.\n", $clock->now()->getTimezone()->getName()
 
 ### `FrozenClock`
 
-A frozen clock doesn't move - the time we set it with will stay the same... unless we change it. That makes the
-frozen clock perfect for testing the behaviour of your time-based use cases, for example in Unit Tests.
+A frozen clock doesn't move - the time we set it with will stay the same... unless we change it. That makes the frozen
+clock perfect for testing the behaviour of your time-based use cases, for example in Unit Tests.
 
 ```php
 # examples/frozen_clock.php

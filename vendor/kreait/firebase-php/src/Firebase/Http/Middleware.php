@@ -24,10 +24,10 @@ final class Middleware
         return static function (callable $handler) {
             return static function (RequestInterface $request, ?array $options = null) use ($handler) {
                 $uri = $request->getUri();
-                $path = '/'.\ltrim($uri->getPath(), '/');
+                $path = '/' . \ltrim($uri->getPath(), '/');
 
                 if (!\str_ends_with($path, '.json')) {
-                    $uri = $uri->withPath($path.'.json');
+                    $uri = $uri->withPath($path . '.json');
                     $request = $request->withUri($uri);
                 }
 
@@ -64,15 +64,14 @@ final class Middleware
                 return $handler($request, $options ?: [])
                     ->then(static function (ResponseInterface $response) {
                         $isMultiPart = \mb_stristr($response->getHeaderLine('Content-Type'), 'multipart') !== false;
-                        $hasMultipleStartLines = ((int) \preg_match_all('@http/[\S]+\s@i', (string) $response->getBody())) >= 1;
+                        $hasMultipleStartLines = ((int)\preg_match_all('@http/[\S]+\s@i', (string)$response->getBody())) >= 1;
 
                         if ($isMultiPart && $hasMultipleStartLines) {
                             return new ResponseWithSubResponses($response);
                         }
 
                         return $response;
-                    })
-                ;
+                    });
             };
         };
     }

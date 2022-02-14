@@ -38,8 +38,8 @@ class AbortedException extends ServiceException
         }
 
         return $metadata[0]['retryDelay'] + [
-            'seconds' => 0,
-            'nanos' => 0
-        ];
+                'seconds' => 0,
+                'nanos' => 0
+            ];
     }
 }

@@ -100,6 +100,6 @@ final class WebPushConfig implements JsonSerializable
      */
     public function jsonSerialize(): array
     {
-        return \array_filter($this->config, static fn ($value) => $value !== null);
+        return \array_filter($this->config, static fn($value) => $value !== null);
     }
 }

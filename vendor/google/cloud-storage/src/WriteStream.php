@@ -18,8 +18,8 @@
 namespace Google\Cloud\Storage;
 
 use Google\Cloud\Core\Upload\AbstractUploader;
-use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use GuzzleHttp\Psr7\BufferStream;
+use GuzzleHttp\Psr7\StreamDecoratorTrait;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -42,7 +42,7 @@ class WriteStream implements StreamInterface
      * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type int $chunkSize The size of the buffer above which we attempt to
+     * @type int $chunkSize The size of the buffer above which we attempt to
      *            upload data
      * }
      */
@@ -71,7 +71,7 @@ class WriteStream implements StreamInterface
     /**
      * Write to the stream. If we pass the chunkable size, upload the available chunk.
      *
-     * @param  string $data Data to write
+     * @param string $data Data to write
      * @return int The number of bytes written
      * @throws \RuntimeException
      */
@@ -105,6 +105,6 @@ class WriteStream implements StreamInterface
 
     private function getChunkedWriteSize()
     {
-        return (int) floor($this->getSize() / $this->chunkSize) * $this->chunkSize;
+        return (int)floor($this->getSize() / $this->chunkSize) * $this->chunkSize;
     }
 }

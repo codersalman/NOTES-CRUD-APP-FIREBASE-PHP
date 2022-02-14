@@ -57,9 +57,9 @@ class StreamableUploader extends ResumableUploader
 
         // do the streaming write
         $headers = [
-            'Content-Length'    => $writeSize,
-            'Content-Type'      => $this->contentType,
-            'Content-Range'     => "bytes {$this->rangeStart}-$rangeEnd/*"
+            'Content-Length' => $writeSize,
+            'Content-Type' => $this->contentType,
+            'Content-Range' => "bytes {$this->rangeStart}-$rangeEnd/*"
         ];
 
         $request = new Request(

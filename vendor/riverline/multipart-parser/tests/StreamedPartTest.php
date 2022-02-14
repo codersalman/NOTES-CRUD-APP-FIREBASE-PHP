@@ -105,7 +105,7 @@ class StreamedPartTest extends TestCase
      */
     public function testNoNewLineAtTheEndOfTheParts()
     {
-        $content = "Content-Type: multipart/related; boundary=delimiter\r\n".
+        $content = "Content-Type: multipart/related; boundary=delimiter\r\n" .
             "\r\n" .
             "--delimiter\r\n" .
             "Content-Type:mime/type\r\n" .
@@ -119,7 +119,7 @@ class StreamedPartTest extends TestCase
         rewind($stream);
 
         $part = new StreamedPart($stream);
-          /** @var Part[] $parts */
+        /** @var Part[] $parts */
         $parts = $part->getParts();
         self::assertEquals('Content', $parts[0]->getBody());
 
@@ -130,7 +130,7 @@ class StreamedPartTest extends TestCase
      */
     public function testNoNewLineAtTheEndOfThePartsWhenNewLineIsOneCharacterLong()
     {
-        $content = "Content-Type: multipart/related; boundary=delimiter\n".
+        $content = "Content-Type: multipart/related; boundary=delimiter\n" .
             "\n" .
             "--delimiter\n" .
             "Content-Type:mime/type\n" .

@@ -80,6 +80,6 @@ class Condition implements \JsonSerializable
             'name' => $this->name,
             'expression' => $this->expression,
             'tagColor' => $this->tagColor !== null ? $this->tagColor->value() : null,
-        ], static fn ($value) => $value !== null);
+        ], static fn($value) => $value !== null);
     }
 }

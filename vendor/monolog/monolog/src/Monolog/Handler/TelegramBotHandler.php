@@ -11,8 +11,8 @@
 
 namespace Monolog\Handler;
 
-use RuntimeException;
 use Monolog\Logger;
+use RuntimeException;
 
 /**
  * Handler send logs to Telegram using Telegram Bot API.
@@ -78,18 +78,19 @@ class TelegramBotHandler extends AbstractProcessingHandler
     private $disableNotification;
 
     /**
-     * @param string $apiKey  Telegram bot access token provided by BotFather
+     * @param string $apiKey Telegram bot access token provided by BotFather
      * @param string $channel Telegram channel name
      */
     public function __construct(
         string $apiKey,
         string $channel,
-        $level = Logger::DEBUG,
-        bool $bubble = true,
+               $level = Logger::DEBUG,
+        bool   $bubble = true,
         string $parseMode = null,
-        bool $disableWebPagePreview = null,
-        bool $disableNotification = null
-    ) {
+        bool   $disableWebPagePreview = null,
+        bool   $disableNotification = null
+    )
+    {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the TelegramBotHandler');
         }
@@ -150,7 +151,7 @@ class TelegramBotHandler extends AbstractProcessingHandler
         }
 
         if (!empty($messages)) {
-            $this->send((string) $this->getFormatter()->formatBatch($messages));
+            $this->send((string)$this->getFormatter()->formatBatch($messages));
         }
     }
 

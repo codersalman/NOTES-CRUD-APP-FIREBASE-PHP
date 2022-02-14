@@ -54,7 +54,7 @@ class SocketHandler extends AbstractProcessingHandler
     {
         parent::__construct($level, $bubble);
         $this->connectionString = $connectionString;
-        $this->connectionTimeout = (float) ini_get('default_socket_timeout');
+        $this->connectionTimeout = (float)ini_get('default_socket_timeout');
     }
 
     /**
@@ -249,7 +249,7 @@ class SocketHandler extends AbstractProcessingHandler
             throw new \LogicException('streamSetTimeout called but $this->resource is not a resource');
         }
 
-        return stream_set_timeout($this->resource, (int) $seconds, (int) $microseconds);
+        return stream_set_timeout($this->resource, (int)$seconds, (int)$microseconds);
     }
 
     /**
@@ -320,7 +320,7 @@ class SocketHandler extends AbstractProcessingHandler
      */
     protected function generateDataStream(array $record): string
     {
-        return (string) $record['formatted'];
+        return (string)$record['formatted'];
     }
 
     /**

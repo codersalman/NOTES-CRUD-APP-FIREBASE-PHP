@@ -11,8 +11,8 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Formatter\WildfireFormatter;
 use Monolog\Formatter\FormatterInterface;
+use Monolog\Formatter\WildfireFormatter;
 
 /**
  * Simple FirePHP Handler (http://www.firephp.org/), which uses the Wildfire protocol.
@@ -63,8 +63,8 @@ class FirePHPHandler extends AbstractProcessingHandler
     /**
      * Base header creation function used by init headers & record headers
      *
-     * @param array<int|string> $meta    Wildfire Plugin, Protocol & Structure Indexes
-     * @param string            $message Log message
+     * @param array<int|string> $meta Wildfire Plugin, Protocol & Structure Indexes
+     * @param string $message Log message
      *
      * @return array<string, string> Complete header string ready for the client as key and message as value
      *
@@ -109,10 +109,10 @@ class FirePHPHandler extends AbstractProcessingHandler
     /**
      * Wildfire initialization headers to enable message parsing
      *
-     * @see createHeader()
+     * @return array<string, string>
      * @see sendHeader()
      *
-     * @return array<string, string>
+     * @see createHeader()
      */
     protected function getInitHeaders(): array
     {

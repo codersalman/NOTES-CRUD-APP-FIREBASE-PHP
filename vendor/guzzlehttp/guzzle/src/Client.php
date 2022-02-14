@@ -72,7 +72,7 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
 
     /**
      * @param string $method
-     * @param array  $args
+     * @param array $args
      *
      * @return PromiseInterface|ResponseInterface
      *
@@ -145,9 +145,9 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      * contain the query string as well. Use an array to provide a URL
      * template and additional variables to use in the URL template expansion.
      *
-     * @param string              $method  HTTP method
-     * @param string|UriInterface $uri     URI object or string.
-     * @param array               $options Request options to apply. See \GuzzleHttp\RequestOptions.
+     * @param string $method HTTP method
+     * @param string|UriInterface $uri URI object or string.
+     * @param array $options Request options to apply. See \GuzzleHttp\RequestOptions.
      */
     public function requestAsync(string $method, $uri = '', array $options = []): PromiseInterface
     {
@@ -175,9 +175,9 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
      * relative path to append to the base path of the client. The URL can
      * contain the query string as well.
      *
-     * @param string              $method  HTTP method.
-     * @param string|UriInterface $uri     URI object or string.
-     * @param array               $options Request options to apply. See \GuzzleHttp\RequestOptions.
+     * @param string $method HTTP method.
+     * @param string|UriInterface $uri URI object or string.
+     * @param array $options Request options to apply. See \GuzzleHttp\RequestOptions.
      *
      * @throws GuzzleException
      */
@@ -228,11 +228,11 @@ class Client implements ClientInterface, \Psr\Http\Client\ClientInterface
     {
         $defaults = [
             'allow_redirects' => RedirectMiddleware::$defaultSettings,
-            'http_errors'     => true,
-            'decode_content'  => true,
-            'verify'          => true,
-            'cookies'         => false,
-            'idn_conversion'  => false,
+            'http_errors' => true,
+            'decode_content' => true,
+            'verify' => true,
+            'cookies' => false,
+            'idn_conversion' => false,
         ];
 
         // Use the standard Linux HTTP_PROXY and HTTPS_PROXY if set.

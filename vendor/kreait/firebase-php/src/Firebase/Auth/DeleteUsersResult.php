@@ -37,7 +37,7 @@ final class DeleteUsersResult
 
     public static function fromRequestAndResponse(DeleteUsersRequest $request, ResponseInterface $response): self
     {
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
         $errors = $data['errors'] ?? [];
 
         $failureCount = \count($errors);

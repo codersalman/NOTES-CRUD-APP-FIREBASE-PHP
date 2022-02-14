@@ -17,10 +17,6 @@
 
 namespace Google\CRC32;
 
-use Google\CRC32\CRCInterface;
-use Google\CRC32\CRCTrait;
-use Google\CRC32\Table;
-
 /**
  * PHP implementation of the CRC32 sliced-by-4 algorithm.
  *
@@ -62,28 +58,28 @@ final class PHPSlicedBy4 implements CRCInterface
         $remain = ($len % 4);
         $len1 = $len - $remain;
         for ($i = 0; $i < $len1; $i += 4) {
-            $b = (ord($data[$i+3])<<24) |
-                 (ord($data[$i+2])<<16) |
-                 (ord($data[$i+1])<<8) |
-                 (ord($data[$i]));
+            $b = (ord($data[$i + 3]) << 24) |
+                (ord($data[$i + 2]) << 16) |
+                (ord($data[$i + 1]) << 8) |
+                (ord($data[$i]));
 
             $crc = ($crc ^ $b) & 0xffffffff;
 
-            $crc = $table3[ $crc      & 0xff] ^
-                   $table2[($crc>>8) & 0xff] ^
-                   $table1[($crc>>16) & 0xff] ^
-                   $table0[($crc>>24) & 0xff];
+            $crc = $table3[$crc & 0xff] ^
+                $table2[($crc >> 8) & 0xff] ^
+                $table1[($crc >> 16) & 0xff] ^
+                $table0[($crc >> 24) & 0xff];
         }
 
         switch ($remain) {
             case 3:
                 $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i])) & 0xff];
-                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i+1])) & 0xff];
-                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i+2])) & 0xff];
+                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i + 1])) & 0xff];
+                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i + 2])) & 0xff];
                 break;
             case 2:
                 $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i])) & 0xff];
-                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i+1])) & 0xff];
+                $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i + 1])) & 0xff];
                 break;
             case 1:
                 $crc = (($crc >> 8) & 0xffffff) ^ $table0[($crc ^ ord($data[$i])) & 0xff];

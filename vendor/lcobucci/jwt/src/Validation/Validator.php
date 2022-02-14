@@ -27,9 +27,10 @@ final class Validator implements \Lcobucci\JWT\Validator
     /** @param ConstraintViolation[] $violations */
     private function checkConstraint(
         Constraint $constraint,
-        Token $token,
-        array &$violations
-    ): void {
+        Token      $token,
+        array      &$violations
+    ): void
+    {
         try {
             $constraint->assert($token);
         } catch (ConstraintViolation $e) {

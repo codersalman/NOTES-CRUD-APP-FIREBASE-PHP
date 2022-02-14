@@ -5,7 +5,6 @@ namespace Lcobucci\JWT\Token;
 
 use DateTimeInterface;
 use Lcobucci\JWT\UnencryptedToken;
-
 use function in_array;
 
 final class Plain implements UnencryptedToken
@@ -15,12 +14,13 @@ final class Plain implements UnencryptedToken
     private Signature $signature;
 
     public function __construct(
-        DataSet $headers,
-        DataSet $claims,
+        DataSet   $headers,
+        DataSet   $claims,
         Signature $signature
-    ) {
-        $this->headers   = $headers;
-        $this->claims    = $claims;
+    )
+    {
+        $this->headers = $headers;
+        $this->claims = $claims;
         $this->signature = $signature;
     }
 
@@ -76,7 +76,7 @@ final class Plain implements UnencryptedToken
 
     public function isExpired(DateTimeInterface $now): bool
     {
-        if (! $this->claims->has(RegisteredClaims::EXPIRATION_TIME)) {
+        if (!$this->claims->has(RegisteredClaims::EXPIRATION_TIME)) {
             return false;
         }
 
@@ -86,7 +86,7 @@ final class Plain implements UnencryptedToken
     public function toString(): string
     {
         return $this->headers->toString() . '.'
-             . $this->claims->toString() . '.'
-             . $this->signature->toString();
+            . $this->claims->toString() . '.'
+            . $this->signature->toString();
     }
 }

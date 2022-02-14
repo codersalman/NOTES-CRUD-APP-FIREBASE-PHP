@@ -11,8 +11,8 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Formatter\LineFormatter;
 use Monolog\Formatter\FormatterInterface;
+use Monolog\Formatter\LineFormatter;
 use Monolog\Utils;
 
 /**
@@ -220,7 +220,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     }
 
     /**
-     * @param  mixed[] $dict
+     * @param mixed[] $dict
      * @return mixed[]
      */
     private static function dump(string $title, array $dict): array
@@ -236,7 +236,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
             if (empty($value)) {
                 $value = static::quote('');
             }
-            $script[] = static::call('log', static::quote('%s: %o'), static::quote((string) $key), $value);
+            $script[] = static::call('log', static::quote('%s: %o'), static::quote((string)$key), $value);
         }
 
         return $script;
@@ -254,7 +254,7 @@ class BrowserConsoleHandler extends AbstractProcessingHandler
     {
         $method = array_shift($args);
         if (!is_string($method)) {
-            throw new \UnexpectedValueException('Expected the first arg to be a string, got: '.var_export($method, true));
+            throw new \UnexpectedValueException('Expected the first arg to be a string, got: ' . var_export($method, true));
         }
 
         return static::call_array($method, $args);

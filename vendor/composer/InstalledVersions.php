@@ -51,7 +51,7 @@ class InstalledVersions
     /**
      * Returns a list of all package names with a specific type e.g. 'library'
      *
-     * @param  string   $type
+     * @param string $type
      * @return string[]
      * @psalm-return list<string>
      */
@@ -75,8 +75,8 @@ class InstalledVersions
      *
      * This also returns true if the package name is provided or replaced by another package
      *
-     * @param  string $packageName
-     * @param  bool   $includeDevRequirements
+     * @param string $packageName
+     * @param bool $includeDevRequirements
      * @return bool
      */
     public static function isInstalled($packageName, $includeDevRequirements = true)
@@ -97,9 +97,9 @@ class InstalledVersions
      *
      *   Composer\InstalledVersions::satisfies(new VersionParser, 'foo/bar', '^2.3')
      *
-     * @param  VersionParser $parser      Install composer/semver to have access to this class and functionality
-     * @param  string        $packageName
-     * @param  string|null   $constraint  A version constraint to check for, if you pass one you have to make sure composer/semver is required by your package
+     * @param VersionParser $parser Install composer/semver to have access to this class and functionality
+     * @param string $packageName
+     * @param string|null $constraint A version constraint to check for, if you pass one you have to make sure composer/semver is required by your package
      * @return bool
      */
     public static function satisfies(VersionParser $parser, $packageName, $constraint)
@@ -116,7 +116,7 @@ class InstalledVersions
      * It is easier to use this via isInstalled() with the $constraint argument if you need to check
      * whether a given version of a package is installed, and not just whether it exists
      *
-     * @param  string $packageName
+     * @param string $packageName
      * @return string Version constraint usable with composer/semver
      */
     public static function getVersionRanges($packageName)
@@ -147,7 +147,7 @@ class InstalledVersions
     }
 
     /**
-     * @param  string      $packageName
+     * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as version, use satisfies or getVersionRanges if you need to know if a given version is present
      */
     public static function getVersion($packageName)
@@ -168,7 +168,7 @@ class InstalledVersions
     }
 
     /**
-     * @param  string      $packageName
+     * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as version, use satisfies or getVersionRanges if you need to know if a given version is present
      */
     public static function getPrettyVersion($packageName)
@@ -189,7 +189,7 @@ class InstalledVersions
     }
 
     /**
-     * @param  string      $packageName
+     * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as reference
      */
     public static function getReference($packageName)
@@ -210,7 +210,7 @@ class InstalledVersions
     }
 
     /**
-     * @param  string      $packageName
+     * @param string $packageName
      * @return string|null If the package is being replaced or provided but is not really installed, null will be returned as install path. Packages of type metapackages also have a null install path.
      */
     public static function getInstallPath($packageName)
@@ -240,9 +240,9 @@ class InstalledVersions
     /**
      * Returns the raw installed.php data for custom implementations
      *
-     * @deprecated Use getAllRawData() instead which returns all datasets for all autoloaders present in the process. getRawData only returns the first dataset loaded, which may not be what you expect.
      * @return array[]
      * @psalm-return array{root: array{name: string, version: string, reference: string, pretty_version: string, aliases: string[], dev: bool, install_path: string}, versions: array<string, array{dev_requirement: bool, pretty_version?: string, version?: string, aliases?: string[], reference?: string, replaced?: string[], provided?: string[], install_path?: string}>}
+     * @deprecated Use getAllRawData() instead which returns all datasets for all autoloaders present in the process. getRawData only returns the first dataset loaded, which may not be what you expect.
      */
     public static function getRawData()
     {
@@ -285,7 +285,7 @@ class InstalledVersions
      * the project in which it runs can then also use this class safely, without
      * interference between PHPUnit's dependencies and the project's dependencies.
      *
-     * @param  array[] $data A vendor/composer/installed.php data set
+     * @param array[] $data A vendor/composer/installed.php data set
      * @return void
      *
      * @psalm-param array{root: array{name: string, version: string, reference: string, pretty_version: string, aliases: string[], dev: bool, install_path: string}, versions: array<string, array{dev_requirement: bool, pretty_version?: string, version?: string, aliases?: string[], reference?: string, replaced?: string[], provided?: string[], install_path?: string}>} $data
@@ -312,9 +312,9 @@ class InstalledVersions
             foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
                 if (isset(self::$installedByVendor[$vendorDir])) {
                     $installed[] = self::$installedByVendor[$vendorDir];
-                } elseif (is_file($vendorDir.'/composer/installed.php')) {
-                    $installed[] = self::$installedByVendor[$vendorDir] = require $vendorDir.'/composer/installed.php';
-                    if (null === self::$installed && strtr($vendorDir.'/composer', '\\', '/') === strtr(__DIR__, '\\', '/')) {
+                } elseif (is_file($vendorDir . '/composer/installed.php')) {
+                    $installed[] = self::$installedByVendor[$vendorDir] = require $vendorDir . '/composer/installed.php';
+                    if (null === self::$installed && strtr($vendorDir . '/composer', '\\', '/') === strtr(__DIR__, '\\', '/')) {
                         self::$installed = $installed[count($installed) - 1];
                     }
                 }

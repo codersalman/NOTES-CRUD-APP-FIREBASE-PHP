@@ -83,7 +83,7 @@ final class ServiceAccount
 
                 return self::fromJsonFile($value);
             } catch (Throwable $e) {
-                throw new InvalidArgumentException('Invalid service account: '.$e->getMessage(), $e->getCode(), $e);
+                throw new InvalidArgumentException('Invalid service account: ' . $e->getMessage(), $e->getCode(), $e);
             }
         }
 
@@ -91,7 +91,7 @@ final class ServiceAccount
             try {
                 return self::fromArray($value);
             } catch (Throwable $e) {
-                throw new InvalidArgumentException('Invalid service account: '.$e->getMessage(), $e->getCode(), $e);
+                throw new InvalidArgumentException('Invalid service account: ' . $e->getMessage(), $e->getCode(), $e);
             }
         }
 
@@ -106,9 +106,9 @@ final class ServiceAccount
         if (!\array_key_exists('type', $data) || $data['type'] !== 'service_account') {
             throw new InvalidArgumentException(
                 'A Service Account specification must have a field "type" with "service_account" as its value.'
-                .' Please make sure you download the Service Account JSON file from the Service Accounts tab'
-                .' in the Firebase Console, as shown in the documentation on'
-                .' https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app'
+                . ' Please make sure you download the Service Account JSON file from the Service Accounts tab'
+                . ' in the Firebase Console, as shown in the documentation on'
+                . ' https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app'
             );
         }
 
@@ -126,7 +126,7 @@ final class ServiceAccount
     {
         try {
             $file = new \SplFileObject($filePath);
-            $json = (string) $file->fread($file->getSize());
+            $json = (string)$file->fread($file->getSize());
         } catch (Throwable $e) {
             throw new InvalidArgumentException("{$filePath} can not be read: {$e->getMessage()}");
         }

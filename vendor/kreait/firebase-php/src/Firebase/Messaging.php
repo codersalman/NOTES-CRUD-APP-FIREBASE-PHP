@@ -60,7 +60,7 @@ final class Messaging implements Contract\Messaging
             throw $e;
         }
 
-        return JSON::decode((string) $response->getBody(), true);
+        return JSON::decode((string)$response->getBody(), true);
     }
 
     public function sendMulticast($message, $registrationTokens, bool $validateOnly = false): MulticastSendReport
@@ -134,7 +134,7 @@ final class Messaging implements Contract\Messaging
     public function unsubscribeFromTopics(array $topics, $registrationTokenOrTokens): array
     {
         $topics = \array_map(
-            static fn ($topic) => $topic instanceof Topic ? $topic : Topic::fromValue($topic),
+            static fn($topic) => $topic instanceof Topic ? $topic : Topic::fromValue($topic),
             $topics
         );
 
@@ -160,8 +160,7 @@ final class Messaging implements Contract\Messaging
 
                     return \array_keys($this->unsubscribeFromTopics($topics, $token));
                 })
-                ->otherwise(static fn (\Throwable $e) => $e->getMessage())
-            ;
+                ->otherwise(static fn(\Throwable $e) => $e->getMessage());
         }
 
         $responses = Utils::settle($promises)->wait();
@@ -169,7 +168,7 @@ final class Messaging implements Contract\Messaging
         $result = [];
 
         foreach ($responses as $token => $response) {
-            $result[(string) $token] = $response['value'];
+            $result[(string)$token] = $response['value'];
         }
 
         return $result;

@@ -37,6 +37,6 @@ final class UpdateOrigin implements \JsonSerializable
      */
     public function equalsTo($other): bool
     {
-        return $this->value === (string) $other;
+        return $this->value === (string)$other;
     }
 }

@@ -31,7 +31,7 @@ class Key
             throw new InvalidArgumentException('Type error: $keyMaterial must not be empty');
         }
 
-        if (!is_string($algorithm)|| empty($keyMaterial)) {
+        if (!is_string($algorithm) || empty($keyMaterial)) {
             throw new InvalidArgumentException('Type error: $algorithm must be a string');
         }
 

@@ -19,10 +19,10 @@ class Parser
      */
     public function parse($template)
     {
-        $parts   = preg_split('#(\{[^\}]+\})#', $template, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        $nodes   = array();
+        $parts = preg_split('#(\{[^\}]+\})#', $template, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+        $nodes = array();
 
-        foreach($parts as $part) {
+        foreach ($parts as $part) {
             $node = $this->createNode($part);
 
             // if current node has dot separator that requires a forward lookup
@@ -61,14 +61,14 @@ class Parser
 
     protected function parseExpression($expression)
     {
-        $token  = $expression;
+        $token = $expression;
         $prefix = $token[0];
 
         // not a valid operator?
         if (!Operator\Abstraction::isValid($prefix)) {
 
             // not valid chars?
-            if (!preg_match('#'.self::REGEX_VARNAME.'#', $token)) {
+            if (!preg_match('#' . self::REGEX_VARNAME . '#', $token)) {
                 throw new \Exception("Invalid operator [$prefix] found at {$token}");
             }
 
@@ -83,7 +83,7 @@ class Parser
 
         // parse variables
         $vars = array();
-        foreach(explode(',', $token) as $var) {
+        foreach (explode(',', $token) as $var) {
             $vars[] = $this->parseVariable($var);
         }
 
@@ -96,8 +96,8 @@ class Parser
 
     protected function parseVariable($var)
     {
-        $var      = trim($var);
-        $val      = null;
+        $var = trim($var);
+        $val = null;
         $modifier = null;
 
         // check for prefix (:) / explode (*) / array (%) modifier
@@ -111,7 +111,7 @@ class Parser
             }
         }
 
-        switch($last = substr($var, -1)) {
+        switch ($last = substr($var, -1)) {
             case '*':
             case '%':
 
@@ -121,7 +121,7 @@ class Parser
                 }
 
                 $modifier = $last;
-                $var      = substr($var, 0, -1);
+                $var = substr($var, 0, -1);
                 break;
         }
 
@@ -129,7 +129,7 @@ class Parser
             $var,
             array(
                 'modifier' => $modifier,
-                'value'    => $val,
+                'value' => $val,
             )
         );
     }

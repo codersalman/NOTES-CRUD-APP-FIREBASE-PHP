@@ -57,7 +57,8 @@ class UserRefreshCredentials extends CredentialsLoader implements GetQuotaProjec
     public function __construct(
         $scope,
         $jsonKey
-    ) {
+    )
+    {
         if (is_string($jsonKey)) {
             if (!file_exists($jsonKey)) {
                 throw new \InvalidArgumentException('file does not exist');
@@ -90,7 +91,7 @@ class UserRefreshCredentials extends CredentialsLoader implements GetQuotaProjec
             'tokenCredentialUri' => self::TOKEN_CREDENTIAL_URI,
         ]);
         if (array_key_exists('quota_project_id', $jsonKey)) {
-            $this->quotaProject = (string) $jsonKey['quota_project_id'];
+            $this->quotaProject = (string)$jsonKey['quota_project_id'];
         }
     }
 

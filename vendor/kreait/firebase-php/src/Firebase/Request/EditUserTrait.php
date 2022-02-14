@@ -30,14 +30,14 @@ trait EditUserTrait
      * @param T $request
      * @param array<string, mixed> $properties
      *
+     * @return T
      * @throws InvalidArgumentException when invalid properties have been provided
      *
-     * @return T
      */
     protected static function withEditableProperties(self $request, array $properties): self
     {
         foreach ($properties as $key => $value) {
-            switch (\mb_strtolower((string) \preg_replace('/[^a-z]/i', '', $key))) {
+            switch (\mb_strtolower((string)\preg_replace('/[^a-z]/i', '', $key))) {
                 case 'uid':
                 case 'localid':
                     $request = $request->withUid($value);
@@ -114,7 +114,7 @@ trait EditUserTrait
     public function withUid($uid): self
     {
         $request = clone $this;
-        $request->uid = (string) (new Uid((string) $uid));
+        $request->uid = (string)(new Uid((string)$uid));
 
         return $request;
     }
@@ -125,7 +125,7 @@ trait EditUserTrait
     public function withEmail($email): self
     {
         $request = clone $this;
-        $request->email = (string) (new Email((string) $email));
+        $request->email = (string)(new Email((string)$email));
 
         return $request;
     }
@@ -136,7 +136,7 @@ trait EditUserTrait
     public function withVerifiedEmail($email): self
     {
         $request = clone $this;
-        $request->email = (string) (new Email((string) $email));
+        $request->email = (string)(new Email((string)$email));
         $request->emailIsVerified = true;
 
         return $request;
@@ -148,7 +148,7 @@ trait EditUserTrait
     public function withUnverifiedEmail($email): self
     {
         $request = clone $this;
-        $request->email = (string) (new Email((string) $email));
+        $request->email = (string)(new Email((string)$email));
         $request->emailIsVerified = false;
 
         return $request;
@@ -167,7 +167,7 @@ trait EditUserTrait
      */
     public function withPhoneNumber($phoneNumber): self
     {
-        $phoneNumber = $phoneNumber !== null ? (string) $phoneNumber : null;
+        $phoneNumber = $phoneNumber !== null ? (string)$phoneNumber : null;
 
         $request = clone $this;
         $request->phoneNumber = $phoneNumber;
@@ -181,7 +181,7 @@ trait EditUserTrait
     public function withPhotoUrl($url): self
     {
         $request = clone $this;
-        $request->photoUrl = (string) Url::fromValue((string) $url);
+        $request->photoUrl = (string)Url::fromValue((string)$url);
 
         return $request;
     }
@@ -226,7 +226,7 @@ trait EditUserTrait
     public function withClearTextPassword($clearTextPassword): self
     {
         $request = clone $this;
-        $request->clearTextPassword = (string) (new ClearTextPassword((string) $clearTextPassword));
+        $request->clearTextPassword = (string)(new ClearTextPassword((string)$clearTextPassword));
 
         return $request;
     }
@@ -252,11 +252,11 @@ trait EditUserTrait
             'phoneNumber' => $this->phoneNumber,
             'photoUrl' => $this->photoUrl,
             'password' => $this->clearTextPassword,
-        ], static fn ($value) => $value !== null);
+        ], static fn($value) => $value !== null);
     }
 
     public function hasUid(): bool
     {
-        return (bool) $this->uid;
+        return (bool)$this->uid;
     }
 }

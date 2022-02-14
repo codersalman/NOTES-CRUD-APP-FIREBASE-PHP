@@ -18,10 +18,10 @@
 namespace Google\Cloud\Core;
 
 use DrSlump\Protobuf;
-use google\protobuf\Value;
 use google\protobuf\ListValue;
 use google\protobuf\NullValue;
 use google\protobuf\Struct;
+use google\protobuf\Value;
 
 /**
  * Extend the Protobuf-PHP array codec to allow messages to match the format
@@ -132,8 +132,8 @@ class PhpArray extends Protobuf\Codec\PhpArray
         foreach ($data as $key => $v) {
             // Get the field by tag number or name
             $field = $this->useTagNumber
-                   ? $descriptor->getField($key)
-                   : $descriptor->getFieldByName($this->toSnakeCase($key));
+                ? $descriptor->getField($key)
+                : $descriptor->getFieldByName($this->toSnakeCase($key));
 
             // Unknown field found
             if (!$field) {

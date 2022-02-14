@@ -17,10 +17,6 @@
 
 namespace Google\CRC32;
 
-use Google\CRC32\CRCInterface;
-use Google\CRC32\CRCTrait;
-use Google\CRC32\Table;
-
 /**
  * PHP implementation of the CRC32 algorithm.
  *
@@ -40,7 +36,7 @@ final class PHP implements CRCInterface
     /**
      * Creates a new instance for this polynomial.
      *
-     * @param  integer  $polynomial  The polynomial
+     * @param integer $polynomial The polynomial
      */
     public function __construct($polynomial)
     {

@@ -47,8 +47,7 @@ final class WithLcobucciJWT implements Handler
             ->expiresAt($now->add($action->timeToLive()->value()))
             ->relatedTo($this->clientEmail)
             ->permittedFor('https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit')
-            ->withClaim('uid', $action->uid())
-        ;
+            ->withClaim('uid', $action->uid());
 
         if ($tenantId = $action->tenantId()) {
             $builder = $builder->withClaim('tenant_id', $tenantId);

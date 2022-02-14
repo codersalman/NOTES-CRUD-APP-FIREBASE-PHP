@@ -81,7 +81,8 @@ class IAMCredentials
         $metadata,
         $unusedAuthUri = null,
         callable $httpHandler = null
-    ) {
+    )
+    {
         $metadata_copy = $metadata;
         $metadata_copy[self::SELECTOR_KEY] = $this->selector;
         $metadata_copy[self::TOKEN_KEY] = $this->token;

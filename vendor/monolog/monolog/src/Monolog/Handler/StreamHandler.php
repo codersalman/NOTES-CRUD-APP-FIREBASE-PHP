@@ -45,9 +45,9 @@ class StreamHandler extends AbstractProcessingHandler
     private $dirCreated = null;
 
     /**
-     * @param resource|string $stream         If a missing path can't be created, an UnexpectedValueException will be thrown on first write
-     * @param int|null        $filePermission Optional file permissions (default (0644) are only for owner read/write)
-     * @param bool            $useLocking     Try to lock log file before doing any writes
+     * @param resource|string $stream If a missing path can't be created, an UnexpectedValueException will be thrown on first write
+     * @param int|null $filePermission Optional file permissions (default (0644) are only for owner read/write)
+     * @param bool $useLocking Try to lock log file before doing any writes
      *
      * @throws \InvalidArgumentException If stream is not a resource or string
      */
@@ -58,7 +58,7 @@ class StreamHandler extends AbstractProcessingHandler
         if (($phpMemoryLimit = Utils::expandIniShorthandBytes(ini_get('memory_limit'))) !== false) {
             if ($phpMemoryLimit > 0) {
                 // use max 10% of allowed memory for the chunk size, and at least 100KB
-                $this->streamChunkSize = min(static::MAX_CHUNK_SIZE, max((int) ($phpMemoryLimit / 10), 100 * 1024));
+                $this->streamChunkSize = min(static::MAX_CHUNK_SIZE, max((int)($phpMemoryLimit / 10), 100 * 1024));
             } else {
                 // memory is unlimited, set to the default 10MB
                 $this->streamChunkSize = static::DEFAULT_CHUNK_SIZE;
@@ -143,7 +143,7 @@ class StreamHandler extends AbstractProcessingHandler
             if (!is_resource($stream)) {
                 $this->stream = null;
 
-                throw new \UnexpectedValueException(sprintf('The stream or file "%s" could not be opened in append mode: '.$this->errorMessage, $url));
+                throw new \UnexpectedValueException(sprintf('The stream or file "%s" could not be opened in append mode: ' . $this->errorMessage, $url));
             }
             stream_set_chunk_size($stream, $this->streamChunkSize);
             $this->stream = $stream;
@@ -169,13 +169,13 @@ class StreamHandler extends AbstractProcessingHandler
     /**
      * Write to stream
      * @param resource $stream
-     * @param array    $record
+     * @param array $record
      *
      * @phpstan-param FormattedRecord $record
      */
     protected function streamWrite($stream, array $record): void
     {
-        fwrite($stream, (string) $record['formatted']);
+        fwrite($stream, (string)$record['formatted']);
     }
 
     private function customErrorHandler(int $code, string $msg): bool
@@ -213,7 +213,7 @@ class StreamHandler extends AbstractProcessingHandler
             $status = mkdir($dir, 0777, true);
             restore_error_handler();
             if (false === $status && !is_dir($dir)) {
-                throw new \UnexpectedValueException(sprintf('There is no existing directory at "%s" and it could not be created: '.$this->errorMessage, $dir));
+                throw new \UnexpectedValueException(sprintf('There is no existing directory at "%s" and it could not be created: ' . $this->errorMessage, $dir));
             }
         }
         $this->dirCreated = true;

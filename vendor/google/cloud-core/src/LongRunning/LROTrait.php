@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\LongRunning;
 
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * Provide Long Running Operation support to Google Cloud PHP Clients.
@@ -56,9 +55,10 @@ trait LROTrait
      */
     private function setLroProperties(
         LongRunningConnectionInterface $lroConnection,
-        array $lroCallables,
-        $resource = null
-    ) {
+        array                          $lroCallables,
+                                       $resource = null
+    )
+    {
         $this->lroConnection = $lroConnection;
         $this->lroCallables = $lroCallables;
         $this->lroResource = $resource;
@@ -87,13 +87,13 @@ trait LROTrait
      * @param array $options [optional] {
      *     Configuration Options.
      *
-     *     @type string $name The name of the operation collection.
-     *     @type string $filter The standard list filter.
-     *     @type int $pageSize Maximum number of results to return per
+     * @type string $name The name of the operation collection.
+     * @type string $filter The standard list filter.
+     * @type int $pageSize Maximum number of results to return per
      *           request.
-     *     @type int $resultLimit Limit the number of results returned in total.
+     * @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     *     @type string $pageToken A previously-returned page token used to
+     * @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
      * @return ItemIterator<LongRunningOperation>
@@ -106,7 +106,7 @@ trait LROTrait
 
         $resultLimit = $this->pluck('resultLimit', $options, false) ?: 0;
 
-        $options['name'] = $this->lroResource .'/operations';
+        $options['name'] = $this->lroResource . '/operations';
 
         return new ItemIterator(
             new PageIterator(

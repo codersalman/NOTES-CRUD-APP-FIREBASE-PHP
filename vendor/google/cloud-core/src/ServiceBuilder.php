@@ -74,24 +74,24 @@ class ServiceBuilder
      * @param array $config [optional] {
      *     Configuration options.
      *
-     *     @type string $projectId The project ID from the Google Developer's
+     * @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
+     * @type CacheItemPoolInterface $authCache A cache for storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     * @type array $authCacheOptions Cache configuration options.
+     * @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     * @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
+     * @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
+     * @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
+     * @type array $scopes Scopes to be used for the request.
      * }
      */
     public function __construct(array $config = [])
@@ -113,10 +113,10 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     * @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
-     *     @type string $location If provided, determines the default geographic
+     * @type string $location If provided, determines the default geographic
      *           location used when creating datasets and managing jobs. Please
      *           note: This is only required for jobs started outside of the US
      *           and EU regions. Also, if location metadata has already been
@@ -144,7 +144,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     * @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * @return DatastoreClient
@@ -168,7 +168,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     * @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * @return FirestoreClient
@@ -233,7 +233,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type string $transport The transport type used for requests. May be
+     * @type string $transport The transport type used for requests. May be
      *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
      *           is detected on the system.
      * @return PubSubClient
@@ -257,7 +257,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type bool $returnInt64AsObject If true, 64 bit integers will be
+     * @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      * }
@@ -285,7 +285,7 @@ class ServiceBuilder
      *     Configuration options. See
      *     {@see Google\Cloud\Core\ServiceBuilder::__construct()} for the other available options.
      *
-     *     @type string $languageCode The language of the content to
+     * @type string $languageCode The language of the content to
      *           be recognized. Only BCP-47 (e.g., `"en-US"`, `"es-ES"`)
      *           language codes are accepted. See
      *           [Language Support](https://cloud.google.com/speech/docs/languages)
@@ -389,12 +389,12 @@ class ServiceBuilder
      * @param array $config [optional] {
      *     Configuration options.
      *
-     *     @type string $key A public API access key.
-     *     @type string $target The target language to assign to the client.
+     * @type string $key A public API access key.
+     * @type string $target The target language to assign to the client.
      *           Defaults to `en` (English).
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     * @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
      * }
      * @return TranslateClient

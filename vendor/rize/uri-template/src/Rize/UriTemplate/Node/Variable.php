@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Rize\UriTemplate\Node;
 
@@ -7,15 +7,15 @@ namespace Rize\UriTemplate\Node;
  */
 class Variable extends Abstraction
 {
-           /**
-            * Variable name without modifier 
-            * e.g. 'term:1' becomes 'term'
-            */
-     public $name,
-           $options = array(
-              'modifier' => null,
-              'value'    => null,
-           );
+    /**
+     * Variable name without modifier
+     * e.g. 'term:1' becomes 'term'
+     */
+    public $name,
+        $options = array(
+        'modifier' => null,
+        'value' => null,
+    );
 
     public function __construct($token, array $options = array())
     {

@@ -20,13 +20,16 @@
 
 ## Overview
 
-[Firebase](https://firebase.google.com/) provides the tools and infrastructure you need to develop your app, grow your user base, and earn money. The Firebase Admin PHP SDK enables access to Firebase services from privileged environments (such as servers or cloud) in PHP.
+[Firebase](https://firebase.google.com/) provides the tools and infrastructure you need to develop your app, grow your
+user base, and earn money. The Firebase Admin PHP SDK enables access to Firebase services from privileged environments (
+such as servers or cloud) in PHP.
 
 For more information, visit the [Firebase Admin PHP SDK documentation](https://firebase-php.readthedocs.io/).
 
 ## Installation
 
-The Firebase Admin PHP SDK is available on Packagist as [`kreait/firebase-php`](https://packagist.org/packages/kreait/firebase-php):
+The Firebase Admin PHP SDK is available on Packagist
+as [`kreait/firebase-php`](https://packagist.org/packages/kreait/firebase-php):
 
 ```bash
 composer require kreait/firebase-php
@@ -55,8 +58,7 @@ Integrations for Laravel, Lumen and Symfony are available:
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase+php)
 
 _If you or your team rely on this project and me maintaining it, please consider becoming a
-[Sponsor](https://github.com/sponsors/jeromegamez/) 🙏. Higher tiers enable access to extended
-support._
+[Sponsor](https://github.com/sponsors/jeromegamez/) 🙏. Higher tiers enable access to extended support._
 
 ## License
 

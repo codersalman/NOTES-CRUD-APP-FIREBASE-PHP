@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -18,7 +19,7 @@ final class Env
      * Returns data from the input array that matches a JMESPath expression.
      *
      * @param string $expression JMESPath expression to evaluate
-     * @param mixed  $data       JSON-like data to search
+     * @param mixed $data JSON-like data to search
      *
      * @return mixed Returns the matching data or null
      */
@@ -42,9 +43,12 @@ final class Env
     public static function createRuntime()
     {
         switch ($compileDir = self::getEnvVariable(self::COMPILE_DIR)) {
-            case false: return new AstRuntime();
-            case 'on': return new CompilerRuntime();
-            default: return new CompilerRuntime($compileDir);
+            case false:
+                return new AstRuntime();
+            case 'on':
+                return new CompilerRuntime();
+            default:
+                return new CompilerRuntime($compileDir);
         }
     }
 

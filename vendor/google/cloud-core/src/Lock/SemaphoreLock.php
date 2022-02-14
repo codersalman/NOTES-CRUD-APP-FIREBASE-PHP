@@ -67,7 +67,7 @@ class SemaphoreLock implements LockInterface
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type bool $blocking Whether the process should block while waiting
+     * @type bool $blocking Whether the process should block while waiting
      *           to acquire the lock. **Defaults to** true.
      * }
      * @return bool

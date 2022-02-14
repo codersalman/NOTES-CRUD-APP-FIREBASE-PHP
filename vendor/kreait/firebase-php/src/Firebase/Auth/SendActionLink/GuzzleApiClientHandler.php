@@ -30,7 +30,7 @@ final class GuzzleApiClientHandler implements Handler
         try {
             $response = $this->client->send($request, ['http_errors' => false]);
         } catch (GuzzleException $e) {
-            throw new FailedToSendActionLink('Failed to send action link: '.$e->getMessage(), $e->getCode(), $e);
+            throw new FailedToSendActionLink('Failed to send action link: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         if ($response->getStatusCode() !== 200) {
@@ -41,9 +41,9 @@ final class GuzzleApiClientHandler implements Handler
     private function createRequest(SendActionLink $action): RequestInterface
     {
         $data = \array_filter([
-            'requestType' => $action->type(),
-            'email' => $action->email(),
-        ]) + $action->settings()->toArray();
+                'requestType' => $action->type(),
+                'email' => $action->email(),
+            ]) + $action->settings()->toArray();
 
         if ($tenantId = $action->tenantId()) {
             $uri = "https://identitytoolkit.googleapis.com/v1/projects/{$this->projectId}/tenants/{$tenantId}/accounts:sendOobCode";
@@ -60,7 +60,7 @@ final class GuzzleApiClientHandler implements Handler
 
         $headers = \array_filter([
             'Content-Type' => 'application/json; charset=UTF-8',
-            'Content-Length' => (string) $body->getSize(),
+            'Content-Length' => (string)$body->getSize(),
             'X-Firebase-Locale' => $action->locale(),
         ]);
 

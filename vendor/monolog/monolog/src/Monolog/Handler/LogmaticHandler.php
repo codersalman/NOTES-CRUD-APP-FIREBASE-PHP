@@ -11,9 +11,9 @@
 
 namespace Monolog\Handler;
 
-use Monolog\Logger;
 use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LogmaticFormatter;
+use Monolog\Logger;
 
 /**
  * @author Julien Breux <julien.breux@gmail.com>
@@ -36,10 +36,10 @@ class LogmaticHandler extends SocketHandler
     private $appname;
 
     /**
-     * @param string     $token    Log token supplied by Logmatic.
-     * @param string     $hostname Host name supplied by Logmatic.
-     * @param string     $appname  Application name supplied by Logmatic.
-     * @param bool       $useSSL   Whether or not SSL encryption should be used.
+     * @param string $token Log token supplied by Logmatic.
+     * @param string $hostname Host name supplied by Logmatic.
+     * @param string $appname Application name supplied by Logmatic.
+     * @param bool $useSSL Whether or not SSL encryption should be used.
      *
      * @throws MissingExtensionException If SSL encryption is set to true and OpenSSL is missing
      */
@@ -56,7 +56,7 @@ class LogmaticHandler extends SocketHandler
 
         $this->logToken = $token;
         $this->hostname = $hostname;
-        $this->appname  = $appname;
+        $this->appname = $appname;
     }
 
     /**

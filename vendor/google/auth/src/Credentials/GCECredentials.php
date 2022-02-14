@@ -176,11 +176,12 @@ class GCECredentials extends CredentialsLoader implements
      */
     public function __construct(
         Iam $iam = null,
-        $scope = null,
-        $targetAudience = null,
-        $quotaProject = null,
-        $serviceAccountIdentity = null
-    ) {
+            $scope = null,
+            $targetAudience = null,
+            $quotaProject = null,
+            $serviceAccountIdentity = null
+    )
+    {
         $this->iam = $iam;
 
         if ($scope && $targetAudience) {
@@ -532,7 +533,7 @@ class GCECredentials extends CredentialsLoader implements
             )
         );
 
-        return (string) $resp->getBody();
+        return (string)$resp->getBody();
     }
 
     /**

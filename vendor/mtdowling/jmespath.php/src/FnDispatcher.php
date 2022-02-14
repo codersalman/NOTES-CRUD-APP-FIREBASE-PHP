@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -25,8 +26,8 @@ class FnDispatcher
     }
 
     /**
-     * @param string $fn   Function name.
-     * @param array  $args Function arguments.
+     * @param string $fn Function name.
+     * @param array $args Function arguments.
      *
      * @return mixed
      */
@@ -106,13 +107,13 @@ class FnDispatcher
     private function fn_keys(array $args)
     {
         $this->validate('keys', $args, [['object']]);
-        return array_keys((array) $args[0]);
+        return array_keys((array)$args[0]);
     }
 
     private function fn_length(array $args)
     {
         $this->validate('length', $args, [['string', 'array', 'object']]);
-        return is_string($args[0]) ? mb_strlen($args[0], 'UTF-8') : count((array) $args[0]);
+        return is_string($args[0]) ? mb_strlen($args[0], 'UTF-8') : count((array)$args[0]);
     }
 
     private function fn_max(array $args)
@@ -226,7 +227,7 @@ class FnDispatcher
             && !($v instanceof \JsonSerializable)
             && method_exists($v, '__toString')
         ) {
-            return (string) $v;
+            return (string)$v;
         }
 
         return json_encode($v);
@@ -240,7 +241,7 @@ class FnDispatcher
         if ($type == 'number') {
             return $value;
         } elseif ($type == 'string' && is_numeric($value)) {
-            return mb_strpos($value, '.', 0, 'UTF-8') ? (float) $value : (int) $value;
+            return mb_strpos($value, '.', 0, 'UTF-8') ? (float)$value : (int)$value;
         } else {
             return null;
         }
@@ -249,7 +250,7 @@ class FnDispatcher
     private function fn_values(array $args)
     {
         $this->validate('values', $args, [['array', 'object']]);
-        return array_values((array) $args[0]);
+        return array_values((array)$args[0]);
     }
 
     private function fn_merge(array $args)
@@ -330,10 +331,10 @@ class FnDispatcher
      * Validates value A and B, ensures they both are correctly typed, and of
      * the same type.
      *
-     * @param string   $from   String of function:argument_position
-     * @param array    $types  Array of valid value types.
-     * @param mixed    $a      Value A
-     * @param mixed    $b      Value B
+     * @param string $from String of function:argument_position
+     * @param array $types Array of valid value types.
+     * @param mixed $a Value A
+     * @param mixed $b Value B
      */
     private function validateSeq($from, array $types, $a, $b)
     {
@@ -357,9 +358,9 @@ class FnDispatcher
     /**
      * Reduces and validates an array of values to a single value using a fn.
      *
-     * @param string   $from   String of function:argument_position
-     * @param array    $values Values to reduce.
-     * @param array    $types  Array of valid value types.
+     * @param string $from String of function:argument_position
+     * @param array $values Values to reduce.
+     * @param array $types Array of valid value types.
      * @param callable $reduce Reduce function that accepts ($carry, $item).
      *
      * @return mixed
@@ -381,9 +382,9 @@ class FnDispatcher
     /**
      * Validates the return values of expressions as they are applied.
      *
-     * @param string   $from  Function name : position
-     * @param callable $expr  Expression function to validate.
-     * @param array    $types Array of acceptable return type values.
+     * @param string $from Function name : position
+     * @param callable $expr Expression function to validate.
+     * @param array $types Array of acceptable return type values.
      *
      * @return callable Returns a wrapped function
      */

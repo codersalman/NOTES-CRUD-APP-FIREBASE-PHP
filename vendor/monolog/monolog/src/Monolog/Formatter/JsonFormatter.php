@@ -156,7 +156,7 @@ class JsonFormatter extends NormalizerFormatter
     protected function normalize($data, int $depth = 0)
     {
         if ($depth > $this->maxNormalizeDepth) {
-            return 'Over '.$this->maxNormalizeDepth.' levels deep, aborting normalization';
+            return 'Over ' . $this->maxNormalizeDepth . ' levels deep, aborting normalization';
         }
 
         if (is_array($data)) {
@@ -165,7 +165,7 @@ class JsonFormatter extends NormalizerFormatter
             $count = 1;
             foreach ($data as $key => $value) {
                 if ($count++ > $this->maxNormalizeItemCount) {
-                    $normalized['...'] = 'Over '.$this->maxNormalizeItemCount.' items ('.count($data).' total), aborting normalization';
+                    $normalized['...'] = 'Over ' . $this->maxNormalizeItemCount . ' items (' . count($data) . ' total), aborting normalization';
                     break;
                 }
 

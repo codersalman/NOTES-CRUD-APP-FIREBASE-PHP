@@ -71,7 +71,7 @@ class ArrayHasSameValuesToken implements TokenInterface
     public function __toString()
     {
         if ($this->string) {
-            $string = $this->string .': (%s)';
+            $string = $this->string . ': (%s)';
         } else {
             $string = 'same(%s)';
         }

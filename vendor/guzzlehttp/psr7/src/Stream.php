@@ -42,7 +42,7 @@ class Stream implements StreamInterface
      * - metadata: (array) Any additional metadata to return when the metadata
      *   of the stream is accessed.
      *
-     * @param resource                            $stream  Stream resource to wrap.
+     * @param resource $stream Stream resource to wrap.
      * @param array{size?: int, metadata?: array} $options Associative array of options.
      *
      * @throws \InvalidArgumentException if the stream is not a stream resource
@@ -85,7 +85,7 @@ class Stream implements StreamInterface
             if (\PHP_VERSION_ID >= 70400) {
                 throw $e;
             }
-            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string) $e), E_USER_ERROR);
+            trigger_error(sprintf('%s::__toString exception: %s', self::class, (string)$e), E_USER_ERROR);
             return '';
         }
     }
@@ -199,7 +199,7 @@ class Stream implements StreamInterface
 
     public function seek($offset, $whence = SEEK_SET): void
     {
-        $whence = (int) $whence;
+        $whence = (int)$whence;
 
         if (!isset($this->stream)) {
             throw new \RuntimeException('Stream is detached');

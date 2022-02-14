@@ -33,7 +33,7 @@ final class Url implements \JsonSerializable
         }
 
         try {
-            return new self(new Uri((string) $value));
+            return new self(new Uri((string)$value));
         } catch (Throwable $e) {
             throw new InvalidArgumentException($e->getMessage());
         }
@@ -46,12 +46,12 @@ final class Url implements \JsonSerializable
 
     public function __toString()
     {
-        return (string) $this->value;
+        return (string)$this->value;
     }
 
     public function jsonSerialize(): string
     {
-        return (string) $this->value;
+        return (string)$this->value;
     }
 
     /**
@@ -59,6 +59,6 @@ final class Url implements \JsonSerializable
      */
     public function equalsTo($other): bool
     {
-        return (string) $this->value === (string) $other;
+        return (string)$this->value === (string)$other;
     }
 }

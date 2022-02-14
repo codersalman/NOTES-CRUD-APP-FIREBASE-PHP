@@ -79,7 +79,7 @@ final class CreateSessionCookie
                 throw new InvalidArgumentException('A session cookie cannot be valid for a negative amount of time');
             }
 
-            $ttl = new DateInterval('PT'.$ttl.'S');
+            $ttl = new DateInterval('PT' . $ttl . 'S');
         }
 
         $now = $clock->now();

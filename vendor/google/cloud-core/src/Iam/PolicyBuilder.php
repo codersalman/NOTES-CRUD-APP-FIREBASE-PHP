@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Core\Iam;
 
-use InvalidArgumentException;
 use BadMethodCallException;
+use InvalidArgumentException;
 
 /**
  * Helper class for creating valid IAM policies
@@ -84,7 +84,7 @@ class PolicyBuilder
      * $builder = new PolicyBuilder($policy);
      * ```
      *
-     * @param  array $policy A policy array
+     * @param array $policy A policy array
      * @throws InvalidArgumentException
      */
     public function __construct(array $policy = [])
@@ -123,7 +123,7 @@ class PolicyBuilder
      * ]);
      * ```
      *
-     * @param  array $bindings [optional] An array of bindings
+     * @param array $bindings [optional] An array of bindings
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      */
@@ -148,8 +148,8 @@ class PolicyBuilder
      * $builder->addBinding('roles/admin', [ 'user:admin@domain.com' ]);
      * ```
      *
-     * @param  string $role A valid role for the service
-     * @param  array  $members An array of members to assign to the binding
+     * @param string $role A valid role for the service
+     * @param array $members An array of members to assign to the binding
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      * @throws BadMethodCallException if the policy's version is greater than 1.
@@ -190,8 +190,8 @@ class PolicyBuilder
      * $builder->removeBinding('roles/admin', [ 'user:admin@domain.com' ]);
      * ```
      *
-     * @param  string $role A valid role for the service
-     * @param  array  $members An array of members to remove from the role
+     * @param string $role A valid role for the service
+     * @param array $members An array of members to remove from the role
      * @return PolicyBuilder
      * @throws InvalidArgumentException
      * @throws BadMethodCallException if the policy's version is greater than 1.
@@ -202,7 +202,7 @@ class PolicyBuilder
         $this->validatePolicyVersion();
 
         $bindings = $this->bindings;
-        foreach ((array) $bindings as $i => $binding) {
+        foreach ((array)$bindings as $i => $binding) {
             if ($binding['role'] == $role) {
                 $newMembers = array_diff($binding['members'], $members);
                 if (count($newMembers) != count($binding['members']) - count($members)) {
@@ -232,7 +232,7 @@ class PolicyBuilder
      * $builder->setEtag($oldPolicy['etag']);
      * ```
      *
-     * @param  string $etag used for optimistic concurrency control as a way to help prevent simultaneous updates of a
+     * @param string $etag used for optimistic concurrency control as a way to help prevent simultaneous updates of a
      *         policy from overwriting each other. It is strongly suggested that updates to existing policies make use
      *         of the etag to avoid race conditions.
      * @return PolicyBuilder
@@ -252,7 +252,7 @@ class PolicyBuilder
      * $builder->setVersion(1);
      * ```
      *
-     * @param  int $version Version of the Policy. **Defaults to** `0`.
+     * @param int $version Version of the Policy. **Defaults to** `0`.
      * @return PolicyBuilder
      */
     public function setVersion($version)

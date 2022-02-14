@@ -5,7 +5,6 @@ namespace Lcobucci\JWT\Signer;
 
 use Lcobucci\JWT\Signer;
 use OpenSSLAsymmetricKey;
-
 use function array_key_exists;
 use function assert;
 use function is_array;
@@ -29,13 +28,14 @@ abstract class OpenSSL implements Signer
         string $pem,
         string $passphrase,
         string $payload
-    ): string {
+    ): string
+    {
         $key = $this->getPrivateKey($pem, $passphrase);
 
         try {
             $signature = '';
 
-            if (! openssl_sign($payload, $signature, $key, $this->algorithm())) {
+            if (!openssl_sign($payload, $signature, $key, $this->algorithm())) {
                 $error = openssl_error_string();
                 assert(is_string($error));
 
@@ -66,8 +66,9 @@ abstract class OpenSSL implements Signer
         string $expected,
         string $payload,
         string $pem
-    ): bool {
-        $key    = $this->getPublicKey($pem);
+    ): bool
+    {
+        $key = $this->getPublicKey($pem);
         $result = openssl_verify($payload, $expected, $key, $this->algorithm());
         $this->freeKey($key);
 
@@ -106,7 +107,7 @@ abstract class OpenSSL implements Signer
         $details = openssl_pkey_get_details($key);
         assert(is_array($details));
 
-        if (! array_key_exists('key', $details) || $details['type'] !== $this->keyType()) {
+        if (!array_key_exists('key', $details) || $details['type'] !== $this->keyType()) {
             throw InvalidKeyProvided::incompatibleKey();
         }
     }

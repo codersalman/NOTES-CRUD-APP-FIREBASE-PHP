@@ -23,7 +23,7 @@ final class DynamicLinkStatistics
      */
     public static function fromApiResponse(ResponseInterface $response): self
     {
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
 
         $link = new self();
         $link->rawData = $data;

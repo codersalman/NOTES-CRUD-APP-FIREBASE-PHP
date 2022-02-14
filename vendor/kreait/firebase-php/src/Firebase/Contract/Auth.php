@@ -44,18 +44,18 @@ interface Auth
     /**
      * @param array<\Stringable|string> $uids
      *
-     * @throws Exception\FirebaseException
+     * @return array<string, UserRecord|null>
      * @throws Exception\AuthException
      *
-     * @return array<string, UserRecord|null>
+     * @throws Exception\FirebaseException
      */
     public function getUsers(array $uids): array;
 
     /**
-     * @throws Exception\FirebaseException
+     * @return Traversable<UserRecord>
      * @throws Exception\AuthException
      *
-     * @return Traversable<UserRecord>
+     * @throws Exception\FirebaseException
      */
     public function listUsers(int $maxResults = 1000, int $batchSize = 1000): Traversable;
 

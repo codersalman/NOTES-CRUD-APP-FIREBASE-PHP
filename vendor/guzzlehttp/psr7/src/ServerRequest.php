@@ -57,21 +57,22 @@ class ServerRequest extends Request implements ServerRequestInterface
     private $uploadedFiles = [];
 
     /**
-     * @param string                               $method       HTTP method
-     * @param string|UriInterface                  $uri          URI
-     * @param array<string, string|string[]>       $headers      Request headers
-     * @param string|resource|StreamInterface|null $body         Request body
-     * @param string                               $version      Protocol version
-     * @param array                                $serverParams Typically the $_SERVER superglobal
+     * @param string $method HTTP method
+     * @param string|UriInterface $uri URI
+     * @param array<string, string|string[]> $headers Request headers
+     * @param string|resource|StreamInterface|null $body Request body
+     * @param string $version Protocol version
+     * @param array $serverParams Typically the $_SERVER superglobal
      */
     public function __construct(
         string $method,
-        $uri,
-        array $headers = [],
-        $body = null,
+               $uri,
+        array  $headers = [],
+               $body = null,
         string $version = '1.1',
-        array $serverParams = []
-    ) {
+        array  $serverParams = []
+    )
+    {
         $this->serverParams = $serverParams;
 
         parent::__construct($method, $uri, $headers, $body, $version);
@@ -122,8 +123,8 @@ class ServerRequest extends Request implements ServerRequestInterface
 
         return new UploadedFile(
             $value['tmp_name'],
-            (int) $value['size'],
-            (int) $value['error'],
+            (int)$value['size'],
+            (int)$value['error'],
             $value['name'],
             $value['type']
         );
@@ -144,10 +145,10 @@ class ServerRequest extends Request implements ServerRequestInterface
         foreach (array_keys($files['tmp_name']) as $key) {
             $spec = [
                 'tmp_name' => $files['tmp_name'][$key],
-                'size'     => $files['size'][$key],
-                'error'    => $files['error'][$key],
-                'name'     => $files['name'][$key],
-                'type'     => $files['type'][$key],
+                'size' => $files['size'][$key],
+                'error' => $files['error'][$key],
+                'name' => $files['name'][$key],
+                'type' => $files['type'][$key],
             ];
             $normalizedFiles[$key] = self::createUploadedFileFromSpec($spec);
         }

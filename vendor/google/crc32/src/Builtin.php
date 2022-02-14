@@ -17,9 +17,6 @@
 
 namespace Google\CRC32;
 
-use Google\CRC32\CRC32;
-use Google\CRC32\CRCInterface;
-
 /**
  * A CRC32 implementation based on the PHP hash functions.
  */
@@ -35,7 +32,7 @@ final class Builtin implements CRCInterface
     /**
      * Returns true if this $polynomial is supported by the builtin PHP hash function.
      *
-     * @param  integer  $polynomial  The polynomial
+     * @param integer $polynomial The polynomial
      *
      * @return  boolean
      */

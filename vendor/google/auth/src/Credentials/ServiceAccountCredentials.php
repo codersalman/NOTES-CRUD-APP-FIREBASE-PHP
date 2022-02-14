@@ -115,7 +115,8 @@ class ServiceAccountCredentials extends CredentialsLoader implements
         $jsonKey,
         $sub = null,
         $targetAudience = null
-    ) {
+    )
+    {
         if (is_string($jsonKey)) {
             if (!file_exists($jsonKey)) {
                 throw new \InvalidArgumentException('file does not exist');
@@ -136,7 +137,7 @@ class ServiceAccountCredentials extends CredentialsLoader implements
             );
         }
         if (array_key_exists('quota_project_id', $jsonKey)) {
-            $this->quotaProject = (string) $jsonKey['quota_project_id'];
+            $this->quotaProject = (string)$jsonKey['quota_project_id'];
         }
         if ($scope && $targetAudience) {
             throw new InvalidArgumentException(
@@ -251,7 +252,8 @@ class ServiceAccountCredentials extends CredentialsLoader implements
         $metadata,
         $authUri = null,
         callable $httpHandler = null
-    ) {
+    )
+    {
         // scope exists. use oauth implementation
         if (!$this->useSelfSignedJwt()) {
             return parent::updateMetadata($metadata, $authUri, $httpHandler);
@@ -328,7 +330,7 @@ class ServiceAccountCredentials extends CredentialsLoader implements
         if ($this->auth->getAdditionalClaims()) {
             return false;
         }
-        
+
         // When true, ServiceAccountCredentials will always use JwtAccess for access tokens
         if ($this->useJwtAccessWithScope) {
             return true;

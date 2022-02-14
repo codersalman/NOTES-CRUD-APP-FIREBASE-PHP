@@ -70,7 +70,7 @@ class Timestamp
         $this->value = $value;
 
         $this->nanoSeconds = $nanoSeconds !== null
-            ? (int) $nanoSeconds
+            ? (int)$nanoSeconds
             : null;
     }
 
@@ -105,7 +105,7 @@ class Timestamp
     public function nanoSeconds()
     {
         return $this->nanoSeconds === null
-            ? (int) $this->value->format('u') * 1000
+            ? (int)$this->value->format('u') * 1000
             : $this->nanoSeconds;
     }
 

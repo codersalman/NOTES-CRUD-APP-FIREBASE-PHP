@@ -44,9 +44,9 @@ class SimpleJob implements JobInterface
      * @param array $options [optional] {
      *      Configuration options.
      *
-     *      @type string $bootstrapFile A file to load before executing the job.
+     * @type string $bootstrapFile A file to load before executing the job.
      *            It's needed for registering global functions.
-     *      @type int $numWorkers The number of workers for this job.
+     * @type int $numWorkers The number of workers for this job.
      * }
      */
     public function __construct($identifier, $func, $id, array $options = [])

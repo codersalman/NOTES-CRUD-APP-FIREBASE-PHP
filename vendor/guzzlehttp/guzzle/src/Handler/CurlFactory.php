@@ -98,7 +98,7 @@ class CurlFactory implements CurlFactoryInterface
      * rejected promise.
      *
      * @param callable(RequestInterface, array): PromiseInterface $handler
-     * @param CurlFactoryInterface                                $factory Dictates how the handle is released
+     * @param CurlFactoryInterface $factory Dictates how the handle is released
      */
     public static function finish(callable $handler, EasyHandle $easy, CurlFactoryInterface $factory): PromiseInterface
     {
@@ -143,10 +143,10 @@ class CurlFactory implements CurlFactoryInterface
     {
         // Get error information and release the handle to the factory.
         $ctx = [
-            'errno' => $easy->errno,
-            'error' => \curl_error($easy->handle),
-            'appconnect_time' => \curl_getinfo($easy->handle, \CURLINFO_APPCONNECT_TIME),
-        ] + \curl_getinfo($easy->handle);
+                'errno' => $easy->errno,
+                'error' => \curl_error($easy->handle),
+                'appconnect_time' => \curl_getinfo($easy->handle, \CURLINFO_APPCONNECT_TIME),
+            ] + \curl_getinfo($easy->handle);
         $ctx[self::CURL_VERSION_STR] = \curl_version()['version'];
         $factory->release($easy);
 
@@ -161,11 +161,11 @@ class CurlFactory implements CurlFactoryInterface
     private static function createRejection(EasyHandle $easy, array $ctx): PromiseInterface
     {
         static $connectionErrors = [
-            \CURLE_OPERATION_TIMEOUTED  => true,
+            \CURLE_OPERATION_TIMEOUTED => true,
             \CURLE_COULDNT_RESOLVE_HOST => true,
-            \CURLE_COULDNT_CONNECT      => true,
-            \CURLE_SSL_CONNECT_ERROR    => true,
-            \CURLE_GOT_NOTHING          => true,
+            \CURLE_COULDNT_CONNECT => true,
+            \CURLE_SSL_CONNECT_ERROR => true,
+            \CURLE_GOT_NOTHING => true,
         ];
 
         if ($easy->createResponseException) {
@@ -200,7 +200,7 @@ class CurlFactory implements CurlFactoryInterface
             $ctx['error'],
             'see https://curl.haxx.se/libcurl/c/libcurl-errors.html'
         );
-        $uriString = (string) $easy->request->getUri();
+        $uriString = (string)$easy->request->getUri();
         if ($uriString !== '' && false === \strpos($ctx['error'], $uriString)) {
             $message .= \sprintf(' for %s', $uriString);
         }
@@ -219,11 +219,11 @@ class CurlFactory implements CurlFactoryInterface
     private function getDefaultConf(EasyHandle $easy): array
     {
         $conf = [
-            '_headers'              => $easy->request->getHeaders(),
-            \CURLOPT_CUSTOMREQUEST  => $easy->request->getMethod(),
-            \CURLOPT_URL            => (string) $easy->request->getUri()->withFragment(''),
+            '_headers' => $easy->request->getHeaders(),
+            \CURLOPT_CUSTOMREQUEST => $easy->request->getMethod(),
+            \CURLOPT_URL => (string)$easy->request->getUri()->withFragment(''),
             \CURLOPT_RETURNTRANSFER => false,
-            \CURLOPT_HEADER         => false,
+            \CURLOPT_HEADER => false,
             \CURLOPT_CONNECTTIMEOUT => 150,
         ];
 
@@ -273,13 +273,13 @@ class CurlFactory implements CurlFactoryInterface
     private function applyBody(RequestInterface $request, array $options, array &$conf): void
     {
         $size = $request->hasHeader('Content-Length')
-            ? (int) $request->getHeaderLine('Content-Length')
+            ? (int)$request->getHeaderLine('Content-Length')
             : null;
 
         // Send the body as a string if the size is less than 1MB OR if the
         // [curl][body_as_string] request value is set.
         if (($size !== null && $size < 1000000) || !empty($options['_body_as_string'])) {
-            $conf[\CURLOPT_POSTFIELDS] = (string) $request->getBody();
+            $conf[\CURLOPT_POSTFIELDS] = (string)$request->getBody();
             // Don't duplicate the Content-Length header
             $this->removeHeader('Content-Length', $conf);
             $this->removeHeader('Transfer-Encoding', $conf);
@@ -313,7 +313,7 @@ class CurlFactory implements CurlFactoryInterface
     {
         foreach ($conf['_headers'] as $name => $values) {
             foreach ($values as $value) {
-                $value = (string) $value;
+                $value = (string)$value;
                 if ($value === '') {
                     // cURL requires a special format for empty headers.
                     // See https://github.com/guzzle/guzzle/issues/1882 for more details.
@@ -333,8 +333,8 @@ class CurlFactory implements CurlFactoryInterface
     /**
      * Remove a header from the options array.
      *
-     * @param string $name    Case-insensitive header to remove
-     * @param array  $options Array of options to modify
+     * @param string $name Case-insensitive header to remove
+     * @param array $options Array of options to modify
      */
     private function removeHeader(string $name, array &$options): void
     {

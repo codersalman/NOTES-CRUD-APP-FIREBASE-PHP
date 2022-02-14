@@ -57,7 +57,7 @@ final class UriResolver
      */
     public static function resolve(UriInterface $base, UriInterface $rel): UriInterface
     {
-        if ((string) $rel === '') {
+        if ((string)$rel === '') {
             // we can simply return the same base URI instance for this same-document reference
             return $base;
         }

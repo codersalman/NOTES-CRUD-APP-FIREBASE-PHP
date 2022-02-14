@@ -17,7 +17,7 @@ final class LooseValidAt implements Constraint
 
     public function __construct(Clock $clock, ?DateInterval $leeway = null)
     {
-        $this->clock  = $clock;
+        $this->clock = $clock;
         $this->leeway = $this->guardLeeway($leeway);
     }
 
@@ -54,7 +54,7 @@ final class LooseValidAt implements Constraint
     /** @throws ConstraintViolation */
     private function assertMinimumTime(Token $token, DateTimeInterface $now): void
     {
-        if (! $token->isMinimumTimeBefore($now)) {
+        if (!$token->isMinimumTimeBefore($now)) {
             throw new ConstraintViolation('The token cannot be used yet');
         }
     }
@@ -62,7 +62,7 @@ final class LooseValidAt implements Constraint
     /** @throws ConstraintViolation */
     private function assertIssueTime(Token $token, DateTimeInterface $now): void
     {
-        if (! $token->hasBeenIssuedBefore($now)) {
+        if (!$token->hasBeenIssuedBefore($now)) {
             throw new ConstraintViolation('The token was issued in the future');
         }
     }

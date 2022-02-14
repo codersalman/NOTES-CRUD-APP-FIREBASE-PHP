@@ -13,8 +13,8 @@
 
 ## Description
 
-This is Google's officially supported PHP client library for using OAuth 2.0
-authorization and authentication with Google APIs.
+This is Google's officially supported PHP client library for using OAuth 2.0 authorization and authentication with
+Google APIs.
 
 ### Installing via Composer
 
@@ -37,19 +37,17 @@ composer.phar require google/auth
 This library provides an implementation of
 [application default credentials][application default credentials] for PHP.
 
-The Application Default Credentials provide a simple way to get authorization
-credentials for use in calling Google APIs.
+The Application Default Credentials provide a simple way to get authorization credentials for use in calling Google
+APIs.
 
-They are best suited for cases when the call needs to have the same identity
-and authorization level for the application independent of the user. This is
-the recommended approach to authorize calls to Cloud APIs, particularly when
-you're building an application that uses Google Compute Engine.
+They are best suited for cases when the call needs to have the same identity and authorization level for the application
+independent of the user. This is the recommended approach to authorize calls to Cloud APIs, particularly when you're
+building an application that uses Google Compute Engine.
 
 #### Download your Service Account Credentials JSON file
 
-To use `Application Default Credentials`, You first need to download a set of
-JSON credentials for your project. Go to **APIs & Services** > **Credentials** in
-the [Google Developers Console][developer console] and select
+To use `Application Default Credentials`, You first need to download a set of JSON credentials for your project. Go
+to **APIs & Services** > **Credentials** in the [Google Developers Console][developer console] and select
 **Service account** from the **Add credentials** dropdown.
 
 > This file is your *only copy* of these credentials. It should never be
@@ -67,15 +65,15 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/my/credentials.json');
 
 #### Enable the API you want to use
 
-Before making your API call, you must be sure the API you're calling has been
-enabled. Go to **APIs & Auth** > **APIs** in the
-[Google Developers Console][developer console] and enable the APIs you'd like to
-call. For the example below, you must enable the `Drive API`.
+Before making your API call, you must be sure the API you're calling has been enabled. Go to **APIs & Auth** > **APIs**
+in the
+[Google Developers Console][developer console] and enable the APIs you'd like to call. For the example below, you must
+enable the `Drive API`.
 
 #### Call the APIs
 
-As long as you update the environment variable below to point to *your* JSON
-credentials file, the following code should output a list of your Drive files.
+As long as you update the environment variable below to point to *your* JSON credentials file, the following code should
+output a list of your Drive files.
 
 ```php
 use Google\Auth\ApplicationDefaultCredentials;
@@ -125,9 +123,9 @@ $client->getEmitter()->attach($subscriber);
 ```
 
 #### Call using an ID Token
-If your application is running behind Cloud Run, or using Cloud Identity-Aware
-Proxy (IAP), you will need to fetch an ID token to access your application. For
-this, use the static method `getIdTokenMiddleware` on
+
+If your application is running behind Cloud Run, or using Cloud Identity-Aware Proxy (IAP), you will need to fetch an ID
+token to access your application. For this, use the static method `getIdTokenMiddleware` on
 `ApplicationDefaultCredentials`.
 
 ```php
@@ -168,14 +166,15 @@ For invoking Cloud Run services, your service account will need the
 [`Cloud Run Invoker`](https://cloud.google.com/run/docs/authenticating/service-to-service)
 IAM permission.
 
-For invoking Cloud Identity-Aware Proxy, you will need to pass the Client ID
-used when you set up your protected resource as the target audience. See how to
+For invoking Cloud Identity-Aware Proxy, you will need to pass the Client ID used when you set up your protected
+resource as the target audience. See how to
 [secure your IAP app with signed headers](https://cloud.google.com/iap/docs/signed-headers-howto).
 
 #### Call using a specific JSON key
+
 If you want to use a specific JSON key instead of using `GOOGLE_APPLICATION_CREDENTIALS` environment variable, you can
- do this:
- 
+do this:
+
 ```php
 use Google\Auth\CredentialsLoader;
 use Google\Auth\Middleware\AuthTokenMiddleware;
@@ -215,12 +214,11 @@ print_r((string) $response->getBody());
 ```
 
 #### Call using Proxy-Authorization Header
-If your application is behind a proxy such as [Google Cloud IAP][iap-proxy-header],
-and your application occupies the `Authorization` request header, 
-you can include the ID token in a `Proxy-Authorization: Bearer` 
-header instead. If a valid ID token is found in a `Proxy-Authorization` header, 
-IAP authorizes the request with it. After authorizing the request, IAP passes 
-the Authorization header to your application without processing the content.
+
+If your application is behind a proxy such as [Google Cloud IAP][iap-proxy-header], and your application occupies
+the `Authorization` request header, you can include the ID token in a `Proxy-Authorization: Bearer`
+header instead. If a valid ID token is found in a `Proxy-Authorization` header, IAP authorizes the request with it.
+After authorizing the request, IAP passes the Authorization header to your application without processing the content.
 For this, use the static method `getProxyIdTokenMiddleware` on
 `ApplicationDefaultCredentials`.
 
@@ -259,8 +257,8 @@ print_r((string) $response->getBody());
 
 #### Verifying JWTs
 
-If you are [using Google ID tokens to authenticate users][google-id-tokens], use
-the `Google\Auth\AccessToken` class to verify the ID token:
+If you are [using Google ID tokens to authenticate users][google-id-tokens], use the `Google\Auth\AccessToken` class to
+verify the ID token:
 
 ```php
 use Google\Auth\AccessToken;
@@ -270,9 +268,8 @@ $auth->verify($idToken);
 ```
 
 If your app is running behind [Google Identity-Aware Proxy][iap-id-tokens]
-(IAP), you can verify the ID token coming from the IAP server by pointing to the
-appropriate certificate URL for IAP. This is because IAP signs the ID
-tokens with a different key than the Google Identity service:
+(IAP), you can verify the ID token coming from the IAP server by pointing to the appropriate certificate URL for IAP.
+This is because IAP signs the ID tokens with a different key than the Google Identity service:
 
 ```php
 use Google\Auth\AccessToken;
@@ -284,12 +281,12 @@ $auth->verify($idToken, [
 ```
 
 [google-id-tokens]: https://developers.google.com/identity/sign-in/web/backend-auth
+
 [iap-id-tokens]: https://cloud.google.com/iap/docs/signed-headers-howto
 
 ## License
 
-This library is licensed under Apache 2.0. Full license text is
-available in [COPYING][copying].
+This library is licensed under Apache 2.0. Full license text is available in [COPYING][copying].
 
 ## Contributing
 
@@ -298,15 +295,20 @@ See [CONTRIBUTING][contributing].
 ## Support
 
 Please
-[report bugs at the project on Github](https://github.com/google/google-auth-library-php/issues). Don't
-hesitate to
+[report bugs at the project on Github](https://github.com/google/google-auth-library-php/issues). Don't hesitate to
 [ask questions](http://stackoverflow.com/questions/tagged/google-auth-library-php)
 about the client or APIs on [StackOverflow](http://stackoverflow.com).
 
 [google-apis-php-client]: https://github.com/google/google-api-php-client
+
 [application default credentials]: https://developers.google.com/accounts/docs/application-default-credentials
+
 [contributing]: https://github.com/google/google-auth-library-php/tree/master/.github/CONTRIBUTING.md
+
 [copying]: https://github.com/google/google-auth-library-php/tree/master/COPYING
+
 [Guzzle]: https://github.com/guzzle/guzzle
+
 [Guzzle 5]: http://docs.guzzlephp.org/en/5.3
+
 [developer console]: https://console.developers.google.com

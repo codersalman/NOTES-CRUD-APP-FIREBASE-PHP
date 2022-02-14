@@ -34,7 +34,7 @@ final class DynamicLinks implements Contract\DynamicLinks
      */
     public static function withApiClientAndDefaultDomain(ClientInterface $apiClient, $dynamicLinksDomain): self
     {
-        $domainUrl = (string) Url::fromValue((string) $dynamicLinksDomain);
+        $domainUrl = (string)Url::fromValue((string)$dynamicLinksDomain);
 
         $service = self::withApiClient($apiClient);
         $service->defaultDynamicLinksDomain = $domainUrl;
@@ -106,7 +106,7 @@ final class DynamicLinks implements Contract\DynamicLinks
             return $actionOrParametersOrUrl;
         }
 
-        return CreateDynamicLink::forUrl((string) $actionOrParametersOrUrl);
+        return CreateDynamicLink::forUrl((string)$actionOrParametersOrUrl);
     }
 
     /**
@@ -122,7 +122,7 @@ final class DynamicLinks implements Contract\DynamicLinks
             return $actionOrParametersOrUrl;
         }
 
-        return ShortenLongDynamicLink::forLongDynamicLink((string) $actionOrParametersOrUrl);
+        return ShortenLongDynamicLink::forLongDynamicLink((string)$actionOrParametersOrUrl);
     }
 
     /**
@@ -134,6 +134,6 @@ final class DynamicLinks implements Contract\DynamicLinks
             return $actionOrUrl;
         }
 
-        return GetStatisticsForDynamicLink::forLink((string) $actionOrUrl);
+        return GetStatisticsForDynamicLink::forLink((string)$actionOrUrl);
     }
 }

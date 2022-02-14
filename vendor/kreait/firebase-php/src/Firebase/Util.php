@@ -14,7 +14,7 @@ final class Util
         $value = $_SERVER[$name] ?? $_ENV[$name] ?? \getenv($name);
 
         if ($value !== false && $value !== null) {
-            return (string) $value;
+            return (string)$value;
         }
 
         return null;

@@ -62,7 +62,7 @@ class ReadStream implements StreamInterface
     {
         foreach ($this->stream->getMetadata('wrapper_data') as $value) {
             if (substr($value, 0, 15) == "Content-Length:") {
-                return (int) substr($value, 16);
+                return (int)substr($value, 16);
             }
         }
         return 0;
@@ -75,7 +75,7 @@ class ReadStream implements StreamInterface
      * we try to read large chunks from a user-land stream that does not
      * return enough bytes.
      *
-     * @param  int $length The number of bytes to read.
+     * @param int $length The number of bytes to read.
      * @return string Read bytes from the underlying stream.
      */
     public function read($length)

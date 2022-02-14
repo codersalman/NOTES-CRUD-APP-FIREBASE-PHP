@@ -1,4 +1,5 @@
 <?php
+
 namespace JmesPath;
 
 /**
@@ -42,7 +43,7 @@ class CompilerRuntime
      * expression.
      *
      * @param string $expression JMESPath expression to evaluate
-     * @param mixed  $data       Data to search. This data should be data that
+     * @param mixed $data Data to search. This data should be data that
      *                           is similar to data returned from json_decode
      *                           using associative arrays rather than objects.
      *

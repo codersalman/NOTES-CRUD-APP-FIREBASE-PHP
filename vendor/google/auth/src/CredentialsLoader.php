@@ -72,7 +72,7 @@ abstract class CredentialsLoader implements
         }
 
         if (defined('GuzzleHttp\ClientInterface::VERSION')) {
-            return (int) substr(ClientInterface::VERSION, 0, 1);
+            return (int)substr(ClientInterface::VERSION, 0, 1);
         }
 
         throw new \Exception('Version not supported');
@@ -145,7 +145,8 @@ abstract class CredentialsLoader implements
         $scope,
         array $jsonKey,
         $defaultScope = null
-    ) {
+    )
+    {
         if (!array_key_exists('type', $jsonKey)) {
             throw new \InvalidArgumentException('json key is missing the type field');
         }
@@ -174,10 +175,11 @@ abstract class CredentialsLoader implements
      */
     public static function makeHttpClient(
         FetchAuthTokenInterface $fetcher,
-        array $httpClientOptions = [],
-        callable $httpHandler = null,
-        callable $tokenCallback = null
-    ) {
+        array                   $httpClientOptions = [],
+        callable                $httpHandler = null,
+        callable                $tokenCallback = null
+    )
+    {
         if (self::getGuzzleMajorVersion() === 5) {
             $client = new \GuzzleHttp\Client($httpClientOptions);
             $client->setDefaultOption('auth', 'google_auth');
@@ -199,9 +201,9 @@ abstract class CredentialsLoader implements
         $stack->push($middleware);
 
         return new \GuzzleHttp\Client([
-            'handler' => $stack,
-            'auth' => 'google_auth',
-        ] + $httpClientOptions);
+                'handler' => $stack,
+                'auth' => 'google_auth',
+            ] + $httpClientOptions);
     }
 
     /**
@@ -237,7 +239,8 @@ abstract class CredentialsLoader implements
         $metadata,
         $authUri = null,
         callable $httpHandler = null
-    ) {
+    )
+    {
         if (isset($metadata[self::AUTH_METADATA_KEY])) {
             // Auth metadata has already been set
             return $metadata;
@@ -255,8 +258,8 @@ abstract class CredentialsLoader implements
     /**
      * Gets a callable which returns the default device certification.
      *
-     * @throws UnexpectedValueException
      * @return callable|null
+     * @throws UnexpectedValueException
      */
     public static function getDefaultClientCertSource()
     {

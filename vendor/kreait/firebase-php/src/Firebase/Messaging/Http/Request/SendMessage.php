@@ -22,11 +22,11 @@ final class SendMessage implements MessageRequest, RequestInterface
 
     public function __construct(string $projectId, Message $message, bool $validateOnly = false)
     {
-        $uri = Utils::uriFor('https://fcm.googleapis.com/v1/projects/'.$projectId.'/messages:send');
+        $uri = Utils::uriFor('https://fcm.googleapis.com/v1/projects/' . $projectId . '/messages:send');
         $body = Utils::streamFor(JSON::encode(['message' => $message, 'validate_only' => $validateOnly]));
         $headers = [
             'Content-Type' => 'application/json; charset=UTF-8',
-            'Content-Length' => (string) $body->getSize(),
+            'Content-Length' => (string)$body->getSize(),
         ];
 
         $this->wrappedRequest = new Request('POST', $uri, $headers, $body);

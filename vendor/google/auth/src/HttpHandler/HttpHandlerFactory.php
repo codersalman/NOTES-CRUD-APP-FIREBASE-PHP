@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Auth\HttpHandler;
 
 use GuzzleHttp\Client;
@@ -36,7 +37,7 @@ class HttpHandlerFactory
         if (defined('GuzzleHttp\ClientInterface::MAJOR_VERSION')) {
             $version = ClientInterface::MAJOR_VERSION;
         } elseif (defined('GuzzleHttp\ClientInterface::VERSION')) {
-            $version = (int) substr(ClientInterface::VERSION, 0, 1);
+            $version = (int)substr(ClientInterface::VERSION, 0, 1);
         }
 
         switch ($version) {

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Cloud\Core\Logger;
 
 use Monolog\Formatter\FormatterInterface;
@@ -44,7 +45,8 @@ class AppEngineFlexHandlerV2 extends StreamHandler
         $filePermission = 0640,
         $useLocking = false,
         $stream = null
-    ) {
+    )
+    {
         if ($stream === null) {
             $pid = getmypid();
             $stream = "file:///var/log/app_engine/app.$pid.json";

@@ -20,7 +20,7 @@ final class VersionNumber implements \JsonSerializable
      */
     public static function fromValue($value): self
     {
-        $valueString = (string) $value;
+        $valueString = (string)$value;
 
         if (!\ctype_digit($valueString)) {
             throw new InvalidArgumentException('A version number should only consist of digits');
@@ -44,6 +44,6 @@ final class VersionNumber implements \JsonSerializable
      */
     public function equalsTo($other): bool
     {
-        return $this->value === (string) $other;
+        return $this->value === (string)$other;
     }
 }

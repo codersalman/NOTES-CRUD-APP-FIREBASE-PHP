@@ -16,9 +16,9 @@ final class QuotaExceeded extends RuntimeException implements MessagingException
     private ?DateTimeImmutable $retryAfter = null;
 
     /**
+     * @param string[] $errors
      * @internal
      *
-     * @param string[] $errors
      */
     public function withErrors(array $errors): self
     {

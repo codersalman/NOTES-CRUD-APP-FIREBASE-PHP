@@ -52,7 +52,7 @@ class FlockLock implements LockInterface
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type bool $exclusive If true, acquire an excluse (write) lock. If
+     * @type bool $exclusive If true, acquire an excluse (write) lock. If
      *           false, acquire a shared (read) lock. **Defaults to** true.
      * }
      * @throws \InvalidArgumentException If an invalid fileName is provided.
@@ -81,7 +81,7 @@ class FlockLock implements LockInterface
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type bool $blocking Whether the process should block while waiting
+     * @type bool $blocking Whether the process should block while waiting
      *           to acquire the lock. **Defaults to** true.
      * }
      * @return bool

@@ -6,12 +6,12 @@
 
 * [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-storage/latest)
 
-**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
-support requests, bug reports, or development contributions should be directed to
-that project.
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any support
+requests, bug reports, or development contributions should be directed to that project.
 
 Allows world-wide storage and retrieval of any amount of data at any time. You can use Cloud Storage for a range of
-scenarios including serving website content, storing data for archival and disaster recovery, or distributing large data objects to users via direct download.
+scenarios including serving website content, storing data for archival and disaster recovery, or distributing large data
+objects to users via direct download.
 
 ### Installation
 
@@ -31,8 +31,8 @@ $ composer require google/cloud
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
-on authenticating your client. Once authenticated, you'll be ready to start making requests.
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for
+more information on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
 
@@ -85,4 +85,5 @@ any minor or patch releases. We will address issues and requests with the highes
 ### Next Steps
 
 1. Understand the [official documentation](https://cloud.google.com/storage/docs).
-2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/storage/).
+2. Take a look at [in-depth usage samples](https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/storage/)
+   .

@@ -58,9 +58,9 @@ class ProcessHandler extends AbstractProcessingHandler
     ];
 
     /**
-     * @param  string                    $command Command for the process to start. Absolute paths are recommended,
+     * @param string $command Command for the process to start. Absolute paths are recommended,
      *                                            especially if you do not use the $cwd parameter.
-     * @param  string|null               $cwd     "Current working directory" (CWD) for the process to be executed in.
+     * @param string|null $cwd "Current working directory" (CWD) for the process to be executed in.
      * @throws \InvalidArgumentException
      */
     public function __construct(string $command, $level = Logger::DEBUG, bool $bubble = true, ?string $cwd = null)
@@ -162,7 +162,7 @@ class ProcessHandler extends AbstractProcessingHandler
      */
     protected function readProcessErrors(): string
     {
-        return (string) stream_get_contents($this->pipes[2]);
+        return (string)stream_get_contents($this->pipes[2]);
     }
 
     /**

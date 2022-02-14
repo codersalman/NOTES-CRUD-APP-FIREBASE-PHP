@@ -47,6 +47,7 @@ trait EmulatorTrait
             ]
         ];
     }
+
     /**
      * Retrieve a valid base uri for a service emulator.
      *

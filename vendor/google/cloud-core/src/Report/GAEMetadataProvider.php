@@ -44,7 +44,7 @@ abstract class GAEMetadataProvider implements MetadataProviderInterface
             : 'unknown-version';
         $labels = isset($server['HTTP_X_CLOUD_TRACE_CONTEXT'])
             ? ['appengine.googleapis.com/trace_id' =>
-               $this->getTraceValue($server)]
+                $this->getTraceValue($server)]
             : [];
         $this->data =
             [

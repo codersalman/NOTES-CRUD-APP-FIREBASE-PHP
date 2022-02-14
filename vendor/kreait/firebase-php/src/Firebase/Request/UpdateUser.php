@@ -45,7 +45,7 @@ final class UpdateUser implements Request
         $request = self::withEditableProperties(new self(), $properties);
 
         foreach ($properties as $key => $value) {
-            switch (\mb_strtolower((string) \preg_replace('/[^a-z]/i', '', $key))) {
+            switch (\mb_strtolower((string)\preg_replace('/[^a-z]/i', '', $key))) {
                 case 'deletephoto':
                 case 'deletephotourl':
                 case 'removephoto':
@@ -65,7 +65,7 @@ final class UpdateUser implements Request
                     break;
                 case 'deleteattribute':
                 case 'deleteattributes':
-                    foreach ((array) $value as $deleteAttribute) {
+                    foreach ((array)$value as $deleteAttribute) {
                         switch (\mb_strtolower(\preg_replace('/[^a-z]/i', '', $deleteAttribute))) {
                             case 'displayname':
                                 $request = $request->withRemovedDisplayName();
@@ -108,8 +108,8 @@ final class UpdateUser implements Request
                 case 'removeprovider':
                 case 'removeproviders':
                     $request = \array_reduce(
-                        (array) $value,
-                        static fn (self $request, $provider) => $request->withRemovedProvider($provider),
+                        (array)$value,
+                        static fn(self $request, $provider) => $request->withRemovedProvider($provider),
                         $request
                     );
 
@@ -134,7 +134,7 @@ final class UpdateUser implements Request
     public function withRemovedProvider($provider): self
     {
         $request = clone $this;
-        $request->providersToDelete[] = (string) $provider;
+        $request->providersToDelete[] = (string)$provider;
 
         return $request;
     }

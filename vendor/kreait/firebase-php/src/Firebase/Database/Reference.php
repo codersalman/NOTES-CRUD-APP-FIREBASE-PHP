@@ -25,9 +25,9 @@ class Reference
     private Validator $validator;
 
     /**
+     * @throws InvalidArgumentException if the reference URI is invalid
      * @internal
      *
-     * @throws InvalidArgumentException if the reference URI is invalid
      */
     public function __construct(UriInterface $uri, ApiClient $apiClient, ?Validator $validator = null)
     {
@@ -77,7 +77,7 @@ class Reference
             throw new OutOfRangeException('Cannot get parent of root reference');
         }
 
-        return new self($this->uri->withPath('/'.\ltrim($parentPath, '/')), $this->apiClient, $this->validator);
+        return new self($this->uri->withPath('/' . \ltrim($parentPath, '/')), $this->apiClient, $this->validator);
     }
 
     /**
@@ -164,9 +164,9 @@ class Reference
     /**
      * Creates a Query with the specified starting point (inclusive).
      *
+     * @param scalar $value
      * @see Query::startAt()
      *
-     * @param scalar $value
      */
     public function startAt($value): Query
     {
@@ -176,9 +176,9 @@ class Reference
     /**
      * Creates a Query with the specified starting point (exclusive).
      *
+     * @param scalar $value
      * @see Query::startAfter()
      *
-     * @param scalar $value
      */
     public function startAfter($value): Query
     {
@@ -188,9 +188,9 @@ class Reference
     /**
      * Creates a Query with the specified ending point (inclusive).
      *
+     * @param scalar $value
      * @see Query::endAt()
      *
-     * @param scalar $value
      */
     public function endAt($value): Query
     {
@@ -200,9 +200,9 @@ class Reference
     /**
      * Creates a Query with the specified ending point (exclusive).
      *
+     * @param scalar $value
      * @see Query::endBefore()
      *
-     * @param scalar $value
      */
     public function endBefore($value): Query
     {
@@ -212,9 +212,9 @@ class Reference
     /**
      * Creates a Query which includes children which match the specified value.
      *
+     * @param scalar $value
      * @see Query::equalTo()
      *
-     * @param scalar $value
      */
     public function equalTo($value): Query
     {
@@ -234,10 +234,10 @@ class Reference
     /**
      * Returns the keys of a reference's children.
      *
-     * @throws OutOfRangeException if the reference has no children with keys
+     * @return string[]
      * @throws DatabaseException if the API reported an error
      *
-     * @return string[]
+     * @throws OutOfRangeException if the reference has no children with keys
      */
     public function getChildKeys(): array
     {
@@ -253,9 +253,9 @@ class Reference
     /**
      * Convenience method for {@see getSnapshot()}->getValue().
      *
+     * @return mixed
      * @throws DatabaseException if the API reported an error
      *
-     * @return mixed
      */
     public function getValue()
     {
@@ -413,7 +413,7 @@ class Reference
      */
     public function __toString(): string
     {
-        return (string) $this->getUri();
+        return (string)$this->getUri();
     }
 
     /**

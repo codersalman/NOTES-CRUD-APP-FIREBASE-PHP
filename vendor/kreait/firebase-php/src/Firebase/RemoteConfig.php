@@ -40,8 +40,7 @@ final class RemoteConfig implements Contract\RemoteConfig
     {
         $etag = $this->client
             ->publishTemplate($this->ensureTemplate($template))
-            ->getHeader('ETag')
-        ;
+            ->getHeader('ETag');
 
         return \array_shift($etag) ?: '';
     }
@@ -68,16 +67,16 @@ final class RemoteConfig implements Contract\RemoteConfig
 
     public function listVersions($query = null): Traversable
     {
-        $query = $query instanceof FindVersions ? $query : FindVersions::fromArray((array) $query);
+        $query = $query instanceof FindVersions ? $query : FindVersions::fromArray((array)$query);
         $pageToken = null;
         $count = 0;
         $limit = $query->limit();
 
         do {
             $response = $this->client->listVersions($query, $pageToken);
-            $result = JSON::decode((string) $response->getBody(), true);
+            $result = JSON::decode((string)$response->getBody(), true);
 
-            foreach ((array) ($result['versions'] ?? []) as $versionData) {
+            foreach ((array)($result['versions'] ?? []) as $versionData) {
                 ++$count;
                 yield Version::fromArray($versionData);
 
@@ -111,7 +110,7 @@ final class RemoteConfig implements Contract\RemoteConfig
         $etagHeader = $response->getHeader('ETag');
         $etag = \array_shift($etagHeader) ?: '*';
 
-        $data = JSON::decode((string) $response->getBody(), true);
+        $data = JSON::decode((string)$response->getBody(), true);
 
         return Template::fromArray($data, $etag);
     }

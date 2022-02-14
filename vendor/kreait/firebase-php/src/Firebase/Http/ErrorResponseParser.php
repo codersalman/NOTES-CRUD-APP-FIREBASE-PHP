@@ -15,7 +15,7 @@ final class ErrorResponseParser
 {
     public function getErrorReasonFromResponse(ResponseInterface $response): string
     {
-        $responseBody = (string) $response->getBody();
+        $responseBody = (string)$response->getBody();
 
         try {
             $data = JSON::decode($responseBody, true);
@@ -40,7 +40,7 @@ final class ErrorResponseParser
     public function getErrorsFromResponse(ResponseInterface $response): array
     {
         try {
-            return JSON::decode((string) $response->getBody(), true);
+            return JSON::decode((string)$response->getBody(), true);
         } catch (InvalidArgumentException $e) {
             return [];
         }

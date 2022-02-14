@@ -21,7 +21,7 @@ final class FailedToSendActionLink extends RuntimeException implements FirebaseE
         $fallbackMessage = 'Failed to send action link';
 
         try {
-            $message = JSON::decode((string) $response->getBody(), true)['error']['message'] ?? $fallbackMessage;
+            $message = JSON::decode((string)$response->getBody(), true)['error']['message'] ?? $fallbackMessage;
         } catch (InvalidArgumentException $e) {
             $message = $fallbackMessage;
         }

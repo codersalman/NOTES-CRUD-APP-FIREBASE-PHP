@@ -22,7 +22,7 @@ final class FailedToSignIn extends RuntimeException implements FirebaseException
         $fallbackMessage = 'Failed to sign in';
 
         try {
-            $message = JSON::decode((string) $response->getBody(), true)['error']['message'] ?? $fallbackMessage;
+            $message = JSON::decode((string)$response->getBody(), true)['error']['message'] ?? $fallbackMessage;
         } catch (InvalidArgumentException $e) {
             $message = $fallbackMessage;
         }
@@ -36,7 +36,7 @@ final class FailedToSignIn extends RuntimeException implements FirebaseException
 
     public static function fromPrevious(Throwable $e): self
     {
-        return new self('Sign in failed: '.$e->getMessage(), $e->getCode(), $e);
+        return new self('Sign in failed: ' . $e->getMessage(), $e->getCode(), $e);
     }
 
     public function action(): ?SignIn

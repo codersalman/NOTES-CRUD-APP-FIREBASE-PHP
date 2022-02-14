@@ -17,9 +17,6 @@
 
 namespace Google\CRC32;
 
-use Google\CRC32\CRC32;
-use Google\CRC32\CRCInterface;
-
 /**
  * A CRC32 implementation using hardware acceleration.
  *

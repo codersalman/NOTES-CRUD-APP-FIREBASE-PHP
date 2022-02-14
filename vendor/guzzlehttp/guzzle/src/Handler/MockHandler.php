@@ -48,9 +48,9 @@ class MockHandler implements \Countable
      * Creates a new MockHandler that uses the default handler stack list of
      * middlewares.
      *
-     * @param array|null    $queue       Array of responses, callables, or exceptions.
+     * @param array|null $queue Array of responses, callables, or exceptions.
      * @param callable|null $onFulfilled Callback to invoke when the return value is fulfilled.
-     * @param callable|null $onRejected  Callback to invoke when the return value is rejected.
+     * @param callable|null $onRejected Callback to invoke when the return value is rejected.
      */
     public static function createWithMiddleware(array $queue = null, callable $onFulfilled = null, callable $onRejected = null): HandlerStack
     {
@@ -62,9 +62,9 @@ class MockHandler implements \Countable
      * {@see \Psr\Http\Message\ResponseInterface} objects, Exceptions,
      * callables, or Promises.
      *
-     * @param array<int, mixed>|null $queue       The parameters to be passed to the append function, as an indexed array.
-     * @param callable|null          $onFulfilled Callback to invoke when the return value is fulfilled.
-     * @param callable|null          $onRejected  Callback to invoke when the return value is rejected.
+     * @param array<int, mixed>|null $queue The parameters to be passed to the append function, as an indexed array.
+     * @param callable|null $onFulfilled Callback to invoke when the return value is fulfilled.
+     * @param callable|null $onRejected Callback to invoke when the return value is rejected.
      */
     public function __construct(array $queue = null, callable $onFulfilled = null, callable $onRejected = null)
     {
@@ -84,7 +84,7 @@ class MockHandler implements \Countable
         }
 
         if (isset($options['delay']) && \is_numeric($options['delay'])) {
-            \usleep((int) $options['delay'] * 1000);
+            \usleep((int)$options['delay'] * 1000);
         }
 
         $this->lastRequest = $request;
@@ -119,7 +119,7 @@ class MockHandler implements \Countable
                 }
 
                 if ($value !== null && isset($options['sink'])) {
-                    $contents = (string) $value->getBody();
+                    $contents = (string)$value->getBody();
                     $sink = $options['sink'];
 
                     if (\is_resource($sink)) {
@@ -197,11 +197,12 @@ class MockHandler implements \Countable
      * @param mixed $reason Promise or reason.
      */
     private function invokeStats(
-        RequestInterface $request,
-        array $options,
+        RequestInterface  $request,
+        array             $options,
         ResponseInterface $response = null,
-        $reason = null
-    ): void {
+                          $reason = null
+    ): void
+    {
         if (isset($options['on_stats'])) {
             $transferTime = $options['transfer_time'] ?? 0;
             $stats = new TransferStats($request, $response, $transferTime, $reason);

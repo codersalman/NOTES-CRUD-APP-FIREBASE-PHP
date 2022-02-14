@@ -97,11 +97,11 @@ final class Utils
      *
      * Returns an array of inspection state arrays.
      *
-     * @see inspect for the inspection state array format.
-     *
      * @param PromiseInterface[] $promises Traversable of promises to wait upon.
      *
      * @return array
+     * @see inspect for the inspection state array format.
+     *
      */
     public static function inspectAll($promises)
     {
@@ -145,8 +145,8 @@ final class Utils
      * respective positions to the original array. If any promise in the array
      * rejects, the returned promise is rejected with the rejection reason.
      *
-     * @param mixed $promises  Promises or values.
-     * @param bool  $recursive If true, resolves new promises that might have been added to the stack during its own resolution.
+     * @param mixed $promises Promises or values.
+     * @param bool $recursive If true, resolves new promises that might have been added to the stack during its own resolution.
      *
      * @return PromiseInterface
      */
@@ -191,7 +191,7 @@ final class Utils
      * This promise is rejected with a {@see AggregateException} if the number
      * of fulfilled promises is less than the desired $count.
      *
-     * @param int   $count    Total number of promises.
+     * @param int $count Total number of promises.
      * @param mixed $promises Promises or values.
      *
      * @return PromiseInterface
@@ -250,11 +250,11 @@ final class Utils
      *
      * The returned promise is fulfilled with an array of inspection state arrays.
      *
-     * @see inspect for the inspection state array format.
-     *
      * @param mixed $promises Promises or values.
      *
      * @return PromiseInterface
+     * @see inspect for the inspection state array format.
+     *
      */
     public static function settle($promises)
     {

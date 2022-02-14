@@ -4,7 +4,8 @@
 
 ## What is Riverline\MultiPartParser
 
-``Riverline\MultiPartParse`` is a one class library to parse multipart document ( multipart email, multipart form, etc ...) 
+``Riverline\MultiPartParse`` is a one class library to parse multipart document ( multipart email, multipart form, etc
+...)
 and manage each part encoding and charset to extract their content.
 
 ## Requirements
@@ -94,5 +95,5 @@ $document = Converters\Globals::convert();
 
 ## Backward compatibility
 
-The old `Part` parser is now deprecated and replaced with a wrapper class that create a temporary stream
-from the string content and call the new `StreamedPart` parser.
+The old `Part` parser is now deprecated and replaced with a wrapper class that create a temporary stream from the string
+content and call the new `StreamedPart` parser.

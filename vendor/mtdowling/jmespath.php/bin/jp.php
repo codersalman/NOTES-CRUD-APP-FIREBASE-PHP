@@ -11,8 +11,8 @@ if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
     throw new RuntimeException('Unable to locate autoload.php file.');
 }
 
-use JmesPath\Env;
 use JmesPath\DebugRuntime;
+use JmesPath\Env;
 
 $description = <<<EOT
 Runs a JMESPath expression on the provided input or a test case.

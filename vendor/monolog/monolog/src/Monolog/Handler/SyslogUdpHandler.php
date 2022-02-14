@@ -12,8 +12,8 @@
 namespace Monolog\Handler;
 
 use DateTimeInterface;
-use Monolog\Logger;
 use Monolog\Handler\SyslogUdp\UdpSocket;
+use Monolog\Logger;
 use Monolog\Utils;
 
 /**
@@ -43,12 +43,12 @@ class SyslogUdpHandler extends AbstractSyslogHandler
     protected $rfc;
 
     /**
-     * @param string     $host     Either IP/hostname or a path to a unix socket (port must be 0 then)
-     * @param int        $port     Port number, or 0 if $host is a unix socket
+     * @param string $host Either IP/hostname or a path to a unix socket (port must be 0 then)
+     * @param int $port Port number, or 0 if $host is a unix socket
      * @param string|int $facility Either one of the names of the keys in $this->facilities, or a LOG_* facility constant
-     * @param bool       $bubble   Whether the messages that are handled can bubble up the stack or not
-     * @param string     $ident    Program name or tag for each log message.
-     * @param int        $rfc      RFC to format the message for.
+     * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
+     * @param string $ident Program name or tag for each log message.
+     * @param int $rfc RFC to format the message for.
      * @throws MissingExtensionException
      *
      * @phpstan-param self::RFC* $rfc
@@ -84,7 +84,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
     }
 
     /**
-     * @param  string|string[] $message
+     * @param string|string[] $message
      * @return string[]
      */
     private function splitMessageIntoLines($message): array
@@ -93,7 +93,7 @@ class SyslogUdpHandler extends AbstractSyslogHandler
             $message = implode("\n", $message);
         }
 
-        $lines = preg_split('/$\R?^/m', (string) $message, -1, PREG_SPLIT_NO_EMPTY);
+        $lines = preg_split('/$\R?^/m', (string)$message, -1, PREG_SPLIT_NO_EMPTY);
         if (false === $lines) {
             $pcreErrorCode = preg_last_error();
             throw new \RuntimeException('Could not preg_split: ' . $pcreErrorCode . ' / ' . Utils::pcreLastErrorMessage($pcreErrorCode));

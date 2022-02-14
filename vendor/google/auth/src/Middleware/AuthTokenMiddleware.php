@@ -58,9 +58,10 @@ class AuthTokenMiddleware
      */
     public function __construct(
         FetchAuthTokenInterface $fetcher,
-        callable $httpHandler = null,
-        callable $tokenCallback = null
-    ) {
+        callable                $httpHandler = null,
+        callable                $tokenCallback = null
+    )
+    {
         $this->fetcher = $fetcher;
         $this->httpHandler = $httpHandler;
         $this->tokenCallback = $tokenCallback;

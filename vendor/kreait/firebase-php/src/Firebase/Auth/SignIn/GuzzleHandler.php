@@ -58,7 +58,7 @@ final class GuzzleHandler implements Handler
         }
 
         try {
-            $data = JSON::decode((string) $response->getBody(), true);
+            $data = JSON::decode((string)$response->getBody(), true);
         } catch (\InvalidArgumentException $e) {
             throw FailedToSignIn::fromPrevious($e);
         }
@@ -82,7 +82,7 @@ final class GuzzleHandler implements Handler
             case $action instanceof SignInWithRefreshToken:
                 return $this->refreshToken($action);
             default:
-                throw new FailedToSignIn(self::class.' does not support '.\get_class($action));
+                throw new FailedToSignIn(self::class . ' does not support ' . \get_class($action));
         }
     }
 

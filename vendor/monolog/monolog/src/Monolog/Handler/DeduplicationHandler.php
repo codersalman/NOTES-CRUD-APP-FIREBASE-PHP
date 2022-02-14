@@ -61,11 +61,11 @@ class DeduplicationHandler extends BufferHandler
     private $gc = false;
 
     /**
-     * @param HandlerInterface $handler            Handler.
-     * @param string           $deduplicationStore The file/path where the deduplication log should be kept
-     * @param string|int       $deduplicationLevel The minimum logging level for log records to be looked at for deduplication purposes
-     * @param int              $time               The period (in seconds) during which duplicate entries should be suppressed after a given log is sent through
-     * @param bool             $bubble             Whether the messages that are handled can bubble up the stack or not
+     * @param HandlerInterface $handler Handler.
+     * @param string $deduplicationStore The file/path where the deduplication log should be kept
+     * @param string|int $deduplicationLevel The minimum logging level for log records to be looked at for deduplication purposes
+     * @param int $time The period (in seconds) during which duplicate entries should be suppressed after a given log is sent through
+     * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
      *
      * @phpstan-param Level|LevelName|LogLevel::* $deduplicationLevel
      */
@@ -73,7 +73,7 @@ class DeduplicationHandler extends BufferHandler
     {
         parent::__construct($handler, 0, Logger::DEBUG, $bubble, false);
 
-        $this->deduplicationStore = $deduplicationStore === null ? sys_get_temp_dir() . '/monolog-dedup-' . substr(md5(__FILE__), 0, 20) .'.log' : $deduplicationStore;
+        $this->deduplicationStore = $deduplicationStore === null ? sys_get_temp_dir() . '/monolog-dedup-' . substr(md5(__FILE__), 0, 20) . '.log' : $deduplicationStore;
         $this->deduplicationLevel = Logger::toMonologLevel($deduplicationLevel);
         $this->time = $time;
     }

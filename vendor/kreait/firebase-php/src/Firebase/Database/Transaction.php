@@ -29,7 +29,7 @@ class Transaction
      */
     public function snapshot(Reference $reference): Snapshot
     {
-        $uri = (string) $reference->getUri();
+        $uri = (string)$reference->getUri();
 
         $result = $this->apiClient->getWithETag($uri);
 
@@ -75,7 +75,7 @@ class Transaction
      */
     private function getEtagForReference(Reference $reference): string
     {
-        $uri = (string) $reference->getUri();
+        $uri = (string)$reference->getUri();
 
         if (\array_key_exists($uri, $this->etags)) {
             return $this->etags[$uri];

@@ -56,7 +56,7 @@ class BatchDaemon
      */
     public function __construct($entrypoint)
     {
-        if (! $this->isSysvIPCLoaded()) {
+        if (!$this->isSysvIPCLoaded()) {
             throw new \RuntimeException('SystemV IPC extensions are missing.');
         }
         $this->runner = new BatchRunner(
@@ -88,7 +88,7 @@ class BatchDaemon
         while (true) {
             $jobs = $this->runner->getJobs();
             foreach ($jobs as $job) {
-                if (! array_key_exists($job->identifier(), $procs)) {
+                if (!array_key_exists($job->identifier(), $procs)) {
                     $procs[$job->identifier()] = [];
                 }
                 while (count($procs[$job->identifier()]) > $job->numWorkers()) {

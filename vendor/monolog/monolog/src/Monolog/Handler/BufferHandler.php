@@ -11,9 +11,9 @@
 
 namespace Monolog\Handler;
 
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Logger;
 use Monolog\ResettableInterface;
-use Monolog\Formatter\FormatterInterface;
 
 /**
  * Buffers all records until closing the handler and then pass them as batch.
@@ -43,9 +43,9 @@ class BufferHandler extends AbstractHandler implements ProcessableHandlerInterfa
     protected $initialized = false;
 
     /**
-     * @param HandlerInterface $handler         Handler.
-     * @param int              $bufferLimit     How many entries should be buffered at most, beyond that the oldest items are removed from the buffer.
-     * @param bool             $flushOnOverflow If true, the buffer is flushed when the max size has been reached, by default oldest entries are discarded
+     * @param HandlerInterface $handler Handler.
+     * @param int $bufferLimit How many entries should be buffered at most, beyond that the oldest items are removed from the buffer.
+     * @param bool $flushOnOverflow If true, the buffer is flushed when the max size has been reached, by default oldest entries are discarded
      */
     public function __construct(HandlerInterface $handler, int $bufferLimit = 0, $level = Logger::DEBUG, bool $bubble = true, bool $flushOnOverflow = false)
     {
@@ -150,7 +150,7 @@ class BufferHandler extends AbstractHandler implements ProcessableHandlerInterfa
             return $this;
         }
 
-        throw new \UnexpectedValueException('The nested handler of type '.get_class($this->handler).' does not support formatters.');
+        throw new \UnexpectedValueException('The nested handler of type ' . get_class($this->handler) . ' does not support formatters.');
     }
 
     /**
@@ -162,6 +162,6 @@ class BufferHandler extends AbstractHandler implements ProcessableHandlerInterfa
             return $this->handler->getFormatter();
         }
 
-        throw new \UnexpectedValueException('The nested handler of type '.get_class($this->handler).' does not support formatters.');
+        throw new \UnexpectedValueException('The nested handler of type ' . get_class($this->handler) . ' does not support formatters.');
     }
 }

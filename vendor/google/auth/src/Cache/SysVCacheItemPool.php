@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\Auth\Cache;
 
 use Psr\Cache\CacheItemInterface;
@@ -63,28 +64,28 @@ class SysVCacheItemPool implements CacheItemPoolInterface
      * Create a SystemV shared memory based CacheItemPool.
      *
      * @param array $options [optional] Configuration options.
-     * @param int $options.variableKey The variable key for getting the data from
+     * @param int $options .variableKey The variable key for getting the data from
      *        the shared memory. **Defaults to** 1.
-     * @param $options.proj string The project identifier for ftok. This needs to
+     * @param $options .proj string The project identifier for ftok. This needs to
      *        be a one character string. **Defaults to** 'A'.
-     * @param $options.memsize int The memory size in bytes for shm_attach.
+     * @param $options .memsize int The memory size in bytes for shm_attach.
      *        **Defaults to** 10000.
-     * @param $options.perm int The permission for shm_attach. **Defaults to**
+     * @param $options .perm int The permission for shm_attach. **Defaults to**
      *        0600.
      */
     public function __construct($options = [])
     {
-        if (! extension_loaded('sysvshm')) {
+        if (!extension_loaded('sysvshm')) {
             throw new \RuntimeException(
                 'sysvshm extension is required to use this ItemPool'
             );
         }
         $this->options = $options + [
-            'variableKey' => self::VAR_KEY,
-            'proj' => self::DEFAULT_PROJ,
-            'memsize' => self::DEFAULT_MEMSIZE,
-            'perm' => self::DEFAULT_PERM
-        ];
+                'variableKey' => self::VAR_KEY,
+                'proj' => self::DEFAULT_PROJ,
+                'memsize' => self::DEFAULT_MEMSIZE,
+                'perm' => self::DEFAULT_PERM
+            ];
         $this->items = [];
         $this->deferredItems = [];
         $this->sysvKey = ftok(__FILE__, $this->options['proj']);

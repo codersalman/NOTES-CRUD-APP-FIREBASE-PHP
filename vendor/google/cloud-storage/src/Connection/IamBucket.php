@@ -30,7 +30,7 @@ class IamBucket implements IamConnectionInterface
     private $connection;
 
     /**
-     * @param  ConnectionInterface $connection
+     * @param ConnectionInterface $connection
      */
     public function __construct(ConnectionInterface $connection)
     {
@@ -38,7 +38,7 @@ class IamBucket implements IamConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function getPolicy(array $args)
     {
@@ -51,7 +51,7 @@ class IamBucket implements IamConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function setPolicy(array $args)
     {
@@ -60,7 +60,7 @@ class IamBucket implements IamConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function testPermissions(array $args)
     {

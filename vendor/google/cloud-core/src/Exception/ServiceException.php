@@ -47,7 +47,8 @@ class ServiceException extends GoogleException
         $code = null,
         Exception $serviceException = null,
         array $metadata = []
-    ) {
+    )
+    {
         $this->serviceException = $serviceException;
         $this->metadata = $metadata;
 
@@ -61,7 +62,7 @@ class ServiceException extends GoogleException
      */
     public function hasServiceException()
     {
-        return (bool) $this->serviceException;
+        return (bool)$this->serviceException;
     }
 
     /**

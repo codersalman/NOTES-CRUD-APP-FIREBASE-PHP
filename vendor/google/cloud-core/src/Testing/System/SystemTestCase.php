@@ -24,7 +24,6 @@ use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Core\Testing\System\DeletionQueue;
 use PHPUnit\Framework\TestCase;
 
 /**

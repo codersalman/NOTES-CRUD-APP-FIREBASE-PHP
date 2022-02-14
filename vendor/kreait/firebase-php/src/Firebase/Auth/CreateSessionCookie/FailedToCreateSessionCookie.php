@@ -31,7 +31,7 @@ final class FailedToCreateSessionCookie extends \RuntimeException implements Fir
         $fallbackMessage = 'Failed to create session cookie';
 
         try {
-            $message = JSON::decode((string) $response->getBody(), true)['error']['message'] ?? $fallbackMessage;
+            $message = JSON::decode((string)$response->getBody(), true)['error']['message'] ?? $fallbackMessage;
         } catch (\InvalidArgumentException $e) {
             $message = $fallbackMessage;
         }

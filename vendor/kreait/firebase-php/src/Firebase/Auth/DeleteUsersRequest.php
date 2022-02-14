@@ -35,11 +35,11 @@ final class DeleteUsersRequest
         $count = 0;
 
         foreach ($uids as $uid) {
-            $validatedUids[] = (string) (new Uid((string) $uid));
+            $validatedUids[] = (string)(new Uid((string)$uid));
             ++$count;
 
             if ($count > self::MAX_BATCH_SIZE) {
-                throw new InvalidArgumentException('Only '.self::MAX_BATCH_SIZE.' users can be deleted at a time');
+                throw new InvalidArgumentException('Only ' . self::MAX_BATCH_SIZE . ' users can be deleted at a time');
             }
         }
 

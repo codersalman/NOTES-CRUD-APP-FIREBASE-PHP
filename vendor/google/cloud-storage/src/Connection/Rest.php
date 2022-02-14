@@ -25,7 +25,6 @@ use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Core\UriTrait;
-use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\CRC32\Builtin;
 use Google\CRC32\CRC32;
@@ -363,7 +362,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function getBucketIamPolicy(array $args)
     {
@@ -371,7 +370,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function setBucketIamPolicy(array $args)
     {
@@ -379,7 +378,7 @@ class Rest implements ConnectionInterface
     }
 
     /**
-     * @param  array $args
+     * @param array $args
      */
     public function testBucketIamPermissions(array $args)
     {

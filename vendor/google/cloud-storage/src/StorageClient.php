@@ -64,32 +64,32 @@ class StorageClient
      * @param array $config [optional] {
      *     Configuration options.
      *
-     *     @type string $apiEndpoint The hostname with optional port to use in
+     * @type string $apiEndpoint The hostname with optional port to use in
      *           place of the default service endpoint. Example:
      *           `foobar.com` or `foobar.com:1234`.
-     *     @type string $projectId The project ID from the Google Developer's
+     * @type string $projectId The project ID from the Google Developer's
      *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache used storing access
+     * @type CacheItemPoolInterface $authCache A cache used storing access
      *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
+     * @type array $authCacheOptions Cache configuration options.
+     * @type callable $authHttpHandler A handler used to deliver Psr7
      *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
+     * @type FetchAuthTokenInterface $credentialsFetcher A credentials
      *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
+     * @type callable $httpHandler A handler used to deliver Psr7 requests.
      *           Only valid for requests sent over REST.
-     *     @type array $keyFile The contents of the service account credentials
+     * @type array $keyFile The contents of the service account credentials
      *           .json file retrieved from the Google Developer's Console.
      *           Ex: `json_decode(file_get_contents($path), true)`.
-     *     @type string $keyFilePath The full path to your service account
+     * @type string $keyFilePath The full path to your service account
      *           credentials .json file retrieved from the Google Developers
      *           Console.
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
+     * @type array $scopes Scopes to be used for the request.
+     * @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      * }
      */
@@ -103,8 +103,8 @@ class StorageClient
         }
 
         $this->connection = new Rest($this->configureAuthentication($config) + [
-            'projectId' => $this->projectId
-        ]);
+                'projectId' => $this->projectId
+            ]);
     }
 
     /**
@@ -167,20 +167,20 @@ class StorageClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type int $maxResults Maximum number of results to return per
+     * @type int $maxResults Maximum number of results to return per
      *           requested page.
-     *     @type int $resultLimit Limit the number of results returned in total.
+     * @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
-     *     @type string $pageToken A previously-returned page token used to
+     * @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
-     *     @type string $prefix Filter results with this prefix.
-     *     @type string $projection Determines which properties to return. May
+     * @type string $prefix Filter results with this prefix.
+     * @type string $projection Determines which properties to return. May
      *           be either 'full' or 'noAcl'.
-     *     @type string $fields Selector which will cause the response to only
+     * @type string $fields Selector which will cause the response to only
      *           return the specified fields.
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
-     *     @type bool $bucketUserProject If true, each returned instance will
+     * @type bool $bucketUserProject If true, each returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
      *           listBuckets operation. If `$options.userProject` is not set,
@@ -245,30 +245,30 @@ class StorageClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $predefinedAcl Predefined ACL to apply to the bucket.
+     * @type string $predefinedAcl Predefined ACL to apply to the bucket.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
      *           `"projectPrivate"`, and `"publicRead"`.
-     *     @type string $predefinedDefaultObjectAcl Apply a predefined set of
+     * @type string $predefinedDefaultObjectAcl Apply a predefined set of
      *           default object access controls to this bucket.
-     *     @type string $projection Determines which properties to return. May
+     * @type string $projection Determines which properties to return. May
      *           be either `"full"` or `"noAcl"`. **Defaults to** `"noAcl"`,
      *           unless the bucket resource specifies acl or defaultObjectAcl
      *           properties, when it defaults to `"full"`.
-     *     @type string $fields Selector which will cause the response to only
+     * @type string $fields Selector which will cause the response to only
      *           return the specified fields.
-     *     @type array $acl Access controls on the bucket.
-     *     @type array $cors The bucket's Cross-Origin Resource Sharing (CORS)
+     * @type array $acl Access controls on the bucket.
+     * @type array $cors The bucket's Cross-Origin Resource Sharing (CORS)
      *           configuration.
-     *     @type array $defaultObjectAcl Default access controls to apply to new
+     * @type array $defaultObjectAcl Default access controls to apply to new
      *           objects when no ACL is provided.
-     *     @type array|Lifecycle $lifecycle The bucket's lifecycle configuration.
-     *     @type string $location The location of the bucket. **Defaults to**
+     * @type array|Lifecycle $lifecycle The bucket's lifecycle configuration.
+     * @type string $location The location of the bucket. **Defaults to**
      *           `"US"`.
-     *     @type array $logging The bucket's logging configuration, which
+     * @type array $logging The bucket's logging configuration, which
      *           defines the destination bucket and optional name prefix for the
      *           current bucket's logs.
-     *     @type string $storageClass The bucket's storage class. This defines
+     * @type string $storageClass The bucket's storage class. This defines
      *           how objects in the bucket are stored and determines the SLA and
      *           the cost of storage. Acceptable values include the following
      *           strings: `"STANDARD"`, `"NEARLINE"`, `"COLDLINE"` and
@@ -278,44 +278,44 @@ class StorageClient
      *           more information, refer to the
      *           [Storage Classes](https://cloud.google.com/storage/docs/storage-classes)
      *           documentation. **Defaults to** `"STANDARD"`.
-     *     @type array $versioning The bucket's versioning configuration.
-     *     @type array $website The bucket's website configuration.
-     *     @type array $billing The bucket's billing configuration.
-     *     @type bool $billing.requesterPays When `true`, requests to this bucket
+     * @type array $versioning The bucket's versioning configuration.
+     * @type array $website The bucket's website configuration.
+     * @type array $billing The bucket's billing configuration.
+     * @type bool $billing .requesterPays When `true`, requests to this bucket
      *           and objects within it must provide a project ID to which the
      *           request will be billed.
-     *     @type array $labels The Bucket labels. Labels are represented as an
+     * @type array $labels The Bucket labels. Labels are represented as an
      *           array of keys and values. To remove an existing label, set its
      *           value to `null`.
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
-     *     @type bool $bucketUserProject If true, the returned instance will
+     * @type bool $bucketUserProject If true, the returned instance will
      *           have `$userProject` set to the value of `$options.userProject`.
      *           If false, `$options.userProject` will be used ONLY for the
      *           createBucket operation. If `$options.userProject` is not set,
      *           this option has no effect. **Defaults to** `true`.
-     *     @type array $encryption Encryption configuration used by default for
+     * @type array $encryption Encryption configuration used by default for
      *           newly inserted objects.
-     *     @type string $encryption.defaultKmsKeyName A Cloud KMS Key used to
+     * @type string $encryption .defaultKmsKeyName A Cloud KMS Key used to
      *           encrypt objects uploaded into this bucket. Should be in the
      *           format
      *           `projects/my-project/locations/kr-location/keyRings/my-kr/cryptoKeys/my-key`.
      *           Please note the KMS key ring must use the same location as the
      *           bucket.
-     *     @type bool $defaultEventBasedHold When `true`, newly created objects
+     * @type bool $defaultEventBasedHold When `true`, newly created objects
      *           in this bucket will be retained indefinitely until an event
      *           occurs, signified by the hold's release.
-     *     @type array $retentionPolicy Defines the retention policy for a
+     * @type array $retentionPolicy Defines the retention policy for a
      *           bucket. In order to lock a retention policy, please see
      *           {@see Google\Cloud\Storage\Bucket::lockRetentionPolicy()}.
-     *     @type int $retentionPolicy.retentionPeriod Specifies the retention
+     * @type int $retentionPolicy .retentionPeriod Specifies the retention
      *           period for objects in seconds. During the retention period an
      *           object cannot be overwritten or deleted. Retention period must
      *           be greater than zero and less than 100 years.
-     *     @type array $iamConfiguration The bucket's IAM configuration.
-     *     @type bool $iamConfiguration.bucketPolicyOnly.enabled this is an alias
+     * @type array $iamConfiguration The bucket's IAM configuration.
+     * @type bool $iamConfiguration .bucketPolicyOnly.enabled this is an alias
      *           for $iamConfiguration.uniformBucketLevelAccess.
-     *     @type bool $iamConfiguration.uniformBucketLevelAccess.enabled If set and
+     * @type bool $iamConfiguration .uniformBucketLevelAccess.enabled If set and
      *           true, access checks only use bucket-level IAM policies or
      *           above. When enabled, requests attempting to view or manipulate
      *           ACLs will fail with error code 400. **NOTE**: Before using
@@ -323,7 +323,7 @@ class StorageClient
      *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
-     *     @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
+     * @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
      *           The possible values are DEFAULT and ASYNC_TURBO. Trying to set the rpo for a non dual-region
      *           bucket will throw an exception. Non existence of this parameter is equivalent to it being DEFAULT.
      * }
@@ -423,7 +423,7 @@ class StorageClient
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
      * }
      * @return string
@@ -452,13 +452,13 @@ class StorageClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $serviceAccountEmail If present, only keys for the given
+     * @type string $serviceAccountEmail If present, only keys for the given
      *           service account are returned.
-     *     @type bool $showDeletedKeys Whether or not to show keys in the
+     * @type bool $showDeletedKeys Whether or not to show keys in the
      *           DELETED state.
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request.
-     *     @type string $projectId The project ID to use, if different from that
+     * @type string $projectId The project ID to use, if different from that
      *           with which the client was created.
      * }
      * @return ItemIterator<HmacKey>
@@ -529,10 +529,10 @@ class StorageClient
      * @param array $options {
      *     Configuration Options
      *
-     *     @type string $userProject If set, this is the ID of the project which
+     * @type string $userProject If set, this is the ID of the project which
      *           will be billed for the request. **NOTE**: This option is
      *           currently ignored by Cloud Storage.
-     *     @type string $projectId The project ID to use, if different from that
+     * @type string $projectId The project ID to use, if different from that
      *           with which the client was created.
      * }
      * @return CreatedHmacKey
@@ -548,9 +548,9 @@ class StorageClient
         }
 
         $res = $this->connection->createHmacKey([
-            'projectId' => $options['projectId'],
-            'serviceAccountEmail' => $serviceAccountEmail
-        ] + $options);
+                'projectId' => $options['projectId'],
+                'serviceAccountEmail' => $serviceAccountEmail
+            ] + $options);
 
         $key = new HmacKey(
             $this->connection,

@@ -17,10 +17,9 @@
 
 include 'vendor/autoload.php';
 
-use PHPUnit\Framework\TestCase;
-
-use Google\CRC32\Google;
 use Google\CRC32\CRC32;
+use Google\CRC32\Google;
+use PHPUnit\Framework\TestCase;
 
 final class GoogleTest extends TestCase
 {

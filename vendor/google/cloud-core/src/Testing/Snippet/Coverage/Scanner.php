@@ -138,8 +138,8 @@ class Scanner implements ScannerInterface
      * @return \Google\Cloud\Core\Testing\Snippet\Parser\Snippet[]
      *
      * @experimental
-     * @internal
      * @throws \ReflectionException
+     * @internal
      */
     public function snippets(array $classes)
     {

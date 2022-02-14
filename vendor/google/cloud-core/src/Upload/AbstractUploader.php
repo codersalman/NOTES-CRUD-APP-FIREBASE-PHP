@@ -78,23 +78,24 @@ abstract class AbstractUploader
      * @param array $options [optional] {
      *     Optional configuration.
      *
-     *     @type array $metadata Metadata on the resource.
-     *     @type int $chunkSize Size of the chunks to send incrementally during
+     * @type array $metadata Metadata on the resource.
+     * @type int $chunkSize Size of the chunks to send incrementally during
      *           a resumable upload. Must be in multiples of 262144 bytes.
-     *     @type array $restOptions HTTP client specific configuration options.
-     *     @type float $requestTimeout Seconds to wait before timing out the
+     * @type array $restOptions HTTP client specific configuration options.
+     * @type float $requestTimeout Seconds to wait before timing out the
      *           request. **Defaults to** `0`.
-     *     @type int $retries Number of retries for a failed request.
+     * @type int $retries Number of retries for a failed request.
      *           **Defaults to** `3`.
-     *     @type string $contentType Content type of the resource.
+     * @type string $contentType Content type of the resource.
      * }
      */
     public function __construct(
         RequestWrapper $requestWrapper,
-        $data,
-        $uri,
-        array $options = []
-    ) {
+                       $data,
+                       $uri,
+        array          $options = []
+    )
+    {
         $this->requestWrapper = $requestWrapper;
         $this->data = Utils::streamFor($data);
         $this->uri = $uri;

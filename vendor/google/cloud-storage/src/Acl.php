@@ -124,7 +124,7 @@ class Acl
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $entity The entity to fetch.
+     * @type string $entity The entity to fetch.
      * }
      * @return array
      */
@@ -163,9 +163,9 @@ class Acl
     public function add($entity, $role, array $options = [])
     {
         $aclOptions = $this->aclOptions + [
-            'entity' => $entity,
-            'role' => $role
-        ];
+                'entity' => $entity,
+                'role' => $role
+            ];
 
         return $this->connection->insertAcl($options + $aclOptions);
     }
@@ -195,9 +195,9 @@ class Acl
     public function update($entity, $role, array $options = [])
     {
         $aclOptions = $this->aclOptions + [
-            'entity' => $entity,
-            'role' => $role
-        ];
+                'entity' => $entity,
+                'role' => $role
+            ];
 
         return $this->connection->patchAcl($options + $aclOptions);
     }

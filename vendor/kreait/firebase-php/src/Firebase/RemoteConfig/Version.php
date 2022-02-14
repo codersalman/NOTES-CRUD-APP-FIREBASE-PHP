@@ -17,14 +17,15 @@ final class Version
     private ?VersionNumber $rollbackSource;
 
     private function __construct(
-        VersionNumber $versionNumber,
-        User $user,
-        string $description,
+        VersionNumber      $versionNumber,
+        User               $user,
+        string             $description,
         \DateTimeImmutable $updatedAt,
-        UpdateOrigin $updateOrigin,
-        UpdateType $updateType,
-        ?VersionNumber $rollbackSource
-    ) {
+        UpdateOrigin       $updateOrigin,
+        UpdateType         $updateType,
+        ?VersionNumber     $rollbackSource
+    )
+    {
         $this->versionNumber = $versionNumber;
         $this->user = $user;
         $this->description = $description;
@@ -35,9 +36,9 @@ final class Version
     }
 
     /**
+     * @param array<string, mixed> $data
      * @internal
      *
-     * @param array<string, mixed> $data
      */
     public static function fromArray(array $data): self
     {

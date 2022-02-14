@@ -380,14 +380,14 @@ class OAuth2 implements FetchAuthTokenInterface
      *
      * @param string $publicKey The public key to use to authenticate the token
      * @param array $allowed_algs List of supported verification algorithms
-     * @throws \DomainException if the token is missing an audience.
+     * @return null|object
      * @throws \DomainException if the audience does not match the one set in
      *         the OAuth2 class instance.
      * @throws \UnexpectedValueException If the token is invalid
      * @throws SignatureInvalidException If the signature is invalid.
      * @throws BeforeValidException If the token is not yet valid.
      * @throws ExpiredException If the token has expired.
-     * @return null|object
+     * @throws \DomainException if the token is missing an audience.
      */
     public function verifyIdToken($publicKey = null, $allowed_algs = array())
     {
@@ -1359,10 +1359,10 @@ class OAuth2 implements FetchAuthTokenInterface
     }
 
     /**
-     * @todo handle uri as array
-     *
      * @param string $uri
      * @return null|UriInterface
+     * @todo handle uri as array
+     *
      */
     private function coerceUri($uri)
     {

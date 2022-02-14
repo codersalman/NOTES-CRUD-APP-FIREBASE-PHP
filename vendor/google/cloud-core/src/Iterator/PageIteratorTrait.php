@@ -90,40 +90,41 @@ trait PageIteratorTrait
      * @param array $config [optional] {
      *     Configuration options.
      *
-     *     @type string $itemsKey The key for the items to iterate over from the
+     * @type string $itemsKey The key for the items to iterate over from the
      *           response. **Defaults to** `"items"`.
-     *     @type string $nextResultTokenKey The key for the next result token in
+     * @type string $nextResultTokenKey The key for the next result token in
      *           the response. **Defaults to** `"nextPageToken"`.
-     *     @type string $resultTokenKey The key for the results token set in the
+     * @type string $resultTokenKey The key for the results token set in the
      *           request. **Defaults too** `"pageToken"`.
-     *     @type array $firstPage The first page of results. If set, this data
+     * @type array $firstPage The first page of results. If set, this data
      *           will be used for the first page of results instead of making
      *           a network request.
-     *     @type callable $setNextResultTokenCondition If this condition passes
+     * @type callable $setNextResultTokenCondition If this condition passes
      *           then it should be considered safe to set the token to get the
      *           next set of results.
-     *     @type int $resultLimit Limit the number of results returned in total.
+     * @type int $resultLimit Limit the number of results returned in total.
      *           **Defaults to** `0` (return all results).
      * }
      */
     public function __construct(
         callable $resultMapper,
         callable $call,
-        array $callOptions,
-        array $config = []
-    ) {
+        array    $callOptions,
+        array    $config = []
+    )
+    {
         $this->resultMapper = $resultMapper;
         $this->call = $call;
         $this->config = $config + [
-            'itemsKey' => 'items',
-            'nextResultTokenKey' => 'nextPageToken',
-            'resultTokenKey' => 'pageToken',
-            'firstPage' => null,
-            'resultLimit' => 0,
-            'setNextResultTokenCondition' => function () {
-                return true;
-            }
-        ];
+                'itemsKey' => 'items',
+                'nextResultTokenKey' => 'nextPageToken',
+                'resultTokenKey' => 'pageToken',
+                'firstPage' => null,
+                'resultLimit' => 0,
+                'setNextResultTokenCondition' => function () {
+                    return true;
+                }
+            ];
         $this->callOptions = $callOptions;
         $this->resultTokenPath = explode('.', $this->config['resultTokenKey']);
         $this->nextResultTokenPath = explode('.', $this->config['nextResultTokenKey']);

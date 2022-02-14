@@ -28,7 +28,7 @@ interface CRCInterface
     /**
      * Updates the CRC calculation with the supplied data.
      *
-     * @param  string  $data  The data
+     * @param string $data The data
      */
     public function update($data);
 
@@ -40,7 +40,7 @@ interface CRCInterface
     /**
      * Return the current calculated CRC hash.
      *
-     * @param boolean  $raw_output  When set to TRUE, outputs raw binary data.
+     * @param boolean $raw_output When set to TRUE, outputs raw binary data.
      *                              FALSE outputs lowercase hexits.
      *
      * @return string  Returns a string containing the calculated CRC as

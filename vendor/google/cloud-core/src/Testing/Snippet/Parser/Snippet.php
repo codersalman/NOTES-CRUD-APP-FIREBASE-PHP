@@ -52,13 +52,13 @@ class Snippet implements \JsonSerializable
     {
         $this->identifier = $identifier;
         $this->config = $config + [
-            'content' => '',
-            'fqn' => '',
-            'index' => 0,
-            'file' => '',
-            'line' => 0,
-            'name' => null
-        ];
+                'content' => '',
+                'fqn' => '',
+                'index' => 0,
+                'file' => '',
+                'line' => 0,
+                'name' => null
+            ];
     }
 
     /**
@@ -152,7 +152,7 @@ class Snippet implements \JsonSerializable
 
         $use = [];
         foreach ($this->use as $class) {
-            $use[] = 'use '. $class .';';
+            $use[] = 'use ' . $class . ';';
         }
 
         if (!empty($use)) {
@@ -164,7 +164,7 @@ class Snippet implements \JsonSerializable
 
             try {
                 ob_start();
-                $res = eval($content ."\n\n". $return);
+                $res = eval($content . "\n\n" . $return);
                 $out = ob_get_clean();
             } catch (\Exception $e) {
                 ob_end_clean();
@@ -241,7 +241,7 @@ class Snippet implements \JsonSerializable
     public function insertAfterLine($line, $content)
     {
         $snippet = explode("\n", $this->config['content']);
-        array_splice($snippet, $line+1, 0, $content);
+        array_splice($snippet, $line + 1, 0, $content);
 
         $this->config['content'] = implode("\n", $snippet);
     }
@@ -300,12 +300,12 @@ class Snippet implements \JsonSerializable
     {
         if (is_array($returnVar)) {
             foreach ($returnVar as $index => $var) {
-                $returnVar[$index] = '$'.$var;
+                $returnVar[$index] = '$' . $var;
             }
 
-            return '['. implode(',', $returnVar) .']';
+            return '[' . implode(',', $returnVar) . ']';
         }
 
-        return '$'. $returnVar;
+        return '$' . $returnVar;
     }
 }

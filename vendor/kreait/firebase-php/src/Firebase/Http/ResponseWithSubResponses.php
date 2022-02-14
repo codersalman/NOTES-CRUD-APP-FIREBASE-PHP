@@ -60,7 +60,7 @@ final class ResponseWithSubResponses implements HasSubResponses, ResponseInterfa
             $headers = $realPart->getHeaders();
             $headerKeys = \array_keys($headers);
             // The first header is not a header, it's the start line of a HTTP response
-            $startLine = (string) \array_shift($headerKeys);
+            $startLine = (string)\array_shift($headerKeys);
             \array_shift($headers);
 
             if (\preg_match('@^http/(?P<version>[\S]+)\s(?P<status>\d{3})\s(?P<reason>.+)$@i', $startLine, $startLineMatches) !== 1) {
@@ -68,7 +68,7 @@ final class ResponseWithSubResponses implements HasSubResponses, ResponseInterfa
             }
 
             $subResponse = new Response(
-                (int) $startLineMatches['status'],
+                (int)$startLineMatches['status'],
                 $headers,
                 $realPart->getBody(),
                 $startLineMatches['version'],

@@ -128,7 +128,7 @@ class TestHandler extends AbstractProcessingHandler
 
     /**
      * @param string|array $record Either a message string or an array containing message and optionally context keys that will be checked against all records
-     * @param string|int   $level  Logging level value or name
+     * @param string|int $level Logging level value or name
      *
      * @phpstan-param array{message: string, context?: mixed[]}|string $record
      * @phpstan-param Level|LevelName|LogLevel::*                      $level
@@ -176,7 +176,7 @@ class TestHandler extends AbstractProcessingHandler
     }
 
     /**
-     * @param  string|int $level Logging level value or name
+     * @param string|int $level Logging level value or name
      * @return bool
      *
      * @psalm-param callable(Record, int): mixed $predicate
@@ -209,8 +209,8 @@ class TestHandler extends AbstractProcessingHandler
     }
 
     /**
-     * @param  string  $method
-     * @param  mixed[] $args
+     * @param string $method
+     * @param mixed[] $args
      * @return bool
      */
     public function __call($method, $args)

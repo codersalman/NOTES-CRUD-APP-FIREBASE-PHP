@@ -50,7 +50,7 @@ class ExponentialBackoff
      */
     public function __construct($retries = null, callable $retryFunction = null)
     {
-        $this->retries = $retries !== null ? (int) $retries : 3;
+        $this->retries = $retries !== null ? (int)$retries : 3;
         $this->retryFunction = $retryFunction;
         // @todo revisit this approach
         // @codeCoverageIgnoreStart

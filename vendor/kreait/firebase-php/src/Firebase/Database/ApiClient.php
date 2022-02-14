@@ -30,23 +30,23 @@ class ApiClient
     /**
      * @param UriInterface|string $uri
      *
+     * @return mixed
      * @throws DatabaseException
      *
-     * @return mixed
      */
     public function get($uri)
     {
         $response = $this->requestApi('GET', $uri);
 
-        return JSON::decode((string) $response->getBody(), true);
+        return JSON::decode((string)$response->getBody(), true);
     }
 
     /**
      * @param UriInterface|string $uri
      *
+     * @return array<string, mixed>
      * @throws DatabaseException
      *
-     * @return array<string, mixed>
      */
     public function getWithETag($uri): array
     {
@@ -56,7 +56,7 @@ class ApiClient
             ],
         ]);
 
-        $value = JSON::decode((string) $response->getBody(), true);
+        $value = JSON::decode((string)$response->getBody(), true);
         $etag = $response->getHeaderLine('ETag');
 
         return [
@@ -69,24 +69,24 @@ class ApiClient
      * @param UriInterface|string $uri
      * @param mixed $value
      *
+     * @return mixed
      * @throws DatabaseException
      *
-     * @return mixed
      */
     public function set($uri, $value)
     {
         $response = $this->requestApi('PUT', $uri, ['json' => $value]);
 
-        return JSON::decode((string) $response->getBody(), true);
+        return JSON::decode((string)$response->getBody(), true);
     }
 
     /**
      * @param UriInterface|string $uri
      * @param mixed $value
      *
+     * @return mixed
      * @throws DatabaseException
      *
-     * @return mixed
      */
     public function setWithEtag($uri, $value, string $etag)
     {
@@ -97,7 +97,7 @@ class ApiClient
             'json' => $value,
         ]);
 
-        return JSON::decode((string) $response->getBody(), true);
+        return JSON::decode((string)$response->getBody(), true);
     }
 
     /**
@@ -117,9 +117,9 @@ class ApiClient
     /**
      * @param UriInterface|string $uri
      *
+     * @return mixed
      * @throws DatabaseException
      *
-     * @return mixed
      */
     public function updateRules($uri, RuleSet $ruleSet)
     {
@@ -127,7 +127,7 @@ class ApiClient
             'body' => JSON::encode($ruleSet, JSON_FORCE_OBJECT | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
         ]);
 
-        return JSON::decode((string) $response->getBody(), true);
+        return JSON::decode((string)$response->getBody(), true);
     }
 
     /**
@@ -140,7 +140,7 @@ class ApiClient
     {
         $response = $this->requestApi('POST', $uri, ['json' => $value]);
 
-        return JSON::decode((string) $response->getBody(), true)['name'];
+        return JSON::decode((string)$response->getBody(), true)['name'];
     }
 
     /**

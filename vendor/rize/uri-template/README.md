@@ -1,9 +1,10 @@
 # PHP URI Template
 
-This is a URI Template implementation in PHP based on [RFC 6570 URI Template](http://tools.ietf.org/html/rfc6570). In addition to URI expansion, it also supports URI extraction (200+ test cases).
+This is a URI Template implementation in PHP based on [RFC 6570 URI Template](http://tools.ietf.org/html/rfc6570). In
+addition to URI expansion, it also supports URI extraction (200+ test cases).
 
 ![CI](https://github.com/rize/UriTemplate/workflows/CI/badge.svg) [![Total Downloads](https://poser.pugx.org/rize/uri-template/downloads.png)](https://packagist.org/packages/rize/uri-template)
-[![Financial Contributors on Open Collective](https://opencollective.com/rize-uri-template/all/badge.svg?label=financial+contributors)](https://opencollective.com/rize-uri-template) 
+[![Financial Contributors on Open Collective](https://opencollective.com/rize-uri-template/all/badge.svg?label=financial+contributors)](https://opencollective.com/rize-uri-template)
 
 * [Node.js/Javascript](https://github.com/rezigned/uri-template.js) URI Template
 
@@ -59,7 +60,8 @@ $uri->expand('http://{host}{/segments*}/{file}{.extensions*}', [
 >> 'http://www.host.com/path/to/a/file.x.y'
 ```
 
-`Rize\UriTemplate` accepts `base-uri` as a 1st argument and `default params` as a 2nd argument. This is very useful when you're working with API endpoint.
+`Rize\UriTemplate` accepts `base-uri` as a 1st argument and `default params` as a 2nd argument. This is very useful when
+you're working with API endpoint.
 
 Take a look at real world example.
 
@@ -101,7 +103,8 @@ $params = $uri->extract('/search/{term:1}/{term}/{?q*,limit}', '/search/j/john/?
 )
 ```
 
-Note that in the example above, result returned by `extract` method has an extra keys named `term:1` for `prefix` modifier. This key was added just for our convenience to access prefix data.
+Note that in the example above, result returned by `extract` method has an extra keys named `term:1` for `prefix`
+modifier. This key was added just for our convenience to access prefix data.
 
 #### `strict` mode
 
@@ -133,7 +136,8 @@ $params = $uri->extract('/{?a,b}', '/?a=1')
 
 With `strict mode`, it will allow you to extract uri only when variables in template are fully matched with given uri.
 
-Which is useful when you want to determine whether the given uri is matched against your template or not (in case you want to use it as routing service).
+Which is useful when you want to determine whether the given uri is matched against your template or not (in case you
+want to use it as routing service).
 
 ```php
 <?php
@@ -159,7 +163,8 @@ $params = $uri->extract('/{?a,b}', '/?a=1&b=2', true);
 
 #### Array modifier `%`
 
-By default, RFC 6570 only has 2 types of operators `:` and `*`. This `%` array operator was added to the library because current spec can't handle array style query e.g. `list[]=a` or `key[user]=john`.
+By default, RFC 6570 only has 2 types of operators `:` and `*`. This `%` array operator was added to the library because
+current spec can't handle array style query e.g. `list[]=a` or `key[user]=john`.
 
 Example usage for `%` modifier
 
@@ -227,7 +232,8 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 
 ### Financial Contributors
 
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/rize-uri-template/contribute)]
+Become a financial contributor and help us sustain our
+community. [[Contribute](https://opencollective.com/rize-uri-template/contribute)]
 
 #### Individuals
 
@@ -235,7 +241,8 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 
 #### Organizations
 
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/rize-uri-template/contribute)]
+Support this project with your organization. Your logo will show up here with a link to your
+website. [[Contribute](https://opencollective.com/rize-uri-template/contribute)]
 
 <a href="https://opencollective.com/rize-uri-template/organization/0/website"><img src="https://opencollective.com/rize-uri-template/organization/0/avatar.svg"></a>
 <a href="https://opencollective.com/rize-uri-template/organization/1/website"><img src="https://opencollective.com/rize-uri-template/organization/1/avatar.svg"></a>
